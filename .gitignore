@@ -5,3 +5,4 @@
 /**/target/
 /rac-web/package-lock.json
 /rac-web/node_modules/
+*.DS_Store
