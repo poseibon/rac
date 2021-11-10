@@ -17,6 +17,10 @@
             <artifactId>rac-rowauth</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.zwedu.rac</groupId>
+            <artifactId>rac-domain</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
         </dependency>
