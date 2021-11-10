@@ -1,13 +1,13 @@
 package com.zwedu.rac.sdk.rdo.user;
 
-import com.zwedu.rac.sdk.rpo.base.BaseSimpleRpo;
+import com.zwedu.rac.sdk.rpo.base.BaseSimpleRdo;
 
 /**
  * 用户基本传输对象
  * @author qingchuan
  * @date 2020/12/10
  */
-public class UserSimpleRdo extends BaseSimpleRpo {
+public class UserSimpleRdo extends BaseSimpleRdo {
     /**
      * 密码
      */

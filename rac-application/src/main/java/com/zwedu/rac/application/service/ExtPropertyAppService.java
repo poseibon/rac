@@ -1,10 +1,10 @@
 package com.zwedu.rac.application.service;
 
-import com.zwedu.rac.application.converter.ExtPropertyEntity2ComplexDtoConverter;
-import com.zwedu.rac.application.converter.ExtPropertyEntity2SimpleDtoConverter;
-import com.zwedu.rac.application.converter.ExtPropertySimpleDto2EntityConverter;
-import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
-import com.zwedu.rac.sdk.rpo.base.ResPaginationRpo;
+import com.zwedu.rac.application.converter.ExtPropertyEntity2ComplexRdoConverter;
+import com.zwedu.rac.application.converter.ExtPropertyEntity2SimpleRdoConverter;
+import com.zwedu.rac.application.converter.ExtPropertySimpleRpo2EntityConverter;
+import com.zwedu.rac.sdk.rpo.base.PaginationRdo;
+import com.zwedu.rac.sdk.rdo.base.PaginationRpo;
 import com.zwedu.rac.sdk.rpo.ext.ExtPropertyComplexDto;
 import com.zwedu.rac.sdk.rpo.ext.ExtPropertySimpleRpo;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
@@ -34,12 +34,12 @@ public class ExtPropertyAppService {
      * @param record 分页查询参数
      * @return 扩展属性列表数据
      */
-    public ResPaginationRpo<ExtPropertyComplexDto> listPage(ReqPaginationRpo record) {
+    public PaginationRdo<ExtPropertyComplexDto> listPage(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的扩展属性列表
         Pagination<ExtPropertyEntity> pagination = extPropertyDomainService.listPage(record.getPageNo(),
                 record.getPageSize(), record.getBizLineId(), record.getSearchVal());
-        return ExtPropertyEntity2ComplexDtoConverter.INSTANCE.toPaginationRdo(pagination);
+        return ExtPropertyEntity2ComplexRdoConverter.INSTANCE.toPaginationRdo(pagination);
     }
 
     /**
@@ -49,7 +49,7 @@ public class ExtPropertyAppService {
      */
     public List<ExtPropertySimpleRpo> listByBizLineId(ExtPropertySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        return ExtPropertyEntity2SimpleDtoConverter.INSTANCE.toRdoList(extPropertyDomainService
+        return ExtPropertyEntity2SimpleRdoConverter.INSTANCE.toRdoList(extPropertyDomainService
                 .listByBizLineId(record.getBizLineId()));
     }
 
@@ -61,7 +61,7 @@ public class ExtPropertyAppService {
      */
     public List<ExtPropertySimpleRpo> listByBizEntityEnName(ExtPropertySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        return ExtPropertyEntity2SimpleDtoConverter.INSTANCE.toRdoList(extPropertyDomainService
+        return ExtPropertyEntity2SimpleRdoConverter.INSTANCE.toRdoList(extPropertyDomainService
                 .listByBizEntityEnName(record.getBizLineId(), record.getBizEntityEnName()));
     }
 
@@ -74,7 +74,7 @@ public class ExtPropertyAppService {
     @WriteAuth
     public void create(Long currentUserId, ExtPropertySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        extPropertyDomainService.create(currentUserId, ExtPropertySimpleDto2EntityConverter.INSTANCE.toEntity(record));
+        extPropertyDomainService.create(currentUserId, ExtPropertySimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
     /**
@@ -86,7 +86,7 @@ public class ExtPropertyAppService {
     @WriteAuth
     public void edit(Long currentUserId, ExtPropertySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        extPropertyDomainService.edit(currentUserId, ExtPropertySimpleDto2EntityConverter.INSTANCE.toEntity(record));
+        extPropertyDomainService.edit(currentUserId, ExtPropertySimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
 

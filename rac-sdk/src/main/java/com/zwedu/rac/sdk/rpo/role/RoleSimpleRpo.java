@@ -1,6 +1,6 @@
 package com.zwedu.rac.sdk.rpo.role;
 
-import com.zwedu.rac.sdk.rpo.base.BaseSimpleRpo;
+import com.zwedu.rac.sdk.rpo.base.BaseSimpleRdo;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * @author qingchuan
  * @date 2020/12/9
  */
-public class RoleSimpleRpo extends BaseSimpleRpo {
+public class RoleSimpleRpo extends BaseSimpleRdo {
     /**
      * 功能策略列表
      */

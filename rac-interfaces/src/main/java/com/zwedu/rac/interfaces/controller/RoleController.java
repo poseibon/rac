@@ -1,7 +1,7 @@
 package com.zwedu.rac.interfaces.controller;
 
 import com.zwedu.rac.application.service.RoleAppService;
-import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
+import com.zwedu.rac.sdk.rdo.base.PaginationRpo;
 import com.zwedu.rac.sdk.rpo.role.RoleSimpleRpo;
 import com.zwedu.rac.shiro.utils.SessionHelper;
 import org.poseibon.common.utils.BaseResponse;
@@ -33,7 +33,7 @@ public class RoleController {
      */
     @RequestMapping("/listPage")
     @ResponseBody
-    public BaseResponse listPage(@RequestBody ReqPaginationRpo record) {
+    public BaseResponse listPage(@RequestBody PaginationRpo record) {
         return ResponseUtil.success(roleAppService.listPage(record));
     }
 
@@ -66,7 +66,7 @@ public class RoleController {
      */
     @RequestMapping("/listAuth")
     @ResponseBody
-    public BaseResponse listAuth(@RequestBody ReqPaginationRpo record) {
+    public BaseResponse listAuth(@RequestBody PaginationRpo record) {
         return ResponseUtil.success(roleAppService.listAuth(record));
     }
 

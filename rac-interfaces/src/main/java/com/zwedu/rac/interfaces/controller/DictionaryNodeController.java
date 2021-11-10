@@ -2,7 +2,7 @@ package com.zwedu.rac.interfaces.controller;
 
 import com.zwedu.rac.application.service.DictionaryNodeAppService;
 import com.zwedu.rac.sdk.rpo.dictionary.DictionaryNodeSimpleRpo;
-import com.zwedu.rac.sdk.rpo.ext.ExtDataSimpleDto;
+import com.zwedu.rac.sdk.rpo.ext.ExtDataSimpleRpo;
 import com.zwedu.rac.shiro.utils.SessionHelper;
 import org.poseibon.common.utils.BaseResponse;
 import org.poseibon.common.utils.ResponseUtil;
@@ -72,7 +72,7 @@ public class DictionaryNodeController {
      */
     @RequestMapping("/addExtProperty")
     @ResponseBody
-    public BaseResponse addExtProperty(@RequestBody ExtDataSimpleDto record) {
+    public BaseResponse addExtProperty(@RequestBody ExtDataSimpleRpo record) {
         Long currentLoginId = SessionHelper.getLoginUserId();
         dictionaryNodeAppService.addExtProperty(currentLoginId, record);
         return ResponseUtil.success();
@@ -86,7 +86,7 @@ public class DictionaryNodeController {
      */
     @RequestMapping("/dropExtProperty")
     @ResponseBody
-    public BaseResponse dropExtProperty(@RequestBody ExtDataSimpleDto record) {
+    public BaseResponse dropExtProperty(@RequestBody ExtDataSimpleRpo record) {
         dictionaryNodeAppService.dropExtProperty(record);
         return ResponseUtil.success();
     }

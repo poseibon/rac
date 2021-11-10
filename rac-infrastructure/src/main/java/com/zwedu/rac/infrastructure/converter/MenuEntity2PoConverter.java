@@ -4,6 +4,7 @@ import com.zwedu.rac.domain.entity.MenuEntity;
 import com.zwedu.rac.infrastructure.po.MenuPo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.poseibon.common.converter.Entity2PoConverter;
 
 /**
  * 菜单po-entity转换器

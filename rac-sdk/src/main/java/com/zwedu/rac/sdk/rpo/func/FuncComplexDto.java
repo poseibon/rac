@@ -1,6 +1,6 @@
 package com.zwedu.rac.sdk.rpo.func;
 
-import com.zwedu.rac.sdk.rpo.base.BaseComplexRpo;
+import com.zwedu.rac.sdk.rpo.base.BaseComplexRdo;
 
 /**
  * 功能传输对象
@@ -8,7 +8,7 @@ import com.zwedu.rac.sdk.rpo.base.BaseComplexRpo;
  * @author qingchuan
  * @date 2020/12/9
  */
-public class FuncComplexDto extends BaseComplexRpo<FuncComplexDto> {
+public class FuncComplexDto extends BaseComplexRdo<FuncComplexDto> {
     /**
      * 功能URL
      */

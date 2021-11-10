@@ -4,6 +4,7 @@ import com.zwedu.rac.domain.entity.MenuEntity;
 import com.zwedu.rac.sdk.rdo.MenuRdo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.poseibon.common.converter.Entity2RdoConverter;
 
 /**
  * 菜单entity-rdo转换器
@@ -13,7 +14,7 @@ import org.mapstruct.factory.Mappers;
  */
 @Mapper
 public interface MenuEntity2RdoConverter extends
-        Entity2RdoConverter<MenuEntity, MenuRdo> {
+        Entity2RdoExtConverter<MenuEntity, MenuRdo> {
     /**
      * 实例
      */

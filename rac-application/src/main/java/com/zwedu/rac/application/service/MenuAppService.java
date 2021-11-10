@@ -1,7 +1,7 @@
 package com.zwedu.rac.application.service;
 
-import com.zwedu.rac.application.converter.MenuEntity2ComplexDtoConverter;
-import com.zwedu.rac.application.converter.MenuSimpleDto2EntityConverter;
+import com.zwedu.rac.application.converter.MenuEntity2ComplexRdoConverter;
+import com.zwedu.rac.application.converter.MenuSimpleRpo2EntityConverter;
 import com.zwedu.rac.domain.entity.MenuEntity;
 import com.zwedu.rac.domain.service.MenuDomainService;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
@@ -37,7 +37,7 @@ public class MenuAppService {
         // 查询对应的菜单列表
         List<MenuEntity> MenuEntityList = menuDomainService.
                 listByParentId(record.getBizLineId(), record.getParentId());
-        return MenuEntity2ComplexDtoConverter.INSTANCE.toRdoList(MenuEntityList);
+        return MenuEntity2ComplexRdoConverter.INSTANCE.toRdoList(MenuEntityList);
     }
 
     /**
@@ -51,7 +51,7 @@ public class MenuAppService {
         // 查询对应的功能列表
         List<MenuEntity> menuEntityList = menuDomainService.listByBizLineId(record.getBizLineId(),
                 record.getSearchVal());
-        List<MenuComplexDto> funcComplexDtoList = MenuEntity2ComplexDtoConverter.INSTANCE.toRdoList(menuEntityList);
+        List<MenuComplexDto> funcComplexDtoList = MenuEntity2ComplexRdoConverter.INSTANCE.toRdoList(menuEntityList);
         return TreeBuilder.buildTree(funcComplexDtoList);
     }
 
@@ -64,7 +64,7 @@ public class MenuAppService {
     @WriteAuth
     public void create(Long currentUserId, MenuSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        menuDomainService.create(currentUserId, MenuSimpleDto2EntityConverter.INSTANCE.toEntity(record));
+        menuDomainService.create(currentUserId, MenuSimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
     /**
@@ -76,7 +76,7 @@ public class MenuAppService {
     @WriteAuth
     public void edit(Long currentUserId, MenuSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        menuDomainService.edit(currentUserId, MenuSimpleDto2EntityConverter.INSTANCE.toEntity(record));
+        menuDomainService.edit(currentUserId, MenuSimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
 

@@ -31,10 +31,6 @@ public class BaseSimpleRpo {
      * 备注
      */
     private String remark;
-    /**
-     * 检索值
-     */
-    private String searchVal;
 
     public Long getId() {
         return id;
@@ -82,13 +78,5 @@ public class BaseSimpleRpo {
 
     public void setRemark(String remark) {
         this.remark = remark;
-    }
-
-    public String getSearchVal() {
-        return searchVal;
-    }
-
-    public void setSearchVal(String searchVal) {
-        this.searchVal = searchVal;
     }
 }

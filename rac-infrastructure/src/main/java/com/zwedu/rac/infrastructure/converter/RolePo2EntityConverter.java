@@ -1,11 +1,10 @@
 package com.zwedu.rac.infrastructure.converter;
 
 import com.zwedu.rac.domain.entity.RoleEntity;
-import com.zwedu.rac.domain.entity.UserEntity;
 import com.zwedu.rac.infrastructure.po.RolePo;
-import com.zwedu.rac.infrastructure.po.UserPo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.poseibon.common.converter.Po2EntityConverter;
 
 /**
  * 角色po-entity转换器

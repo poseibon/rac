@@ -1,15 +1,15 @@
 package com.zwedu.rac.application.service;
 
-import com.zwedu.rac.application.converter.BizLineEntity2ComplexDtoConverter;
-import com.zwedu.rac.application.converter.BizLineEntity2SimpleDtoConverter;
-import com.zwedu.rac.application.converter.BizLineSimpleDto2EntityConverter;
+import com.zwedu.rac.application.converter.BizLineEntity2ComplexRdoConverter;
+import com.zwedu.rac.application.converter.BizLineEntity2SimpleRdoConverter;
+import com.zwedu.rac.application.converter.BizLineSimpleRpo2EntityConverter;
 import com.zwedu.rac.domain.entity.BizLineEntity;
 import com.zwedu.rac.domain.service.BizLineDomainService;
 import com.zwedu.rac.domain.service.UserDomainService;
 import com.zwedu.rac.rowauth.annotation.ReadAuth;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
-import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
-import com.zwedu.rac.sdk.rpo.base.ResPaginationRpo;
+import com.zwedu.rac.sdk.rdo.base.PaginationRpo;
+import com.zwedu.rac.sdk.rpo.base.PaginationRdo;
 import com.zwedu.rac.sdk.rpo.bizline.BizLineComplexDto;
 import com.zwedu.rac.sdk.rpo.bizline.BizLineSimpleRpo;
 import org.poseibon.common.page.Pagination;
@@ -39,12 +39,12 @@ public class BizLineAppService {
      * @return 业务线列表数据
      */
     @ReadAuth
-    public ResPaginationRpo<BizLineComplexDto> listPage(ReqPaginationRpo record) {
+    public PaginationRdo<BizLineComplexDto> listPage(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的业务线列表
         Pagination<BizLineEntity> pagination = bizLineService.listPage(record.getPageNo(),
                 record.getPageSize(), record.getSearchVal());
-        return BizLineEntity2ComplexDtoConverter.INSTANCE.toPaginationRdo(pagination);
+        return BizLineEntity2ComplexRdoConverter.INSTANCE.toPaginationRdo(pagination);
     }
 
     /**
@@ -54,7 +54,7 @@ public class BizLineAppService {
      */
     @ReadAuth
     public List<BizLineSimpleRpo> listAuthBizLine() {
-        return BizLineEntity2SimpleDtoConverter.INSTANCE.toRdoList(bizLineService.listAuthBizLine());
+        return BizLineEntity2SimpleRdoConverter.INSTANCE.toRdoList(bizLineService.listAuthBizLine());
     }
 
     /**
@@ -66,7 +66,7 @@ public class BizLineAppService {
     @WriteAuth
     public void create(Long currentUserId, BizLineSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        bizLineService.create(currentUserId, BizLineSimpleDto2EntityConverter.INSTANCE.toEntity(record));
+        bizLineService.create(currentUserId, BizLineSimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
 
@@ -80,7 +80,7 @@ public class BizLineAppService {
     @WriteAuth
     public void edit(Long currentUserId, BizLineSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        bizLineService.edit(currentUserId, BizLineSimpleDto2EntityConverter.INSTANCE.toEntity(record));
+        bizLineService.edit(currentUserId, BizLineSimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
 

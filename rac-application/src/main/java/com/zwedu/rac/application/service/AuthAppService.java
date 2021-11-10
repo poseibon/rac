@@ -255,6 +255,6 @@ public class AuthAppService {
     public UserSimpleRdo querySimpleUser(String userName) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(userName);
         UserEntity userEntity = userDomainService.queryByEnName(userName);
-        return UserEntity2SimpleDtoConverter.INSTANCE.toRdo(userEntity);
+        return UserEntity2SimpleRdoConverter.INSTANCE.toRdo(userEntity);
     }
 }

@@ -1,6 +1,6 @@
 package com.zwedu.rac.sdk.rpo.func;
 
-import com.zwedu.rac.sdk.rpo.base.BaseSimpleRpo;
+import com.zwedu.rac.sdk.rpo.base.BaseSimpleRdo;
 
 /**
  * 功能传输对象
@@ -8,7 +8,7 @@ import com.zwedu.rac.sdk.rpo.base.BaseSimpleRpo;
  * @author qingchuan
  * @date 2020/12/9
  */
-public class FuncSimpleRpo extends BaseSimpleRpo {
+public class FuncSimpleRpo extends BaseSimpleRdo {
     /**
      * 功能内容
      */

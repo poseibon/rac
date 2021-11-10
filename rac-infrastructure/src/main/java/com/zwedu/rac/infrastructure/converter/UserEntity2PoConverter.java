@@ -4,6 +4,7 @@ import com.zwedu.rac.domain.entity.UserEntity;
 import com.zwedu.rac.infrastructure.po.UserPo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.poseibon.common.converter.Entity2PoConverter;
 
 /**
  * 用户po-entity转换器

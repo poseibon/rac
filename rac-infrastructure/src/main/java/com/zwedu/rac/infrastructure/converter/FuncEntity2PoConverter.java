@@ -4,6 +4,7 @@ import com.zwedu.rac.domain.entity.FuncEntity;
 import com.zwedu.rac.infrastructure.po.FuncPo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.poseibon.common.converter.Entity2PoConverter;
 
 /**
  * 功能po-entity转换器

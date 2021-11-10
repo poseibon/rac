@@ -4,6 +4,7 @@ import com.zwedu.rac.domain.entity.DimensionNodeEntity;
 import com.zwedu.rac.sdk.rdo.DimensionNodeRdo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.poseibon.common.converter.Entity2RdoConverter;
 
 /**
  * 维度entity-dto转换器
@@ -13,7 +14,7 @@ import org.mapstruct.factory.Mappers;
  */
 @Mapper
 public interface DimensionNodeEntity2RdoConverter extends
-        Entity2RdoConverter<DimensionNodeEntity, DimensionNodeRdo> {
+        Entity2RdoExtConverter<DimensionNodeEntity, DimensionNodeRdo> {
     /**
      * 实例
      */

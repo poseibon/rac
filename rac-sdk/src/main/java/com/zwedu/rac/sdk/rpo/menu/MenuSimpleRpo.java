@@ -1,6 +1,6 @@
 package com.zwedu.rac.sdk.rpo.menu;
 
-import com.zwedu.rac.sdk.rpo.base.BaseSimpleRpo;
+import com.zwedu.rac.sdk.rpo.base.BaseSimpleRdo;
 
 /**
  * 菜单传输对象
@@ -8,7 +8,7 @@ import com.zwedu.rac.sdk.rpo.base.BaseSimpleRpo;
  * @author qingchuan
  * @date 2020/12/9
  */
-public class MenuSimpleRpo extends BaseSimpleRpo {
+public class MenuSimpleRpo extends BaseSimpleRdo {
     /**
      * 菜单URL
      */

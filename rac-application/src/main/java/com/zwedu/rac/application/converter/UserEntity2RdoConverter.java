@@ -7,6 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
+import org.poseibon.common.converter.Entity2RdoConverter;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ import java.util.List;
  * @date 2020/12/9
  */
 @Mapper
-public interface UserEntity2RdoConverter extends Entity2RdoConverter<UserEntity, UserRdo> {
+public interface UserEntity2RdoConverter extends Entity2RdoExtConverter<UserEntity, UserRdo> {
     /**
      * 实例
      */

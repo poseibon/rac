@@ -1,7 +1,7 @@
 package com.zwedu.rac.interfaces.controller;
 
-import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
-import com.zwedu.rac.sdk.rpo.ext.ExtDataSimpleDto;
+import com.zwedu.rac.sdk.rdo.base.PaginationRpo;
+import com.zwedu.rac.sdk.rpo.ext.ExtDataSimpleRpo;
 import com.zwedu.rac.sdk.rpo.user.UserPermitRpo;
 import com.zwedu.rac.sdk.rdo.user.UserSimpleRdo;
 import com.zwedu.rac.application.service.AuthAppService;
@@ -39,7 +39,7 @@ public class UserController {
      */
     @RequestMapping("/listPage")
     @ResponseBody
-    public BaseResponse listPage(@RequestBody ReqPaginationRpo paginationDto) {
+    public BaseResponse listPage(@RequestBody PaginationRpo paginationDto) {
         Long currentLoginId = SessionHelper.getLoginUserId();
         return ResponseUtil.success(userAppService.listPage(currentLoginId, paginationDto));
     }
@@ -137,7 +137,7 @@ public class UserController {
      */
     @RequestMapping("/addExtProperty")
     @ResponseBody
-    public BaseResponse addExtProperty(@RequestBody ExtDataSimpleDto record) {
+    public BaseResponse addExtProperty(@RequestBody ExtDataSimpleRpo record) {
         Long currentLoginId = SessionHelper.getLoginUserId();
         userAppService.addExtProperty(currentLoginId, record);
         return ResponseUtil.success();
@@ -151,7 +151,7 @@ public class UserController {
      */
     @RequestMapping("/dropExtProperty")
     @ResponseBody
-    public BaseResponse dropExtProperty(@RequestBody ExtDataSimpleDto record) {
+    public BaseResponse dropExtProperty(@RequestBody ExtDataSimpleRpo record) {
         userAppService.dropExtProperty(record);
         return ResponseUtil.success();
     }

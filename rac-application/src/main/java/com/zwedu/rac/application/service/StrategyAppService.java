@@ -1,13 +1,13 @@
 package com.zwedu.rac.application.service;
 
-import com.zwedu.rac.application.converter.StrategyEntity2ComplexDtoConverter;
-import com.zwedu.rac.application.converter.StrategyEntity2SimpleDtoConverter;
-import com.zwedu.rac.application.converter.StrategySimpleDto2EntityConverter;
+import com.zwedu.rac.application.converter.StrategyEntity2ComplexRdoConverter;
+import com.zwedu.rac.application.converter.StrategyEntity2SimpleRdoConverter;
+import com.zwedu.rac.application.converter.StrategySimpleRpo2EntityConverter;
 import com.zwedu.rac.domain.entity.StrategyEntity;
 import com.zwedu.rac.domain.service.StrategyDomainService;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
-import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
-import com.zwedu.rac.sdk.rpo.base.ResPaginationRpo;
+import com.zwedu.rac.sdk.rpo.base.PaginationRdo;
+import com.zwedu.rac.sdk.rdo.base.PaginationRpo;
 import com.zwedu.rac.sdk.rpo.strategy.StrategyComplexRpo;
 import com.zwedu.rac.sdk.rpo.strategy.StrategySimpleRpo;
 import org.poseibon.common.page.Pagination;
@@ -34,12 +34,12 @@ public class StrategyAppService {
      * @param record 分页查询参数
      * @return 访问策略列表数据
      */
-    public ResPaginationRpo<StrategyComplexRpo> listPage(ReqPaginationRpo record) {
+    public PaginationRdo<StrategyComplexRpo> listPage(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的访问策略列表
         Pagination<StrategyEntity> pagination = strategyDomainService.listPage(record.getPageNo(),
                 record.getPageSize(), record.getBizLineId(), record.getSearchVal());
-        return StrategyEntity2ComplexDtoConverter.INSTANCE.toPaginationRdo(pagination);
+        return StrategyEntity2ComplexRdoConverter.INSTANCE.toPaginationRdo(pagination);
     }
 
     /**
@@ -49,7 +49,7 @@ public class StrategyAppService {
      */
     public List<StrategySimpleRpo> listByBizLineId(StrategySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        return StrategyEntity2SimpleDtoConverter.INSTANCE.toRdoList(strategyDomainService
+        return StrategyEntity2SimpleRdoConverter.INSTANCE.toRdoList(strategyDomainService
                 .listByBizLineId(record.getBizLineId()));
     }
 
@@ -62,7 +62,7 @@ public class StrategyAppService {
     @WriteAuth
     public void create(Long currentUserId, StrategySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        strategyDomainService.create(currentUserId, StrategySimpleDto2EntityConverter.INSTANCE.toEntity(record));
+        strategyDomainService.create(currentUserId, StrategySimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
     /**
@@ -74,7 +74,7 @@ public class StrategyAppService {
     @WriteAuth
     public void edit(Long currentUserId, StrategySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        strategyDomainService.edit(currentUserId, StrategySimpleDto2EntityConverter.INSTANCE.toEntity(record));
+        strategyDomainService.edit(currentUserId, StrategySimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
 

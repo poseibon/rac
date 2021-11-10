@@ -1,13 +1,13 @@
 package com.zwedu.rac.application.service;
 
-import com.zwedu.rac.application.converter.DictionaryEntity2ComplexDtoConverter;
-import com.zwedu.rac.application.converter.DictionaryEntity2SimpleDtoConverter;
-import com.zwedu.rac.application.converter.DictionarySimpleDto2EntityConverter;
+import com.zwedu.rac.application.converter.DictionaryEntity2ComplexRdoConverter;
+import com.zwedu.rac.application.converter.DictionaryEntity2SimpleRdoConverter;
+import com.zwedu.rac.application.converter.DictionarySimpleRpo2EntityConverter;
 import com.zwedu.rac.domain.entity.DictionaryEntity;
 import com.zwedu.rac.domain.service.DictionaryDomainService;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
-import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
-import com.zwedu.rac.sdk.rpo.base.ResPaginationRpo;
+import com.zwedu.rac.sdk.rpo.base.PaginationRdo;
+import com.zwedu.rac.sdk.rdo.base.PaginationRpo;
 import com.zwedu.rac.sdk.rpo.dictionary.DictionaryComplexDto;
 import com.zwedu.rac.sdk.rpo.dictionary.DictionarySimpleRpo;
 import org.poseibon.common.page.Pagination;
@@ -34,12 +34,12 @@ public class DictionaryAppService {
      * @param record 分页查询参数
      * @return 字典列表数据
      */
-    public ResPaginationRpo<DictionaryComplexDto> listPage(ReqPaginationRpo record) {
+    public PaginationRdo<DictionaryComplexDto> listPage(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的字典列表
         Pagination<DictionaryEntity> pagination = dictionaryDomainService.listPage(record.getPageNo(),
                 record.getPageSize(), record.getBizLineId(), record.getSearchVal());
-        return DictionaryEntity2ComplexDtoConverter.INSTANCE.toPaginationRdo(pagination);
+        return DictionaryEntity2ComplexRdoConverter.INSTANCE.toPaginationRdo(pagination);
     }
 
     /**
@@ -49,7 +49,7 @@ public class DictionaryAppService {
      */
     public List<DictionarySimpleRpo> listByBizLineId(DictionarySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        return DictionaryEntity2SimpleDtoConverter.INSTANCE.toRdoList(dictionaryDomainService
+        return DictionaryEntity2SimpleRdoConverter.INSTANCE.toRdoList(dictionaryDomainService
                 .listByBizLineId(record.getBizLineId()));
     }
 
@@ -62,7 +62,7 @@ public class DictionaryAppService {
     @WriteAuth
     public void create(Long currentUserId, DictionarySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        dictionaryDomainService.create(currentUserId, DictionarySimpleDto2EntityConverter.INSTANCE.toEntity(record));
+        dictionaryDomainService.create(currentUserId, DictionarySimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
     /**
@@ -74,7 +74,7 @@ public class DictionaryAppService {
     @WriteAuth
     public void edit(Long currentUserId, DictionarySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        dictionaryDomainService.edit(currentUserId, DictionarySimpleDto2EntityConverter.INSTANCE.toEntity(record));
+        dictionaryDomainService.edit(currentUserId, DictionarySimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
 
@@ -99,7 +99,7 @@ public class DictionaryAppService {
      */
     public DictionaryComplexDto queryByEnName(DictionarySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        return DictionaryEntity2ComplexDtoConverter.INSTANCE.toRdo(dictionaryDomainService
+        return DictionaryEntity2ComplexRdoConverter.INSTANCE.toRdo(dictionaryDomainService
                 .queryByEnName(record.getBizLineId(), record.getEnName()));
     }
 }

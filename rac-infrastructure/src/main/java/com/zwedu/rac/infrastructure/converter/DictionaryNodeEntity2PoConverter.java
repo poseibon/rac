@@ -4,6 +4,7 @@ import com.zwedu.rac.domain.entity.DictionaryNodeEntity;
 import com.zwedu.rac.infrastructure.po.DictionaryNodePo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.poseibon.common.converter.Entity2PoConverter;
 
 /**
  * 字典节点po-entity转换器

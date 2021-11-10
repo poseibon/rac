@@ -1,7 +1,7 @@
 package com.zwedu.rac.interfaces.controller;
 
 import com.zwedu.rac.application.service.ExtPropertyAppService;
-import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
+import com.zwedu.rac.sdk.rdo.base.PaginationRpo;
 import com.zwedu.rac.sdk.rpo.ext.ExtPropertySimpleRpo;
 import com.zwedu.rac.shiro.utils.SessionHelper;
 import org.poseibon.common.utils.BaseResponse;
@@ -33,7 +33,7 @@ public class ExtPropertyController {
      */
     @RequestMapping("/listPage")
     @ResponseBody
-    public BaseResponse listPage(@RequestBody ReqPaginationRpo paginationDto) {
+    public BaseResponse listPage(@RequestBody PaginationRpo paginationDto) {
         return ResponseUtil.success(extPropertyAppService.listPage(paginationDto));
     }
 

@@ -1,10 +1,10 @@
 package com.zwedu.rac.application.service;
 
 import com.google.common.collect.Lists;
-import com.zwedu.rac.application.converter.DictionaryNodeEntity2ComplexDtoConverter;
-import com.zwedu.rac.application.converter.DictionaryNodeSimpleDto2EntityConverter;
-import com.zwedu.rac.application.converter.ExtDataEntity2ComplexDtoConverter;
-import com.zwedu.rac.application.converter.ExtDataSimpleDto2EntityConverter;
+import com.zwedu.rac.application.converter.DictionaryNodeEntity2ComplexRdoConverter;
+import com.zwedu.rac.application.converter.DictionaryNodeSimpleRpo2EntityConverter;
+import com.zwedu.rac.application.converter.ExtDataEntity2ComplexRdoConverter;
+import com.zwedu.rac.application.converter.ExtDataSimpleRpo2EntityConverter;
 import com.zwedu.rac.domain.common.enums.EntityPrefixEnum;
 import com.zwedu.rac.domain.common.enums.ExtPropertyTypeEnum;
 import com.zwedu.rac.domain.entity.DictionaryEntity;
@@ -18,8 +18,8 @@ import com.zwedu.rac.rowauth.annotation.ReadAuth;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
 import com.zwedu.rac.sdk.rpo.dictionary.DictionaryNodeComplexDto;
 import com.zwedu.rac.sdk.rpo.dictionary.DictionaryNodeSimpleRpo;
-import com.zwedu.rac.sdk.rpo.ext.ExtDataComplexDto;
-import com.zwedu.rac.sdk.rpo.ext.ExtDataSimpleDto;
+import com.zwedu.rac.sdk.rpo.ext.ExtDataComplexRdo;
+import com.zwedu.rac.sdk.rpo.ext.ExtDataSimpleRpo;
 import org.apache.commons.collections4.CollectionUtils;
 import org.poseibon.common.tree.TreeBuilder;
 import org.poseibon.common.utils.Collections2;
@@ -57,7 +57,7 @@ public class DictionaryNodeAppService {
     @ReadAuth
     public List<DictionaryNodeComplexDto> listByParentId(DictionaryNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        return DictionaryNodeEntity2ComplexDtoConverter.INSTANCE.toRdoList(dictionaryNodeDomainService
+        return DictionaryNodeEntity2ComplexRdoConverter.INSTANCE.toRdoList(dictionaryNodeDomainService
                 .listByParentId(record.getBizLineId(), record.getDictionaryId(), record.getParentId()));
     }
 
@@ -73,7 +73,7 @@ public class DictionaryNodeAppService {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         List<DictionaryNodeEntity> dictionaryEntityList = dictionaryNodeDomainService
                 .listByDictionaryId(record.getBizLineId(), record.getDictionaryId(), record.getSearchVal());
-        List<DictionaryNodeComplexDto> dtoList = DictionaryNodeEntity2ComplexDtoConverter.INSTANCE
+        List<DictionaryNodeComplexDto> dtoList = DictionaryNodeEntity2ComplexRdoConverter.INSTANCE
                 .toRdoList(dictionaryEntityList);
         return TreeBuilder.buildTree(dtoList);
     }
@@ -88,7 +88,7 @@ public class DictionaryNodeAppService {
     public void create(Long currentUserId, DictionaryNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         dictionaryNodeDomainService.create(currentUserId,
-                DictionaryNodeSimpleDto2EntityConverter.INSTANCE.toEntity(record));
+                DictionaryNodeSimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
     /**
@@ -101,7 +101,7 @@ public class DictionaryNodeAppService {
     public void edit(Long currentUserId, DictionaryNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         dictionaryNodeDomainService.edit(currentUserId,
-                DictionaryNodeSimpleDto2EntityConverter.INSTANCE.toEntity(record));
+                DictionaryNodeSimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
 
@@ -123,7 +123,7 @@ public class DictionaryNodeAppService {
      * @param record 查询用户授权维度节点参数
      * @return
      */
-    public List<ExtDataComplexDto> listExtProperty(DictionaryNodeSimpleRpo record) {
+    public List<ExtDataComplexRdo> listExtProperty(DictionaryNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(record);
         DictionaryEntity dictionaryEntity = dictionaryDomainService.queryById(record.getBizLineId(),
                 record.getDictionaryId());
@@ -151,7 +151,7 @@ public class DictionaryNodeAppService {
                 .collect(Collectors.toSet());
         Map<Long, Map<Integer, DictionaryNodeEntity>> dictionaryNodeMap =
                 dictionaryNodeDomainService.listByDictionaryIds(dictionaryIds);
-        return ExtDataEntity2ComplexDtoConverter.INSTANCE.toDtoList(extDataEntityList, extPropertyMap,
+        return ExtDataEntity2ComplexRdoConverter.INSTANCE.toDtoList(extDataEntityList, extPropertyMap,
                 dictionaryNodeMap);
     }
 
@@ -163,10 +163,10 @@ public class DictionaryNodeAppService {
      * @param record        记录数据
      */
     @WriteAuth
-    public void addExtProperty(Long currentUserId, ExtDataSimpleDto record) {
+    public void addExtProperty(Long currentUserId, ExtDataSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         extPropertyDomainService.addExtProperty(currentUserId,
-                ExtDataSimpleDto2EntityConverter.INSTANCE.toEntity(record));
+                ExtDataSimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
     /**
@@ -175,8 +175,8 @@ public class DictionaryNodeAppService {
      * @param record 记录数据
      */
     @WriteAuth
-    public void dropExtProperty(ExtDataSimpleDto record) {
+    public void dropExtProperty(ExtDataSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        extPropertyDomainService.dropExtProperty(ExtDataSimpleDto2EntityConverter.INSTANCE.toEntity(record));
+        extPropertyDomainService.dropExtProperty(ExtDataSimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 }

@@ -4,6 +4,7 @@ import com.zwedu.rac.domain.entity.BizLineEntity;
 import com.zwedu.rac.infrastructure.po.BizLinePo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.poseibon.common.converter.Po2EntityConverter;
 
 /**
  * 业务线po-entity转换器
@@ -12,7 +13,7 @@ import org.mapstruct.factory.Mappers;
  * @date 2020/12/9
  */
 @Mapper
-public interface BizLinePo2EntityConverter extends Po2EntityConverter<BizLinePo, BizLineEntity>{
+public interface BizLinePo2EntityConverter extends Po2EntityConverter<BizLinePo, BizLineEntity> {
     /**
      * 实例
      */

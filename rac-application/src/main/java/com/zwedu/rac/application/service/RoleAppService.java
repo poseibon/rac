@@ -1,9 +1,9 @@
 package com.zwedu.rac.application.service;
 
-import com.zwedu.rac.application.converter.FuncEntity2ComplexDtoConverter;
-import com.zwedu.rac.application.converter.RoleEntity2ComplexDtoConverter;
-import com.zwedu.rac.application.converter.RoleEntity2SimpleDtoConverter;
-import com.zwedu.rac.application.converter.RoleSimpleDto2EntityConverter;
+import com.zwedu.rac.application.converter.FuncEntity2ComplexRdoConverter;
+import com.zwedu.rac.application.converter.RoleEntity2ComplexRdoConverter;
+import com.zwedu.rac.application.converter.RoleEntity2SimpleRdoConverter;
+import com.zwedu.rac.application.converter.RoleSimpleRpo2EntityConverter;
 import com.zwedu.rac.domain.entity.FuncEntity;
 import com.zwedu.rac.domain.entity.RoleEntity;
 import com.zwedu.rac.domain.entity.StrategyEntity;
@@ -11,8 +11,8 @@ import com.zwedu.rac.domain.service.FuncDomainService;
 import com.zwedu.rac.domain.service.RoleDomainService;
 import com.zwedu.rac.domain.service.StrategyDomainService;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
-import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
-import com.zwedu.rac.sdk.rpo.base.ResPaginationRpo;
+import com.zwedu.rac.sdk.rpo.base.PaginationRdo;
+import com.zwedu.rac.sdk.rdo.base.PaginationRpo;
 import com.zwedu.rac.sdk.rpo.role.FuncStrategyComplexRpo;
 import com.zwedu.rac.sdk.rpo.role.RoleComplexRpo;
 import com.zwedu.rac.sdk.rpo.role.RoleSimpleRpo;
@@ -48,13 +48,13 @@ public class RoleAppService {
      * @param record 分页查询参数
      * @return 角色列表数据
      */
-    public ResPaginationRpo<RoleComplexRpo> listPage(ReqPaginationRpo record) {
+    public PaginationRdo<RoleComplexRpo> listPage(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的角色列表
         Pagination<RoleEntity> roleEntityList = roleDomainService
                 .listPage(record.getPageNo(), record.getPageSize(),
                         record.getBizLineId(), record.getSearchVal());
-        return RoleEntity2ComplexDtoConverter.INSTANCE.toPaginationRdo(roleEntityList);
+        return RoleEntity2ComplexRdoConverter.INSTANCE.toPaginationRdo(roleEntityList);
     }
 
     /**
@@ -65,7 +65,7 @@ public class RoleAppService {
     public List<RoleSimpleRpo> listByBizLineId(RoleSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         List<RoleEntity> roleEntityList = roleDomainService.listByBizLineId(record.getBizLineId());
-        return RoleEntity2SimpleDtoConverter.INSTANCE.toRdoList(roleEntityList);
+        return RoleEntity2SimpleRdoConverter.INSTANCE.toRdoList(roleEntityList);
     }
 
     /**
@@ -73,7 +73,7 @@ public class RoleAppService {
      *
      * @param record 查询角色功能参数
      */
-    public Pagination<FuncStrategyComplexRpo> listAuth(ReqPaginationRpo record) {
+    public Pagination<FuncStrategyComplexRpo> listAuth(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(record);
         Pagination<Pair<Long, Long>> pagination = roleDomainService.listAuth(record.getPageNo(),
                 record.getPageSize(), record.getBizLineId(), record.getId());
@@ -81,7 +81,7 @@ public class RoleAppService {
         Collection<Long> strategyIds = Collections2.toSet(pagination.getDataList(), input -> input.getValue());
         Map<Long, FuncEntity> funcMap = funcDomainService.listByIds(record.getBizLineId(), funcIds);
         Map<Long, StrategyEntity> strategyMap = strategyDomainService.listByIds(record.getBizLineId(), strategyIds);
-        return FuncEntity2ComplexDtoConverter.INSTANCE.toPaginationDto(pagination, funcMap, strategyMap);
+        return FuncEntity2ComplexRdoConverter.INSTANCE.toPaginationDto(pagination, funcMap, strategyMap);
     }
 
 
@@ -105,7 +105,7 @@ public class RoleAppService {
     @WriteAuth
     public void create(Long currentUserId, RoleSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        roleDomainService.create(currentUserId, RoleSimpleDto2EntityConverter.INSTANCE.toEntity(record));
+        roleDomainService.create(currentUserId, RoleSimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
 
@@ -155,7 +155,7 @@ public class RoleAppService {
     @WriteAuth
     public void edit(Long currentUserId, RoleSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        roleDomainService.edit(currentUserId, RoleSimpleDto2EntityConverter.INSTANCE.toEntity(record));
+        roleDomainService.edit(currentUserId, RoleSimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
 

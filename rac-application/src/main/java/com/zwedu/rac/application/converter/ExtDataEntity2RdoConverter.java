@@ -4,6 +4,7 @@ import com.zwedu.rac.domain.entity.ExtDataEntity;
 import com.zwedu.rac.sdk.rdo.ExtPropertyRdo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.poseibon.common.converter.Entity2RdoConverter;
 
 /**
  * 扩展属性entity-dto转换器
@@ -13,7 +14,7 @@ import org.mapstruct.factory.Mappers;
  */
 @Mapper
 public interface ExtDataEntity2RdoConverter extends
-        Entity2RdoConverter<ExtDataEntity, ExtPropertyRdo> {
+        Entity2RdoExtConverter<ExtDataEntity, ExtPropertyRdo> {
     /**
      * 实例
      */

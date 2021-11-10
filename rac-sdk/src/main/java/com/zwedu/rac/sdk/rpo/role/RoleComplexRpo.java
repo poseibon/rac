@@ -1,6 +1,6 @@
 package com.zwedu.rac.sdk.rpo.role;
 
-import com.zwedu.rac.sdk.rpo.base.BaseComplexRpo;
+import com.zwedu.rac.sdk.rpo.base.BaseComplexRdo;
 
 /**
  * 业务线传输对象
@@ -8,6 +8,6 @@ import com.zwedu.rac.sdk.rpo.base.BaseComplexRpo;
  * @author qingchuan
  * @date 2020/12/9
  */
-public class RoleComplexRpo extends BaseComplexRpo {
+public class RoleComplexRpo extends BaseComplexRdo {
 
 }

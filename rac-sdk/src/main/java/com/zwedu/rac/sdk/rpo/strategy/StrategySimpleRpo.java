@@ -1,6 +1,6 @@
 package com.zwedu.rac.sdk.rpo.strategy;
 
-import com.zwedu.rac.sdk.rpo.base.BaseSimpleRpo;
+import com.zwedu.rac.sdk.rpo.base.BaseSimpleRdo;
 
 /**
  * 访问策略传输对象
@@ -8,7 +8,7 @@ import com.zwedu.rac.sdk.rpo.base.BaseSimpleRpo;
  * @author qingchuan
  * @date 2020/12/9
  */
-public class StrategySimpleRpo extends BaseSimpleRpo {
+public class StrategySimpleRpo extends BaseSimpleRdo {
     /**
      * 类型
      */

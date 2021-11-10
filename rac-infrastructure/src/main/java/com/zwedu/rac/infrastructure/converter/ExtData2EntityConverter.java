@@ -4,6 +4,7 @@ import com.zwedu.rac.domain.entity.ExtDataEntity;
 import com.zwedu.rac.infrastructure.po.ExtData;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.poseibon.common.converter.Po2EntityConverter;
 
 /**
  * 扩展属性po-entity转换器

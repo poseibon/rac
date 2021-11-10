@@ -6,6 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
+import org.poseibon.common.converter.Po2EntityConverter;
 
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
  * @date 2020/12/9
  */
 @Mapper
-public interface MenuPo2EntityConverter extends Po2EntityConverter<MenuPo, MenuEntity>{
+public interface MenuPo2EntityConverter extends Po2EntityConverter<MenuPo, MenuEntity> {
     /**
      * 实例
      */

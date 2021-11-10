@@ -4,6 +4,7 @@ import com.zwedu.rac.domain.entity.StrategyEntity;
 import com.zwedu.rac.infrastructure.po.StrategyPo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.poseibon.common.converter.Po2EntityConverter;
 
 /**
  * 访问策略po-entity转换器
@@ -12,7 +13,7 @@ import org.mapstruct.factory.Mappers;
  * @date 2020/12/9
  */
 @Mapper
-public interface StrategyPo2EntityConverter extends Po2EntityConverter<StrategyPo, StrategyEntity>{
+public interface StrategyPo2EntityConverter extends Po2EntityConverter<StrategyPo, StrategyEntity> {
     /**
      * 实例
      */

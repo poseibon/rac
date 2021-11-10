@@ -1,6 +1,6 @@
 package com.zwedu.rac.sdk.rpo.dictionary;
 
-import com.zwedu.rac.sdk.rpo.base.BaseComplexRpo;
+import com.zwedu.rac.sdk.rpo.base.BaseComplexRdo;
 
 /**
  * 字典节点传输对象
@@ -8,7 +8,7 @@ import com.zwedu.rac.sdk.rpo.base.BaseComplexRpo;
  * @author qingchuan
  * @date 2020/12/9
  */
-public class DictionaryNodeComplexDto extends BaseComplexRpo<DictionaryNodeComplexDto> {
+public class DictionaryNodeComplexDto extends BaseComplexRdo<DictionaryNodeComplexDto> {
     /**
      * 值
      */

@@ -1,13 +1,13 @@
 package com.zwedu.rac.application.service;
 
-import com.zwedu.rac.application.converter.DimensionEntity2ComplexDtoConverter;
-import com.zwedu.rac.application.converter.DimensionEntity2SimpleDtoConverter;
-import com.zwedu.rac.application.converter.DimensionSimpleDto2EntityConverter;
+import com.zwedu.rac.application.converter.DimensionEntity2ComplexRdoConverter;
+import com.zwedu.rac.application.converter.DimensionEntity2SimpleRdoConverter;
+import com.zwedu.rac.application.converter.DimensionSimpleRpo2EntityConverter;
 import com.zwedu.rac.domain.entity.DimensionEntity;
 import com.zwedu.rac.domain.service.DimensionDomainService;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
-import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
-import com.zwedu.rac.sdk.rpo.base.ResPaginationRpo;
+import com.zwedu.rac.sdk.rpo.base.PaginationRdo;
+import com.zwedu.rac.sdk.rdo.base.PaginationRpo;
 import com.zwedu.rac.sdk.rpo.dimension.DimensionComplexDto;
 import com.zwedu.rac.sdk.rpo.dimension.DimensionSimpleRpo;
 import org.poseibon.common.page.Pagination;
@@ -34,12 +34,12 @@ public class DimensionAppService {
      * @param record 分页查询参数
      * @return 维度列表数据
      */
-    public ResPaginationRpo<DimensionComplexDto> listPage(ReqPaginationRpo record) {
+    public PaginationRdo<DimensionComplexDto> listPage(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的维度列表
         Pagination<DimensionEntity> pagination = dimensionDomainService.listPage(record.getPageNo(),
                 record.getPageSize(), record.getBizLineId(), record.getSearchVal());
-        return DimensionEntity2ComplexDtoConverter.INSTANCE.toPaginationRdo(pagination);
+        return DimensionEntity2ComplexRdoConverter.INSTANCE.toPaginationRdo(pagination);
     }
 
     /**
@@ -49,7 +49,7 @@ public class DimensionAppService {
      */
     public List<DimensionSimpleRpo> listByBizLineId(DimensionSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        return DimensionEntity2SimpleDtoConverter.INSTANCE.toRdoList(dimensionDomainService
+        return DimensionEntity2SimpleRdoConverter.INSTANCE.toRdoList(dimensionDomainService
                 .listByBizLineId(record.getBizLineId()));
     }
 
@@ -62,7 +62,7 @@ public class DimensionAppService {
     @WriteAuth
     public void create(Long currentUserId, DimensionSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        dimensionDomainService.create(currentUserId, DimensionSimpleDto2EntityConverter.INSTANCE.toEntity(record));
+        dimensionDomainService.create(currentUserId, DimensionSimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
     /**
@@ -74,7 +74,7 @@ public class DimensionAppService {
     @WriteAuth
     public void edit(Long currentUserId, DimensionSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        dimensionDomainService.edit(currentUserId, DimensionSimpleDto2EntityConverter.INSTANCE.toEntity(record));
+        dimensionDomainService.edit(currentUserId, DimensionSimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
 
@@ -99,7 +99,7 @@ public class DimensionAppService {
      */
     public DimensionSimpleRpo queryByEnName(DimensionSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        return DimensionEntity2SimpleDtoConverter.INSTANCE.toRdo(dimensionDomainService
+        return DimensionEntity2SimpleRdoConverter.INSTANCE.toRdo(dimensionDomainService
                 .queryByEnName(record.getBizLineId(), record.getEnName()));
     }
 }

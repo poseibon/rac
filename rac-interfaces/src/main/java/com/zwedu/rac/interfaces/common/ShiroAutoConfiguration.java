@@ -55,6 +55,7 @@ public class ShiroAutoConfiguration {
     @Value("${rac.bizLineId}")
     private Long bizLineId;
 
+
     @Bean
     public UserSessionProvider userSessionProvider() {
         UserSessionProvider userSessionProvider = new UserSessionProvider(authProvider);

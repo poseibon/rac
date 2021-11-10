@@ -1,6 +1,6 @@
 package com.zwedu.rac.sdk.rpo.dictionary;
 
-import com.zwedu.rac.sdk.rpo.base.BaseSimpleRpo;
+import com.zwedu.rac.sdk.rpo.base.BaseSimpleRdo;
 
 /**
  * 字典传输对象
@@ -8,7 +8,7 @@ import com.zwedu.rac.sdk.rpo.base.BaseSimpleRpo;
  * @author qingchuan
  * @date 2020/12/9
  */
-public class DictionarySimpleRpo extends BaseSimpleRpo {
+public class DictionarySimpleRpo extends BaseSimpleRdo {
 
     /**
      * 是否使用扩展属性

@@ -1,7 +1,7 @@
 package com.zwedu.rac.application.service;
 
-import com.zwedu.rac.application.converter.FuncEntity2ComplexDtoConverter;
-import com.zwedu.rac.application.converter.FuncSimpleDto2EntityConverter;
+import com.zwedu.rac.application.converter.FuncEntity2ComplexRdoConverter;
+import com.zwedu.rac.application.converter.FuncSimpleRpo2EntityConverter;
 import com.zwedu.rac.domain.entity.FuncEntity;
 import com.zwedu.rac.domain.service.FuncDomainService;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
@@ -37,7 +37,7 @@ public class FuncAppService {
         // 查询对应的功能列表
         List<FuncEntity> funcEntityList = funcDomainService.
                 listByParentId(record.getBizLineId(), record.getParentId());
-        return FuncEntity2ComplexDtoConverter.INSTANCE.toRdoList(funcEntityList);
+        return FuncEntity2ComplexRdoConverter.INSTANCE.toRdoList(funcEntityList);
     }
 
 
@@ -52,7 +52,7 @@ public class FuncAppService {
         // 查询对应的功能列表
         List<FuncEntity> funcEntityList = funcDomainService.
                 listByBizLineId(record.getBizLineId(), record.getSearchVal());
-        List<FuncComplexDto> funcComplexDtoList = FuncEntity2ComplexDtoConverter.INSTANCE.toRdoList(funcEntityList);
+        List<FuncComplexDto> funcComplexDtoList = FuncEntity2ComplexRdoConverter.INSTANCE.toRdoList(funcEntityList);
         return TreeBuilder.buildTree(funcComplexDtoList);
     }
 
@@ -65,7 +65,7 @@ public class FuncAppService {
     @WriteAuth
     public void create(Long currentUserId, FuncSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        funcDomainService.create(currentUserId, FuncSimpleDto2EntityConverter.INSTANCE.toEntity(record));
+        funcDomainService.create(currentUserId, FuncSimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
     /**
@@ -77,7 +77,7 @@ public class FuncAppService {
     @WriteAuth
     public void edit(Long currentUserId, FuncSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        funcDomainService.edit(currentUserId, FuncSimpleDto2EntityConverter.INSTANCE.toEntity(record));
+        funcDomainService.edit(currentUserId, FuncSimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
 
 
