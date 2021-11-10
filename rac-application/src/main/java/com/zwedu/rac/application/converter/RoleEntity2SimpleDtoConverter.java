@@ -12,7 +12,7 @@ import org.mapstruct.factory.Mappers;
  * @date 2020/12/9
  */
 @Mapper
-public interface RoleEntity2SimpleDtoConverter extends Entity2DtoConverter<RoleEntity, RoleSimpleRpo> {
+public interface RoleEntity2SimpleDtoConverter extends Entity2RdoConverter<RoleEntity, RoleSimpleRpo> {
     /**
      * 实例
      */

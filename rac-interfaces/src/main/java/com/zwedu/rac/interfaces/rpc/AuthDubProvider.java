@@ -2,10 +2,8 @@ package com.zwedu.rac.interfaces.rpc;
 
 import com.zwedu.rac.application.service.AuthAppService;
 import com.zwedu.rac.sdk.provider.AuthProvider;
-import com.zwedu.rac.sdk.rdo.DimensionNodeRdo;
-import com.zwedu.rac.sdk.rdo.ExtPropertyRdo;
-import com.zwedu.rac.sdk.rdo.FuncRdo;
-import com.zwedu.rac.sdk.rdo.MenuRdo;
+import com.zwedu.rac.sdk.rdo.*;
+import com.zwedu.rac.sdk.rdo.user.UserSimpleRdo;
 import com.zwedu.rac.sdk.rpo.dimension.DimensionAuthRpo;
 import com.zwedu.rac.sdk.rpo.auth.FuncAuthRpo;
 import com.zwedu.rac.sdk.rpo.menu.MenuRpo;
@@ -51,6 +49,16 @@ public class AuthDubProvider implements AuthProvider {
     @Override
     public List<ExtPropertyRdo> listExtPropertyByUser(UserExtPropertyRpo rpo) {
         return authAppService.listExtPropertyByUser(rpo);
+    }
+
+    @Override
+    public UserRdo queryUser(Long bizLineId, String userName) {
+        return authAppService.queryUser(bizLineId, userName);
+    }
+
+    @Override
+    public UserSimpleRdo querySimpleUser(String userName) {
+        return authAppService.querySimpleUser(userName);
     }
 
 

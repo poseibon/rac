@@ -22,15 +22,19 @@
         </dependency>
         <dependency>
             <groupId>com.zwedu.rac</groupId>
+            <artifactId>rac-shiro</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zwedu.rac</groupId>
             <artifactId>rac-infrastructure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zwedu.rac</groupId>
+            <artifactId>rac-rowauth</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -39,10 +43,6 @@
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.curator</groupId>
@@ -61,12 +61,8 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
+            <groupId>com.zwedu.rac</groupId>
+            <artifactId>rac-shiro</artifactId>
         </dependency>
     </dependencies>
     <build>

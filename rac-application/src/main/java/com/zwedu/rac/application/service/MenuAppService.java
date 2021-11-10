@@ -4,10 +4,9 @@ import com.zwedu.rac.application.converter.MenuEntity2ComplexDtoConverter;
 import com.zwedu.rac.application.converter.MenuSimpleDto2EntityConverter;
 import com.zwedu.rac.domain.entity.MenuEntity;
 import com.zwedu.rac.domain.service.MenuDomainService;
-import com.zwedu.rac.common.annotation.WriteAuth;
+import com.zwedu.rac.rowauth.annotation.WriteAuth;
 import com.zwedu.rac.sdk.rpo.menu.MenuComplexDto;
 import com.zwedu.rac.sdk.rpo.menu.MenuSimpleRpo;
-import lombok.extern.slf4j.Slf4j;
 import org.poseibon.common.tree.TreeBuilder;
 import org.poseibon.common.validator.ParamAssert;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,6 @@ import java.util.List;
  * @date 2020/12/10
  */
 @Service
-@Slf4j
 public class MenuAppService {
     @Resource
     private MenuDomainService menuDomainService;
@@ -39,7 +37,7 @@ public class MenuAppService {
         // 查询对应的菜单列表
         List<MenuEntity> MenuEntityList = menuDomainService.
                 listByParentId(record.getBizLineId(), record.getParentId());
-        return MenuEntity2ComplexDtoConverter.INSTANCE.toDtoList(MenuEntityList);
+        return MenuEntity2ComplexDtoConverter.INSTANCE.toRdoList(MenuEntityList);
     }
 
     /**
@@ -53,7 +51,7 @@ public class MenuAppService {
         // 查询对应的功能列表
         List<MenuEntity> menuEntityList = menuDomainService.listByBizLineId(record.getBizLineId(),
                 record.getSearchVal());
-        List<MenuComplexDto> funcComplexDtoList = MenuEntity2ComplexDtoConverter.INSTANCE.toDtoList(menuEntityList);
+        List<MenuComplexDto> funcComplexDtoList = MenuEntity2ComplexDtoConverter.INSTANCE.toRdoList(menuEntityList);
         return TreeBuilder.buildTree(funcComplexDtoList);
     }
 

@@ -1,7 +1,6 @@
 package com.zwedu.rac.domain.service;
 
 import com.google.common.collect.ImmutableSet;
-import com.zwedu.rac.common.annotation.NoneAuth;
 import com.zwedu.rac.domain.common.validator.BizAssert;
 import com.zwedu.rac.domain.entity.DimensionEntity;
 import com.zwedu.rac.domain.entity.DimensionNodeEntity;
@@ -9,7 +8,7 @@ import com.zwedu.rac.domain.repository.BizLineRepository;
 import com.zwedu.rac.domain.repository.DictionaryNodeRepository;
 import com.zwedu.rac.domain.repository.DimensionNodeRepository;
 import com.zwedu.rac.domain.repository.DimensionRepository;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.poseibon.common.validator.ParamAssert;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,7 +57,6 @@ public class DimensionNodeDomainService {
      * @param parentPathList 父路径列表
      * @return 维度节点列表
      */
-    @NoneAuth
     public List<DimensionNodeEntity> listByParentPaths(Long bizLineId, Long dimensionId,
                                                        Collection<String> parentPathList) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(bizLineId, dimensionId, parentPathList);

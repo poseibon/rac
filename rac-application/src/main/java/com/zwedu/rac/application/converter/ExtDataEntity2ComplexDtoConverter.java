@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
  */
 @Mapper
 public interface ExtDataEntity2ComplexDtoConverter extends
-        Entity2DtoConverter<ExtDataEntity, ExtDataComplexDto> {
+        Entity2RdoConverter<ExtDataEntity, ExtDataComplexDto> {
     /**
      * 实例
      */

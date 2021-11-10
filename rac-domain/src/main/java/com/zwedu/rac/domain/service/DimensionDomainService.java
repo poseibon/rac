@@ -1,13 +1,12 @@
 package com.zwedu.rac.domain.service;
 
-import com.zwedu.rac.common.annotation.NoneAuth;
-import org.poseibon.common.page.Pagination;
 import com.zwedu.rac.domain.common.validator.BizAssert;
-import org.poseibon.common.validator.ParamAssert;
 import com.zwedu.rac.domain.entity.DimensionEntity;
 import com.zwedu.rac.domain.repository.BizLineRepository;
 import com.zwedu.rac.domain.repository.DictionaryRepository;
 import com.zwedu.rac.domain.repository.DimensionRepository;
+import org.poseibon.common.page.Pagination;
+import org.poseibon.common.validator.ParamAssert;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,7 +59,6 @@ public class DimensionDomainService {
      * @param bizLineId 业务线ID
      * @param enName    维度英文名
      */
-    @NoneAuth
     public DimensionEntity queryByEnName(Long bizLineId, String enName) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(bizLineId, enName);
         return dimensionRepository.queryByEnName(bizLineId, enName);

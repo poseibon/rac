@@ -1,8 +1,6 @@
 package com.zwedu.rac.domain.common.enums;
 
 import com.google.common.collect.Maps;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 import java.util.Map;
 
@@ -12,8 +10,6 @@ import java.util.Map;
  * @author qingchuan
  * @date 2020/12/11
  */
-@Getter
-@AllArgsConstructor
 public enum GenderEnum {
 
     NO(0, "男"), YES(1, "女");
@@ -30,6 +26,19 @@ public enum GenderEnum {
      * 枚举map
      */
     public static final Map<Integer, GenderEnum> VALUE_TEXT = Maps.newHashMap();
+
+    GenderEnum(Integer value, String text) {
+        this.value = value;
+        this.text = text;
+    }
+
+    public Integer getValue() {
+        return value;
+    }
+
+    public String getText() {
+        return text;
+    }
 
     /**
      * 静态初始化

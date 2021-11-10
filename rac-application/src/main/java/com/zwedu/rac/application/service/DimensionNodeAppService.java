@@ -12,12 +12,11 @@ import com.zwedu.rac.domain.service.DictionaryNodeDomainService;
 import com.zwedu.rac.domain.service.DimensionDomainService;
 import com.zwedu.rac.domain.service.DimensionNodeDomainService;
 import com.zwedu.rac.domain.service.ExtPropertyDomainService;
-import com.zwedu.rac.common.annotation.WriteAuth;
+import com.zwedu.rac.rowauth.annotation.WriteAuth;
 import com.zwedu.rac.sdk.rpo.dimension.DimensionNodeComplexDto;
 import com.zwedu.rac.sdk.rpo.dimension.DimensionNodeSimpleRpo;
 import com.zwedu.rac.sdk.rpo.ext.ExtDataComplexDto;
 import com.zwedu.rac.sdk.rpo.ext.ExtDataSimpleDto;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.poseibon.common.tree.TreeBuilder;
 import org.poseibon.common.utils.Collections2;
@@ -37,7 +36,6 @@ import java.util.stream.Collectors;
  * @date 2020/12/10
  */
 @Service
-@Slf4j
 public class DimensionNodeAppService {
     @Resource
     private DimensionNodeDomainService dimensionNodeDomainService;
@@ -56,7 +54,7 @@ public class DimensionNodeAppService {
      */
     public List<DimensionNodeComplexDto> listByParentId(DimensionNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        return DimensionNodeEntity2ComplexDtoConverter.INSTANCE.toDtoList(dimensionNodeDomainService
+        return DimensionNodeEntity2ComplexDtoConverter.INSTANCE.toRdoList(dimensionNodeDomainService
                 .listByParentId(record.getBizLineId(), record.getDimensionId(), record.getParentId()));
     }
 
@@ -73,7 +71,7 @@ public class DimensionNodeAppService {
         List<DimensionNodeEntity> dimensionNodeEntityList = dimensionNodeDomainService
                 .listByDimensionId(record.getBizLineId(), record.getDimensionId(), record.getSearchVal());
         List<DimensionNodeComplexDto> funcComplexDtoList = DimensionNodeEntity2ComplexDtoConverter.INSTANCE
-                .toDtoList(dimensionNodeEntityList);
+                .toRdoList(dimensionNodeEntityList);
         return TreeBuilder.buildTree(funcComplexDtoList);
     }
 
@@ -153,7 +151,7 @@ public class DimensionNodeAppService {
         if (objectNodeId == null) {
             return null;
         }
-        return DimensionNodeEntity2ComplexDtoConverter.INSTANCE.toDto(dimensionNodeDomainService
+        return DimensionNodeEntity2ComplexDtoConverter.INSTANCE.toRdo(dimensionNodeDomainService
                 .queryById(record.getBizLineId(), record.getDimensionId(), objectNodeId));
     }
 

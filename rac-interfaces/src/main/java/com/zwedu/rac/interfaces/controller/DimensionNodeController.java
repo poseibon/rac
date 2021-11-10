@@ -1,14 +1,13 @@
 package com.zwedu.rac.interfaces.controller;
 
+import com.zwedu.rac.application.service.DimensionNodeAppService;
 import com.zwedu.rac.sdk.rpo.dimension.DimensionNodeComplexDto;
 import com.zwedu.rac.sdk.rpo.dimension.DimensionNodeSimpleRpo;
 import com.zwedu.rac.sdk.rpo.ext.ExtDataSimpleDto;
-import com.zwedu.rac.application.service.DimensionNodeAppService;
+import com.zwedu.rac.shiro.utils.SessionHelper;
 import org.poseibon.common.utils.BaseResponse;
 import org.poseibon.common.utils.ResponseData;
 import org.poseibon.common.utils.ResponseUtil;
-import com.zwedu.rac.interfaces.common.session.SessionHelper;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +22,6 @@ import javax.annotation.Resource;
  * @date 2020/12/9
  */
 @Controller
-@Slf4j
 @RequestMapping("/dimension/node")
 public class DimensionNodeController {
     @Resource

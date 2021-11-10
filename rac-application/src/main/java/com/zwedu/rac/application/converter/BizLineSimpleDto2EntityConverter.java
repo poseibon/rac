@@ -12,7 +12,7 @@ import org.mapstruct.factory.Mappers;
  * @date 2020/12/9
  */
 @Mapper
-public interface BizLineSimpleDto2EntityConverter extends Dto2EntityConverter<BizLineSimpleRpo, BizLineEntity> {
+public interface BizLineSimpleDto2EntityConverter extends Rpo2EntityConverter<BizLineSimpleRpo, BizLineEntity> {
     /**
      * 实例
      */

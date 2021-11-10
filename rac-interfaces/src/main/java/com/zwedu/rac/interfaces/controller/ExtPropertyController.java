@@ -1,12 +1,11 @@
 package com.zwedu.rac.interfaces.controller;
 
+import com.zwedu.rac.application.service.ExtPropertyAppService;
 import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
 import com.zwedu.rac.sdk.rpo.ext.ExtPropertySimpleRpo;
-import com.zwedu.rac.application.service.ExtPropertyAppService;
+import com.zwedu.rac.shiro.utils.SessionHelper;
 import org.poseibon.common.utils.BaseResponse;
 import org.poseibon.common.utils.ResponseUtil;
-import com.zwedu.rac.interfaces.common.session.SessionHelper;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +20,6 @@ import javax.annotation.Resource;
  * @date 2020/12/9
  */
 @Controller
-@Slf4j
 @RequestMapping("/property")
 public class ExtPropertyController {
     @Resource

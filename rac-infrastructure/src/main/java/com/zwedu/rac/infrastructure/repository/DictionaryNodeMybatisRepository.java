@@ -2,6 +2,7 @@ package com.zwedu.rac.infrastructure.repository;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import com.zwedu.rac.domain.common.AuthInfo;
 import com.zwedu.rac.domain.common.AuthInfoThreadLocal;
 import com.zwedu.rac.domain.entity.DictionaryNodeEntity;
 import com.zwedu.rac.domain.repository.DictionaryNodeRepository;
@@ -10,10 +11,9 @@ import com.zwedu.rac.infrastructure.converter.DictionaryNodePo2EntityConverter;
 import com.zwedu.rac.infrastructure.mapper.DictionaryNodeMapper;
 import com.zwedu.rac.infrastructure.po.DictionaryNodePo;
 import com.zwedu.rac.infrastructure.po.IdNumPo;
-import com.zwedu.rac.common.strategy.entity.AuthInfo;
-import org.poseibon.common.utils.Collections2;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.poseibon.common.utils.Collections2;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;

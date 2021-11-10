@@ -1,5 +1,10 @@
 package com.zwedu.rac.application.converter;
 
+import com.zwedu.rac.sdk.rpo.base.ResPaginationRpo;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
+import org.poseibon.common.page.Pagination;
+
 import java.util.List;
 
 /**
@@ -24,4 +29,16 @@ public interface Entity2RdoConverter<F, T> {
      * @return dto对象
      */
     List<T> toRdoList(List<F> recordList);
+
+
+    /**
+     * 分页dto
+     *
+     * @param pagination 分页对象
+     * @return 分页dto
+     */
+    @Mappings({
+            @Mapping(target = "dataList", expression = "java(toRdoList(pagination.getDataList()))")
+    })
+    ResPaginationRpo<T> toPaginationRdo(Pagination<F> pagination);
 }

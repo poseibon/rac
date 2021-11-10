@@ -3,16 +3,15 @@ package com.zwedu.rac.application.service;
 import com.zwedu.rac.application.converter.DictionaryEntity2ComplexDtoConverter;
 import com.zwedu.rac.application.converter.DictionaryEntity2SimpleDtoConverter;
 import com.zwedu.rac.application.converter.DictionarySimpleDto2EntityConverter;
+import com.zwedu.rac.domain.entity.DictionaryEntity;
+import com.zwedu.rac.domain.service.DictionaryDomainService;
+import com.zwedu.rac.rowauth.annotation.WriteAuth;
 import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
 import com.zwedu.rac.sdk.rpo.base.ResPaginationRpo;
 import com.zwedu.rac.sdk.rpo.dictionary.DictionaryComplexDto;
 import com.zwedu.rac.sdk.rpo.dictionary.DictionarySimpleRpo;
-import com.zwedu.rac.common.annotation.WriteAuth;
 import org.poseibon.common.page.Pagination;
 import org.poseibon.common.validator.ParamAssert;
-import com.zwedu.rac.domain.entity.DictionaryEntity;
-import com.zwedu.rac.domain.service.DictionaryDomainService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -25,7 +24,6 @@ import java.util.List;
  * @date 2020/12/10
  */
 @Service
-@Slf4j
 public class DictionaryAppService {
     @Resource
     private DictionaryDomainService dictionaryDomainService;
@@ -41,7 +39,7 @@ public class DictionaryAppService {
         // 查询对应的字典列表
         Pagination<DictionaryEntity> pagination = dictionaryDomainService.listPage(record.getPageNo(),
                 record.getPageSize(), record.getBizLineId(), record.getSearchVal());
-        return DictionaryEntity2ComplexDtoConverter.INSTANCE.toPaginationDto(pagination);
+        return DictionaryEntity2ComplexDtoConverter.INSTANCE.toPaginationRdo(pagination);
     }
 
     /**
@@ -51,7 +49,7 @@ public class DictionaryAppService {
      */
     public List<DictionarySimpleRpo> listByBizLineId(DictionarySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        return DictionaryEntity2SimpleDtoConverter.INSTANCE.toDtoList(dictionaryDomainService
+        return DictionaryEntity2SimpleDtoConverter.INSTANCE.toRdoList(dictionaryDomainService
                 .listByBizLineId(record.getBizLineId()));
     }
 
@@ -101,7 +99,7 @@ public class DictionaryAppService {
      */
     public DictionaryComplexDto queryByEnName(DictionarySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        return DictionaryEntity2ComplexDtoConverter.INSTANCE.toDto(dictionaryDomainService
+        return DictionaryEntity2ComplexDtoConverter.INSTANCE.toRdo(dictionaryDomainService
                 .queryByEnName(record.getBizLineId(), record.getEnName()));
     }
 }

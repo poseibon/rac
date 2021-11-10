@@ -15,7 +15,7 @@ import com.zwedu.rac.infrastructure.po.RoleMenuPo;
 import com.zwedu.rac.infrastructure.po.RolePo;
 import org.poseibon.common.page.Pagination;
 import org.poseibon.common.utils.Collections2;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.stereotype.Repository;
 

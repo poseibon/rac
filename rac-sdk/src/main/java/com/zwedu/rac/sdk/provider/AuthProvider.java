@@ -1,13 +1,11 @@
 package com.zwedu.rac.sdk.provider;
 
-import com.zwedu.rac.sdk.rdo.DimensionNodeRdo;
-import com.zwedu.rac.sdk.rdo.ExtPropertyRdo;
-import com.zwedu.rac.sdk.rdo.FuncRdo;
-import com.zwedu.rac.sdk.rdo.MenuRdo;
-import com.zwedu.rac.sdk.rpo.dimension.DimensionAuthRpo;
+import com.zwedu.rac.sdk.rdo.*;
+import com.zwedu.rac.sdk.rdo.user.UserSimpleRdo;
 import com.zwedu.rac.sdk.rpo.auth.FuncAuthRpo;
-import com.zwedu.rac.sdk.rpo.menu.MenuRpo;
+import com.zwedu.rac.sdk.rpo.dimension.DimensionAuthRpo;
 import com.zwedu.rac.sdk.rpo.ext.UserExtPropertyRpo;
+import com.zwedu.rac.sdk.rpo.menu.MenuRpo;
 
 import java.util.List;
 
@@ -55,4 +53,21 @@ public interface AuthProvider {
      * @return 用户扩展属性列表
      */
     List<ExtPropertyRdo> listExtPropertyByUser(UserExtPropertyRpo rpo);
+
+    /**
+     * 查询用户信息
+     *
+     * @param bizLineId 业务线ID
+     * @param userName  用户名
+     * @return 用户
+     */
+    UserRdo queryUser(Long bizLineId, String userName);
+
+    /**
+     * 查询用户信息
+     *
+     * @param userName 用户名
+     * @return 用户基本信息
+     */
+    UserSimpleRdo querySimpleUser(String userName);
 }

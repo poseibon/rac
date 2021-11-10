@@ -2,6 +2,17 @@ package com.zwedu.rac.application.service;
 
 import com.google.common.collect.Lists;
 import com.zwedu.rac.application.converter.*;
+import com.zwedu.rac.rowauth.annotation.ReadAuth;
+import com.zwedu.rac.rowauth.annotation.WriteAuth;
+import com.zwedu.rac.domain.common.constant.SystemConstant;
+import com.zwedu.rac.domain.common.enums.ExtPropertyTypeEnum;
+import com.zwedu.rac.domain.entity.DictionaryNodeEntity;
+import com.zwedu.rac.domain.entity.ExtDataEntity;
+import com.zwedu.rac.domain.entity.ExtPropertyEntity;
+import com.zwedu.rac.domain.service.DictionaryNodeDomainService;
+import com.zwedu.rac.domain.service.ExtPropertyDomainService;
+import com.zwedu.rac.domain.service.UserDomainService;
+import com.zwedu.rac.sdk.rdo.user.UserSimpleRdo;
 import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
 import com.zwedu.rac.sdk.rpo.base.ResPaginationRpo;
 import com.zwedu.rac.sdk.rpo.dimension.DimensionNodeSimpleRpo;
@@ -9,20 +20,9 @@ import com.zwedu.rac.sdk.rpo.ext.ExtDataComplexDto;
 import com.zwedu.rac.sdk.rpo.ext.ExtDataSimpleDto;
 import com.zwedu.rac.sdk.rpo.user.UserComplexRpo;
 import com.zwedu.rac.sdk.rpo.user.UserPermitRpo;
-import com.zwedu.rac.sdk.rpo.user.UserSimpleRpo;
-import com.zwedu.rac.common.annotation.ReadAuth;
-import com.zwedu.rac.common.annotation.WriteAuth;
-import com.zwedu.rac.domain.common.constant.SystemConstant;
-import com.zwedu.rac.domain.common.enums.ExtPropertyTypeEnum;
+import org.apache.commons.collections4.CollectionUtils;
 import org.poseibon.common.utils.Collections2;
 import org.poseibon.common.validator.ParamAssert;
-import com.zwedu.rac.domain.entity.DictionaryNodeEntity;
-import com.zwedu.rac.domain.entity.ExtDataEntity;
-import com.zwedu.rac.domain.entity.ExtPropertyEntity;
-import com.zwedu.rac.domain.service.DictionaryNodeDomainService;
-import com.zwedu.rac.domain.service.ExtPropertyDomainService;
-import com.zwedu.rac.domain.service.UserDomainService;
-import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -54,7 +54,7 @@ public class UserAppService {
      */
     @ReadAuth
     public ResPaginationRpo<UserComplexRpo> listPage(Long currentLoginId, ReqPaginationRpo record) {
-        return UserEntity2ComplexDtoConverter.INSTANCE.toPaginationDto(userDomainService
+        return UserEntity2ComplexDtoConverter.INSTANCE.toPaginationRdo(userDomainService
                 .listPage(currentLoginId, record.getPageNo(), record.getPageSize(),
                         record.getBizLineId(), record.getSearchVal()));
     }
@@ -76,7 +76,7 @@ public class UserAppService {
      */
     public List<DimensionNodeSimpleRpo> listUserDimensionNodes(UserPermitRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(record);
-        return DimensionNodeEntity2SimpleDtoConverter.INSTANCE.toDtoList(userDomainService
+        return DimensionNodeEntity2SimpleDtoConverter.INSTANCE.toRdoList(userDomainService
                 .listUserDimensionNodes(record.getUserId()));
     }
 
@@ -120,7 +120,7 @@ public class UserAppService {
      * @param record        用户实体
      */
     @WriteAuth
-    public void create(Long currentLoginId, UserSimpleRpo record) {
+    public void create(Long currentLoginId, UserSimpleRdo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         userDomainService.create(currentLoginId, UserSimpleDto2EntityConverter.INSTANCE.toEntity(record));
     }
@@ -180,7 +180,7 @@ public class UserAppService {
      * @param record        用户实体
      */
     @WriteAuth
-    public void edit(Long currentLoginId, UserSimpleRpo record) {
+    public void edit(Long currentLoginId, UserSimpleRdo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         userDomainService.edit(currentLoginId, UserSimpleDto2EntityConverter.INSTANCE.toEntity(record));
     }
@@ -193,7 +193,7 @@ public class UserAppService {
      * @param record        记录数据
      */
     @WriteAuth
-    public void delete(Long currentLoginId, UserSimpleRpo record) {
+    public void delete(Long currentLoginId, UserSimpleRdo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         userDomainService.delete(currentLoginId, record.getId());
     }
@@ -204,8 +204,8 @@ public class UserAppService {
      * @param enName 用户名
      * @return 用户信息
      */
-    public UserSimpleRpo queryByEnName(String enName) {
+    public UserSimpleRdo queryByEnName(String enName) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(enName);
-        return UserEntity2SimpleDtoConverter.INSTANCE.toDto(userDomainService.queryByEnName(enName));
+        return UserEntity2SimpleDtoConverter.INSTANCE.toRdo(userDomainService.queryByEnName(enName));
     }
 }

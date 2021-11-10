@@ -3,18 +3,17 @@ package com.zwedu.rac.application.service;
 import com.zwedu.rac.application.converter.BizLineEntity2ComplexDtoConverter;
 import com.zwedu.rac.application.converter.BizLineEntity2SimpleDtoConverter;
 import com.zwedu.rac.application.converter.BizLineSimpleDto2EntityConverter;
+import com.zwedu.rac.domain.entity.BizLineEntity;
+import com.zwedu.rac.domain.service.BizLineDomainService;
+import com.zwedu.rac.domain.service.UserDomainService;
+import com.zwedu.rac.rowauth.annotation.ReadAuth;
+import com.zwedu.rac.rowauth.annotation.WriteAuth;
 import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
 import com.zwedu.rac.sdk.rpo.base.ResPaginationRpo;
 import com.zwedu.rac.sdk.rpo.bizline.BizLineComplexDto;
 import com.zwedu.rac.sdk.rpo.bizline.BizLineSimpleRpo;
-import com.zwedu.rac.common.annotation.ReadAuth;
-import com.zwedu.rac.common.annotation.WriteAuth;
 import org.poseibon.common.page.Pagination;
 import org.poseibon.common.validator.ParamAssert;
-import com.zwedu.rac.domain.entity.BizLineEntity;
-import com.zwedu.rac.domain.service.BizLineDomainService;
-import com.zwedu.rac.domain.service.UserDomainService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -27,7 +26,6 @@ import java.util.List;
  * @date 2020/12/10
  */
 @Service
-@Slf4j
 public class BizLineAppService {
     @Resource
     private BizLineDomainService bizLineService;
@@ -46,7 +44,7 @@ public class BizLineAppService {
         // 查询对应的业务线列表
         Pagination<BizLineEntity> pagination = bizLineService.listPage(record.getPageNo(),
                 record.getPageSize(), record.getSearchVal());
-        return BizLineEntity2ComplexDtoConverter.INSTANCE.toPaginationDto(pagination);
+        return BizLineEntity2ComplexDtoConverter.INSTANCE.toPaginationRdo(pagination);
     }
 
     /**
@@ -56,7 +54,7 @@ public class BizLineAppService {
      */
     @ReadAuth
     public List<BizLineSimpleRpo> listAuthBizLine() {
-        return BizLineEntity2SimpleDtoConverter.INSTANCE.toDtoList(bizLineService.listAuthBizLine());
+        return BizLineEntity2SimpleDtoConverter.INSTANCE.toRdoList(bizLineService.listAuthBizLine());
     }
 
     /**

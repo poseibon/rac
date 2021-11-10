@@ -3,16 +3,15 @@ package com.zwedu.rac.application.service;
 import com.zwedu.rac.application.converter.BizEntity2ComplexDtoConverter;
 import com.zwedu.rac.application.converter.BizEntity2SimpleDtoConverter;
 import com.zwedu.rac.application.converter.BizEntitySimpleDto2EntityConverter;
+import com.zwedu.rac.domain.entity.BizEntity;
+import com.zwedu.rac.domain.service.BizEntityDomainService;
+import com.zwedu.rac.rowauth.annotation.WriteAuth;
 import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
 import com.zwedu.rac.sdk.rpo.base.ResPaginationRpo;
 import com.zwedu.rac.sdk.rpo.bizentity.BizEntityComplexDto;
 import com.zwedu.rac.sdk.rpo.bizentity.BizEntitySimpleRpo;
-import com.zwedu.rac.common.annotation.WriteAuth;
 import org.poseibon.common.page.Pagination;
 import org.poseibon.common.validator.ParamAssert;
-import com.zwedu.rac.domain.entity.BizEntity;
-import com.zwedu.rac.domain.service.BizEntityDomainService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -25,7 +24,6 @@ import java.util.List;
  * @date 2020/12/10
  */
 @Service
-@Slf4j
 public class BizEntityAppService {
     @Resource
     private BizEntityDomainService bizEntityDomainService;
@@ -42,7 +40,7 @@ public class BizEntityAppService {
         // 查询对应的业务实体列表
         Pagination<BizEntity> pagination = bizEntityDomainService.listPage(record.getPageNo(),
                 record.getPageSize(), record.getBizLineId(), record.getSearchVal());
-        return BizEntity2ComplexDtoConverter.INSTANCE.toPaginationDto(pagination);
+        return BizEntity2ComplexDtoConverter.INSTANCE.toPaginationRdo(pagination);
     }
 
     /**
@@ -52,7 +50,7 @@ public class BizEntityAppService {
      */
     public List<BizEntitySimpleRpo> listByBizLineId(BizEntitySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        return BizEntity2SimpleDtoConverter.INSTANCE.toDtoList(bizEntityDomainService
+        return BizEntity2SimpleDtoConverter.INSTANCE.toRdoList(bizEntityDomainService
                 .listByBizLineId(record.getBizLineId()));
     }
 

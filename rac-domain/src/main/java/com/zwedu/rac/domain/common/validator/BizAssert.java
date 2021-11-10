@@ -1,8 +1,6 @@
 package com.zwedu.rac.domain.common.validator;
 
 import org.poseibon.common.validator.BizChecker;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 /**
  * 業務層检测类
@@ -10,8 +8,6 @@ import lombok.Getter;
  * @author qingchuan
  * @date 2020/12/9
  */
-@Getter
-@AllArgsConstructor
 public enum BizAssert implements BizChecker {
     // 参数错误
     PARAM_EMPTY_ERROR(1001, "{}不能为空"),
@@ -37,4 +33,20 @@ public enum BizAssert implements BizChecker {
      * 错误消息
      */
     private String msg;
+
+
+    BizAssert(Integer code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    @Override
+    public Integer getCode() {
+        return code;
+    }
+
+    @Override
+    public String getMsg() {
+        return msg;
+    }
 }

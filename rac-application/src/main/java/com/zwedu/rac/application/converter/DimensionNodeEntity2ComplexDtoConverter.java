@@ -13,7 +13,7 @@ import org.mapstruct.factory.Mappers;
  */
 @Mapper
 public interface DimensionNodeEntity2ComplexDtoConverter extends
-        Entity2DtoConverter<DimensionNodeEntity, DimensionNodeComplexDto> {
+        Entity2RdoConverter<DimensionNodeEntity, DimensionNodeComplexDto> {
     /**
      * 实例
      */

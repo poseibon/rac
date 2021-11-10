@@ -13,7 +13,7 @@ import org.mapstruct.factory.Mappers;
  */
 @Mapper
 public interface ExtPropertyEntity2ComplexDtoConverter extends
-        Entity2DtoConverter<ExtPropertyEntity, ExtPropertyComplexDto> {
+        Entity2RdoConverter<ExtPropertyEntity, ExtPropertyComplexDto> {
     /**
      * 实例
      */

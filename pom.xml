@@ -19,7 +19,8 @@
         <module>rac-infrastructure</module>
         <module>rac-interfaces</module>
         <module>rac-sdk</module>
-        <module>rac-common</module>
+        <module>rac-rowauth</module>
+        <module>rac-shiro</module>
     </modules>
 
     <properties>
@@ -29,7 +30,6 @@
         <spring-boot-starter-aop.version>2.1.4.RELEASE</spring-boot-starter-aop.version>
         <jetbrains.version>19.0.0</jetbrains.version>
         <mapstruct.version>1.4.1.Final</mapstruct.version>
-        <lombok.version>1.18.16</lombok.version>
         <spring-retry.version>1.2.4.RELEASE</spring-retry.version>
         <mysql.version>8.0.22</mysql.version>
         <pagehelper.version>1.2.7</pagehelper.version>
@@ -70,7 +70,7 @@
             </dependency>
             <dependency>
                 <groupId>com.zwedu.rac</groupId>
-                <artifactId>rac-common</artifactId>
+                <artifactId>rac-rowauth</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -81,6 +81,11 @@
             <dependency>
                 <groupId>com.zwedu.rac</groupId>
                 <artifactId>rac-infrastructure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zwedu.rac</groupId>
+                <artifactId>rac-shiro</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -117,12 +122,6 @@
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct-processor</artifactId>
                 <version>${mapstruct.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework.retry</groupId>

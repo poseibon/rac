@@ -1,8 +1,6 @@
 package com.zwedu.rac.domain.common.enums;
 
 import com.google.common.collect.Maps;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 import java.util.Map;
 
@@ -12,8 +10,6 @@ import java.util.Map;
  * @author qingchuan
  * @date 2020/12/11
  */
-@Getter
-@AllArgsConstructor
 public enum ExtPropertyTypeEnum {
 
     STRING(0, "字符串"), ENUM(1, "枚举值");
@@ -26,6 +22,19 @@ public enum ExtPropertyTypeEnum {
      * 描述
      */
     private String text;
+
+    ExtPropertyTypeEnum(Integer value, String text) {
+        this.value = value;
+        this.text = text;
+    }
+
+    public Integer getValue() {
+        return value;
+    }
+
+    public String getText() {
+        return text;
+    }
     /**
      * 枚举map
      */

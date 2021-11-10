@@ -12,7 +12,7 @@ import org.mapstruct.factory.Mappers;
  * @date 2020/12/9
  */
 @Mapper
-public interface DictionaryNodeSimpleDto2EntityConverter extends Dto2EntityConverter
+public interface DictionaryNodeSimpleDto2EntityConverter extends Rpo2EntityConverter
         <DictionaryNodeSimpleRpo, DictionaryNodeEntity> {
     /**
      * 实例

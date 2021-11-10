@@ -13,7 +13,7 @@ import org.mapstruct.factory.Mappers;
  */
 @Mapper
 public interface RoleEntity2ComplexDtoConverter extends
-        Entity2DtoConverter<RoleEntity, RoleComplexRpo> {
+        Entity2RdoConverter<RoleEntity, RoleComplexRpo> {
     /**
      * 实例
      */

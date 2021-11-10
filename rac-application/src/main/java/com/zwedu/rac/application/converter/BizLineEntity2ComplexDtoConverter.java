@@ -13,7 +13,7 @@ import org.mapstruct.factory.Mappers;
  */
 @Mapper
 public interface BizLineEntity2ComplexDtoConverter extends
-        Entity2DtoConverter<BizLineEntity, BizLineComplexDto> {
+        Entity2RdoConverter<BizLineEntity, BizLineComplexDto> {
     /**
      * 实例
      */

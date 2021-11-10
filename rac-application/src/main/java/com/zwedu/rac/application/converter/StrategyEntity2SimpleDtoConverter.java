@@ -13,7 +13,7 @@ import org.mapstruct.factory.Mappers;
  */
 @Mapper
 public interface StrategyEntity2SimpleDtoConverter extends
-        Entity2DtoConverter<StrategyEntity, StrategySimpleRpo> {
+        Entity2RdoConverter<StrategyEntity, StrategySimpleRpo> {
     /**
      * 实例
      */

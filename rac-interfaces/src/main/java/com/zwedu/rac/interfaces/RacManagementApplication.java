@@ -1,8 +1,9 @@
 package com.zwedu.rac.interfaces;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.mybatis.spring.annotation.MapperScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,11 +13,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author qingchuan
  * @date 2020/12/06
  */
-@Slf4j
 @EnableDubbo
 @MapperScan("com.zwedu.rac.infrastructure.mapper")
 @SpringBootApplication(scanBasePackages = "com.zwedu.rac")
 public class RacManagementApplication {
+
+    private static final Logger log = LoggerFactory.getLogger(RacManagementApplication.class);
+
     /**
      * 主函数
      *

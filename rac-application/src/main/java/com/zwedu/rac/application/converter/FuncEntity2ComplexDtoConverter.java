@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  */
 @Mapper
 public interface FuncEntity2ComplexDtoConverter extends
-        Entity2DtoConverter<FuncEntity, FuncComplexDto> {
+        Entity2RdoConverter<FuncEntity, FuncComplexDto> {
     /**
      * 实例
      */

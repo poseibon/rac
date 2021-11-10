@@ -8,7 +8,7 @@ import com.zwedu.rac.domain.entity.DictionaryNodeEntity;
 import com.zwedu.rac.domain.repository.BizLineRepository;
 import com.zwedu.rac.domain.repository.DictionaryNodeRepository;
 import com.zwedu.rac.domain.repository.DictionaryRepository;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.poseibon.common.utils.Collections2;
 import org.poseibon.common.validator.ParamAssert;
 import org.springframework.stereotype.Service;

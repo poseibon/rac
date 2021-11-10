@@ -1,8 +1,6 @@
 package com.zwedu.rac.domain.common.enums;
 
 import com.google.common.collect.Maps;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 import java.util.Map;
 
@@ -12,8 +10,6 @@ import java.util.Map;
  * @author qingchuan
  * @date 2020/12/11
  */
-@Getter
-@AllArgsConstructor
 public enum DecentralizedControlEnum {
 
     NO(0, "集中授权"), YES(1, "分级授权");
@@ -26,6 +22,19 @@ public enum DecentralizedControlEnum {
      * 描述
      */
     private String text;
+
+    DecentralizedControlEnum(Integer value, String text) {
+        this.value = value;
+        this.text = text;
+    }
+
+    public Integer getValue() {
+        return value;
+    }
+
+    public String getText() {
+        return text;
+    }
     /**
      * 枚举map
      */

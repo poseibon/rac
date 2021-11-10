@@ -12,7 +12,7 @@ import org.mapstruct.factory.Mappers;
  * @date 2020/12/9
  */
 @Mapper
-public interface MenuSimpleDto2EntityConverter extends Dto2EntityConverter<MenuSimpleRpo, MenuEntity> {
+public interface MenuSimpleDto2EntityConverter extends Rpo2EntityConverter<MenuSimpleRpo, MenuEntity> {
     /**
      * 实例
      */

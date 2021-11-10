@@ -3,12 +3,12 @@ package com.zwedu.rac.interfaces.controller;
 import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
 import com.zwedu.rac.sdk.rpo.ext.ExtDataSimpleDto;
 import com.zwedu.rac.sdk.rpo.user.UserPermitRpo;
-import com.zwedu.rac.sdk.rpo.user.UserSimpleRpo;
+import com.zwedu.rac.sdk.rdo.user.UserSimpleRdo;
 import com.zwedu.rac.application.service.AuthAppService;
 import com.zwedu.rac.application.service.UserAppService;
 import org.poseibon.common.utils.BaseResponse;
 import org.poseibon.common.utils.ResponseUtil;
-import com.zwedu.rac.interfaces.common.session.SessionHelper;
+import com.zwedu.rac.shiro.utils.SessionHelper;
 import com.zwedu.rac.sdk.rpo.menu.MenuRpo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -123,7 +123,7 @@ public class UserController {
      */
     @RequestMapping("/create")
     @ResponseBody
-    public BaseResponse create(@RequestBody UserSimpleRpo record) {
+    public BaseResponse create(@RequestBody UserSimpleRdo record) {
         Long currentLoginId = SessionHelper.getLoginUserId();
         userAppService.create(currentLoginId, record);
         return ResponseUtil.success();
@@ -163,7 +163,7 @@ public class UserController {
      */
     @RequestMapping("/edit")
     @ResponseBody
-    public BaseResponse edit(@RequestBody UserSimpleRpo record) {
+    public BaseResponse edit(@RequestBody UserSimpleRdo record) {
         Long currentLoginId = SessionHelper.getLoginUserId();
         userAppService.edit(currentLoginId, record);
         return ResponseUtil.success();
@@ -177,7 +177,7 @@ public class UserController {
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public BaseResponse delete(@RequestBody UserSimpleRpo record) {
+    public BaseResponse delete(@RequestBody UserSimpleRdo record) {
         Long currentLoginId = SessionHelper.getLoginUserId();
         userAppService.delete(currentLoginId, record);
         return ResponseUtil.success();

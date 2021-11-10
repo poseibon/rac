@@ -1,8 +1,6 @@
 package com.zwedu.rac.domain.common;
 
 
-import com.zwedu.rac.common.strategy.entity.AuthInfo;
-
 /**
  * 有权限的业务线ID列表 threadLocal
  *

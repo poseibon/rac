@@ -3,16 +3,15 @@ package com.zwedu.rac.application.service;
 import com.zwedu.rac.application.converter.StrategyEntity2ComplexDtoConverter;
 import com.zwedu.rac.application.converter.StrategyEntity2SimpleDtoConverter;
 import com.zwedu.rac.application.converter.StrategySimpleDto2EntityConverter;
+import com.zwedu.rac.domain.entity.StrategyEntity;
+import com.zwedu.rac.domain.service.StrategyDomainService;
+import com.zwedu.rac.rowauth.annotation.WriteAuth;
 import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
 import com.zwedu.rac.sdk.rpo.base.ResPaginationRpo;
 import com.zwedu.rac.sdk.rpo.strategy.StrategyComplexRpo;
 import com.zwedu.rac.sdk.rpo.strategy.StrategySimpleRpo;
-import com.zwedu.rac.common.annotation.WriteAuth;
 import org.poseibon.common.page.Pagination;
 import org.poseibon.common.validator.ParamAssert;
-import com.zwedu.rac.domain.entity.StrategyEntity;
-import com.zwedu.rac.domain.service.StrategyDomainService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -25,7 +24,6 @@ import java.util.List;
  * @date 2020/12/10
  */
 @Service
-@Slf4j
 public class StrategyAppService {
     @Resource
     private StrategyDomainService strategyDomainService;
@@ -41,7 +39,7 @@ public class StrategyAppService {
         // 查询对应的访问策略列表
         Pagination<StrategyEntity> pagination = strategyDomainService.listPage(record.getPageNo(),
                 record.getPageSize(), record.getBizLineId(), record.getSearchVal());
-        return StrategyEntity2ComplexDtoConverter.INSTANCE.toPaginationDto(pagination);
+        return StrategyEntity2ComplexDtoConverter.INSTANCE.toPaginationRdo(pagination);
     }
 
     /**
@@ -51,7 +49,7 @@ public class StrategyAppService {
      */
     public List<StrategySimpleRpo> listByBizLineId(StrategySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
-        return StrategyEntity2SimpleDtoConverter.INSTANCE.toDtoList(strategyDomainService
+        return StrategyEntity2SimpleDtoConverter.INSTANCE.toRdoList(strategyDomainService
                 .listByBizLineId(record.getBizLineId()));
     }
 

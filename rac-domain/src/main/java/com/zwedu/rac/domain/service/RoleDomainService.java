@@ -1,14 +1,12 @@
 package com.zwedu.rac.domain.service;
 
-import com.zwedu.rac.common.annotation.NoneAuth;
 import com.zwedu.rac.domain.common.validator.BizAssert;
 import com.zwedu.rac.domain.entity.FuncEntity;
 import com.zwedu.rac.domain.entity.MenuEntity;
 import com.zwedu.rac.domain.entity.RoleEntity;
 import com.zwedu.rac.domain.entity.StrategyEntity;
 import com.zwedu.rac.domain.repository.*;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.poseibon.common.page.Pagination;
 import org.poseibon.common.validator.ParamAssert;
@@ -26,7 +24,6 @@ import java.util.stream.Collectors;
  * @date 2020/12/11
  */
 @Service
-@Slf4j
 public class RoleDomainService {
 
     @Resource
@@ -47,7 +44,6 @@ public class RoleDomainService {
      * @param userId    用户ID
      * @return 角色列表
      */
-    @NoneAuth
     public List<RoleEntity> listByUserId(Long bizLineId, Long userId) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(bizLineId, userId);
         // 获取用户对应的角色角色列表

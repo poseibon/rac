@@ -4,24 +4,22 @@ import com.zwedu.rac.application.converter.FuncEntity2ComplexDtoConverter;
 import com.zwedu.rac.application.converter.RoleEntity2ComplexDtoConverter;
 import com.zwedu.rac.application.converter.RoleEntity2SimpleDtoConverter;
 import com.zwedu.rac.application.converter.RoleSimpleDto2EntityConverter;
-import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
-import com.zwedu.rac.sdk.rpo.base.ResPaginationRpo;
-import com.zwedu.rac.sdk.rpo.role.FuncStrategyComplexRpo;
-import com.zwedu.rac.sdk.rpo.role.RoleComplexRpo;
-import com.zwedu.rac.sdk.rpo.role.RoleSimpleRpo;
-import com.zwedu.rac.common.annotation.WriteAuth;
-import org.poseibon.common.page.Pagination;
-import org.poseibon.common.utils.Collections2;
-import org.poseibon.common.validator.ParamAssert;
 import com.zwedu.rac.domain.entity.FuncEntity;
 import com.zwedu.rac.domain.entity.RoleEntity;
 import com.zwedu.rac.domain.entity.StrategyEntity;
 import com.zwedu.rac.domain.service.FuncDomainService;
 import com.zwedu.rac.domain.service.RoleDomainService;
 import com.zwedu.rac.domain.service.StrategyDomainService;
-import com.zwedu.rac.domain.service.UserDomainService;
-import lombok.extern.slf4j.Slf4j;
+import com.zwedu.rac.rowauth.annotation.WriteAuth;
+import com.zwedu.rac.sdk.rpo.base.ReqPaginationRpo;
+import com.zwedu.rac.sdk.rpo.base.ResPaginationRpo;
+import com.zwedu.rac.sdk.rpo.role.FuncStrategyComplexRpo;
+import com.zwedu.rac.sdk.rpo.role.RoleComplexRpo;
+import com.zwedu.rac.sdk.rpo.role.RoleSimpleRpo;
 import org.apache.commons.lang3.tuple.Pair;
+import org.poseibon.common.page.Pagination;
+import org.poseibon.common.utils.Collections2;
+import org.poseibon.common.validator.ParamAssert;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -36,12 +34,9 @@ import java.util.Map;
  * @date 2020/12/10
  */
 @Service
-@Slf4j
 public class RoleAppService {
     @Resource
     private RoleDomainService roleDomainService;
-    @Resource
-    private UserDomainService userService;
     @Resource
     private FuncDomainService funcDomainService;
     @Resource
@@ -59,7 +54,7 @@ public class RoleAppService {
         Pagination<RoleEntity> roleEntityList = roleDomainService
                 .listPage(record.getPageNo(), record.getPageSize(),
                         record.getBizLineId(), record.getSearchVal());
-        return RoleEntity2ComplexDtoConverter.INSTANCE.toPaginationDto(roleEntityList);
+        return RoleEntity2ComplexDtoConverter.INSTANCE.toPaginationRdo(roleEntityList);
     }
 
     /**
@@ -70,7 +65,7 @@ public class RoleAppService {
     public List<RoleSimpleRpo> listByBizLineId(RoleSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         List<RoleEntity> roleEntityList = roleDomainService.listByBizLineId(record.getBizLineId());
-        return RoleEntity2SimpleDtoConverter.INSTANCE.toDtoList(roleEntityList);
+        return RoleEntity2SimpleDtoConverter.INSTANCE.toRdoList(roleEntityList);
     }
 
     /**

@@ -1,6 +1,5 @@
 package com.zwedu.rac.domain.service;
 
-import com.zwedu.rac.common.annotation.NoneAuth;
 import org.poseibon.common.page.Pagination;
 import com.zwedu.rac.domain.common.validator.BizAssert;
 import org.poseibon.common.validator.ParamAssert;
@@ -26,12 +25,6 @@ public class UserDomainService {
     private UserRepository userRepository;
     @Resource
     private BizLineRepository bizLineRepository;
-    @Resource
-    private RoleRepository roleRepository;
-    @Resource
-    private DimensionNodeRepository dimensionNodeRepository;
-    @Resource
-    private ExtPropertyRepository extPropertyRepository;
 
     /**
      * 查询用户列表数据
@@ -145,7 +138,6 @@ public class UserDomainService {
      * @param bizLineId   业务线ID
      * @param dimensionId 维度ID
      */
-    @NoneAuth
     public List<DimensionNodeEntity> listUserDimensionNodes(Long userId, Long bizLineId, Long dimensionId) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(userId, bizLineId, dimensionId);
         return userRepository.listUserDimensionNodes(userId, bizLineId, dimensionId);
@@ -180,7 +172,6 @@ public class UserDomainService {
      *
      * @param id 用户ID
      */
-    @NoneAuth
     public UserEntity queryById(Long id) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(id);
         return userRepository.queryById(id);

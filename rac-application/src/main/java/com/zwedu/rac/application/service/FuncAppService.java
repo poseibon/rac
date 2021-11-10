@@ -4,10 +4,9 @@ import com.zwedu.rac.application.converter.FuncEntity2ComplexDtoConverter;
 import com.zwedu.rac.application.converter.FuncSimpleDto2EntityConverter;
 import com.zwedu.rac.domain.entity.FuncEntity;
 import com.zwedu.rac.domain.service.FuncDomainService;
-import com.zwedu.rac.common.annotation.WriteAuth;
+import com.zwedu.rac.rowauth.annotation.WriteAuth;
 import com.zwedu.rac.sdk.rpo.func.FuncComplexDto;
 import com.zwedu.rac.sdk.rpo.func.FuncSimpleRpo;
-import lombok.extern.slf4j.Slf4j;
 import org.poseibon.common.tree.TreeBuilder;
 import org.poseibon.common.validator.ParamAssert;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,6 @@ import java.util.List;
  * @date 2020/12/10
  */
 @Service
-@Slf4j
 public class FuncAppService {
     @Resource
     private FuncDomainService funcDomainService;
@@ -39,7 +37,7 @@ public class FuncAppService {
         // 查询对应的功能列表
         List<FuncEntity> funcEntityList = funcDomainService.
                 listByParentId(record.getBizLineId(), record.getParentId());
-        return FuncEntity2ComplexDtoConverter.INSTANCE.toDtoList(funcEntityList);
+        return FuncEntity2ComplexDtoConverter.INSTANCE.toRdoList(funcEntityList);
     }
 
 
@@ -54,7 +52,7 @@ public class FuncAppService {
         // 查询对应的功能列表
         List<FuncEntity> funcEntityList = funcDomainService.
                 listByBizLineId(record.getBizLineId(), record.getSearchVal());
-        List<FuncComplexDto> funcComplexDtoList = FuncEntity2ComplexDtoConverter.INSTANCE.toDtoList(funcEntityList);
+        List<FuncComplexDto> funcComplexDtoList = FuncEntity2ComplexDtoConverter.INSTANCE.toRdoList(funcEntityList);
         return TreeBuilder.buildTree(funcComplexDtoList);
     }
 

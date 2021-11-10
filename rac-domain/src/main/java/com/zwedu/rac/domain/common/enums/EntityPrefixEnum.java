@@ -1,8 +1,5 @@
 package com.zwedu.rac.domain.common.enums;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,8 +9,6 @@ import java.util.Map;
  * @author qingchuan
  * @date 2020/12/11
  */
-@Getter
-@AllArgsConstructor
 public enum EntityPrefixEnum {
 
     DICTIONARY("Dictionary-", "字典"), DIMENSION("Dimension-", "维度");
@@ -26,6 +21,20 @@ public enum EntityPrefixEnum {
      * 描述
      */
     private String text;
+
+    EntityPrefixEnum(String value, String text) {
+        this.value = value;
+        this.text = text;
+    }
+
+
+    public String getValue() {
+        return value;
+    }
+
+    public String getText() {
+        return text;
+    }
     /**
      * 枚举map
      */

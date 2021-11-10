@@ -2,6 +2,7 @@ package com.zwedu.rac.infrastructure.repository;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.zwedu.rac.domain.common.AuthInfo;
 import com.zwedu.rac.domain.common.AuthInfoThreadLocal;
 import com.zwedu.rac.domain.entity.DimensionNodeEntity;
 import com.zwedu.rac.domain.entity.UserEntity;
@@ -16,7 +17,6 @@ import com.zwedu.rac.infrastructure.po.DimensionNodePo;
 import com.zwedu.rac.infrastructure.po.UserPo;
 import com.zwedu.rac.infrastructure.po.UserRolePo;
 import org.poseibon.common.page.Pagination;
-import com.zwedu.rac.common.strategy.entity.AuthInfo;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;

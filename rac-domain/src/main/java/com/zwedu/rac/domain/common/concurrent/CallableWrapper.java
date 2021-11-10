@@ -1,10 +1,8 @@
 package com.zwedu.rac.domain.common.concurrent;
 
 import com.google.common.base.Stopwatch;
-import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.Callable;
-import java.util.concurrent.TimeUnit;
 
 /**
  * callable 包装器
@@ -39,8 +37,8 @@ public class CallableWrapper<V> implements Callable {
             return this.callable.call();
         } finally {
             stopwatch.stop();
-            LoggerFactory.getLogger(name).info("invoke {} method ,time-consuming(ms)={}", name,
-                    stopwatch.elapsed(TimeUnit.MILLISECONDS));
+//            Logger.getLogger(name).info("invoke {} method ,time-consuming(ms)={}", name,
+//                    stopwatch.elapsed(TimeUnit.MILLISECONDS));
         }
     }
 }

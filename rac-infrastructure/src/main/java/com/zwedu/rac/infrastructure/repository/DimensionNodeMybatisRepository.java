@@ -11,9 +11,9 @@ import com.zwedu.rac.infrastructure.mapper.DimensionNodeMapper;
 import com.zwedu.rac.infrastructure.po.DimensionNodeControlPo;
 import com.zwedu.rac.infrastructure.po.DimensionNodePo;
 import com.zwedu.rac.infrastructure.po.IdNumPo;
-import org.poseibon.common.utils.Collections2;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.poseibon.common.utils.Collections2;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;

@@ -12,7 +12,7 @@ import org.mapstruct.factory.Mappers;
  * @date 2020/12/9
  */
 @Mapper
-public interface ExtPropertySimpleDto2EntityConverter extends Dto2EntityConverter<ExtPropertySimpleRpo, ExtPropertyEntity> {
+public interface ExtPropertySimpleDto2EntityConverter extends Rpo2EntityConverter<ExtPropertySimpleRpo, ExtPropertyEntity> {
     /**
      * 实例
      */

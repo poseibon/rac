@@ -3,13 +3,12 @@ package com.zwedu.rac.domain.service;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.zwedu.rac.common.annotation.NoneAuth;
 import com.zwedu.rac.domain.common.validator.BizAssert;
 import com.zwedu.rac.domain.entity.FuncEntity;
 import com.zwedu.rac.domain.entity.StrategyEntity;
 import com.zwedu.rac.domain.repository.BizLineRepository;
 import com.zwedu.rac.domain.repository.FuncRepository;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.poseibon.common.utils.Collections2;
 import org.poseibon.common.validator.ParamAssert;
 import org.springframework.stereotype.Service;
@@ -39,7 +38,6 @@ public class FuncDomainService {
      * @param roleIds   角色ID列表
      * @return 功能列表数据
      */
-    @NoneAuth
     public List<FuncEntity> listByRoleIds(Long bizLineId, Collection<Long> roleIds) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(bizLineId, roleIds);
         List<FuncEntity> funcEntityList = funcRepository.listByRoleIds(bizLineId, roleIds);

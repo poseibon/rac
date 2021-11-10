@@ -1,6 +1,5 @@
 package com.zwedu.rac.domain.entity;
 
-import com.zwedu.rac.common.enums.StrategyTypeEnum;
 import com.zwedu.rac.domain.common.validator.BizAssert;
 import com.zwedu.rac.domain.entity.base.BaseEntity;
 
@@ -52,7 +51,7 @@ public class StrategyEntity extends BaseEntity {
     }
 
     public void setType(Integer type) {
-        BizAssert.INCORRECT_VALUE_ERROR.isTrue(StrategyTypeEnum.hasEnum(type), "类型");
+        BizAssert.INCORRECT_VALUE_ERROR.notNull(type, "类型");
         this.type = type;
     }
 
@@ -61,7 +60,7 @@ public class StrategyEntity extends BaseEntity {
     }
 
     public void setExpression(String expression) {
-        BizAssert.PARAM_EMPTY_ERROR.notNull(StrategyTypeEnum.hasEnum(type), "表达式");
+        BizAssert.PARAM_EMPTY_ERROR.notNull(expression, "表达式");
         this.expression = expression;
     }
 
@@ -70,7 +69,7 @@ public class StrategyEntity extends BaseEntity {
     }
 
     public void setPriority(Integer priority) {
-        BizAssert.PARAM_EMPTY_ERROR.notNull(StrategyTypeEnum.hasEnum(type), "优先级");
+        BizAssert.PARAM_EMPTY_ERROR.notNull(priority, "优先级");
         this.priority = priority;
     }
 }

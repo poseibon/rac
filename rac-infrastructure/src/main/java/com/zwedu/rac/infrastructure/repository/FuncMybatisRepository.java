@@ -14,7 +14,7 @@ import com.zwedu.rac.infrastructure.po.FuncExtPo;
 import com.zwedu.rac.infrastructure.po.FuncPo;
 import com.zwedu.rac.infrastructure.po.IdNumPo;
 import com.zwedu.rac.infrastructure.po.StrategyPo;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.poseibon.common.utils.Collections2;
 import org.springframework.stereotype.Repository;

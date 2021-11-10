@@ -4,13 +4,13 @@ import com.google.common.collect.Lists;
 import com.zwedu.rac.application.converter.*;
 import com.zwedu.rac.domain.entity.*;
 import com.zwedu.rac.domain.service.*;
-import com.zwedu.rac.common.annotation.NoneAuth;
+import com.zwedu.rac.rowauth.annotation.NoneAuth;
 import com.zwedu.rac.sdk.rdo.*;
+import com.zwedu.rac.sdk.rdo.user.UserSimpleRdo;
 import com.zwedu.rac.sdk.rpo.auth.FuncAuthRpo;
 import com.zwedu.rac.sdk.rpo.dimension.DimensionAuthRpo;
 import com.zwedu.rac.sdk.rpo.ext.UserExtPropertyRpo;
 import com.zwedu.rac.sdk.rpo.menu.MenuRpo;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.poseibon.common.tree.TreeBuilder;
 import org.poseibon.common.utils.Collections2;
@@ -33,7 +33,6 @@ import static com.zwedu.rac.domain.common.constant.SystemConstant.ENTITY_USER;
  * @author qingchuan
  * @date 2020/12/11
  */
-@Slf4j
 @Service
 @NoneAuth
 public class AuthAppService {
@@ -230,5 +229,32 @@ public class AuthAppService {
         // 获取用户扩展属性
         List<ExtPropertyRdo> extPropertyRdoList = listExtPropertyByUser(new UserExtPropertyRpo(bizLineId, userId));
         return UserEntity2RdoConverter.INSTANCE.toRdo(userEntity, extPropertyRdoList);
+    }
+
+    /**
+     * 根据用户名获取用户信息
+     *
+     * @param bizLineId 业务线ID
+     * @param userName  用户名
+     * @return 用户信息
+     */
+    @Cacheable
+    public UserRdo queryUser(Long bizLineId, String userName) {
+        ParamAssert.PARAM_EMPTY_ERROR.allNotNull(bizLineId, userName);
+        UserEntity userEntity = userDomainService.queryByEnName(userName);
+        if (userEntity == null) {
+            return null;
+        }
+        // 获取用户扩展属性
+        List<ExtPropertyRdo> extPropertyRdoList =
+                listExtPropertyByUser(new UserExtPropertyRpo(bizLineId, userEntity.getId()));
+        return UserEntity2RdoConverter.INSTANCE.toRdo(userEntity, extPropertyRdoList);
+    }
+
+    @Cacheable
+    public UserSimpleRdo querySimpleUser(String userName) {
+        ParamAssert.PARAM_EMPTY_ERROR.allNotNull(userName);
+        UserEntity userEntity = userDomainService.queryByEnName(userName);
+        return UserEntity2SimpleDtoConverter.INSTANCE.toRdo(userEntity);
     }
 }

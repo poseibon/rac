@@ -1,8 +1,6 @@
 package com.zwedu.rac.domain.common.enums;
 
 import com.google.common.collect.Maps;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 import java.util.Map;
 
@@ -12,8 +10,6 @@ import java.util.Map;
  * @author qingchuan
  * @date 2020/12/11
  */
-@Getter
-@AllArgsConstructor
 public enum DimensionNodeEnum {
 
     ENABLE(0, "启用"), DISABLE(1, "禁用");
@@ -26,6 +22,19 @@ public enum DimensionNodeEnum {
      * 描述
      */
     private String text;
+
+    DimensionNodeEnum(Integer value, String text) {
+        this.value = value;
+        this.text = text;
+    }
+
+    public Integer getValue() {
+        return value;
+    }
+
+    public String getText() {
+        return text;
+    }
     /**
      * 枚举map
      */

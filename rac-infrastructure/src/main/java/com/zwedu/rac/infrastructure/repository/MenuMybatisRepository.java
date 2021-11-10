@@ -9,7 +9,7 @@ import com.zwedu.rac.infrastructure.mapper.MenuMapper;
 import com.zwedu.rac.infrastructure.po.IdNumPo;
 import com.zwedu.rac.infrastructure.po.MenuPo;
 import org.poseibon.common.utils.Collections2;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 

@@ -5,7 +5,7 @@ import com.zwedu.rac.domain.common.validator.BizAssert;
 import com.zwedu.rac.domain.entity.MenuEntity;
 import com.zwedu.rac.domain.repository.BizLineRepository;
 import com.zwedu.rac.domain.repository.MenuRepository;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.poseibon.common.validator.ParamAssert;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -13,7 +13,7 @@ import org.mapstruct.factory.Mappers;
  */
 @Mapper
 public interface ExtDataEntity2SimpleDtoConverter extends
-        Entity2DtoConverter<ExtDataEntity, ExtDataSimpleDto> {
+        Entity2RdoConverter<ExtDataEntity, ExtDataSimpleDto> {
     /**
      * 实例
      */
