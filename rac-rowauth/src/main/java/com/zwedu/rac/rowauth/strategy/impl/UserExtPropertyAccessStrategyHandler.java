@@ -1,8 +1,5 @@
 package com.zwedu.rac.rowauth.strategy.impl;
 
-import com.google.common.base.Strings;
-import com.zwedu.rac.domain.common.AuthInfo;
-import com.zwedu.rac.domain.common.DataAccessEnum;
 import com.zwedu.rac.rowauth.enums.DataAccessFieldEnum;
 import com.zwedu.rac.rowauth.strategy.DataAccessStrategyHandler;
 import com.zwedu.rac.rowauth.strategy.entity.UserPropertyStrategyInfo;
@@ -11,7 +8,9 @@ import com.zwedu.rac.sdk.vo.RacContext;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.ObjectUtils;
+import org.poseibon.common.auth.AuthInfo;
 import org.poseibon.common.constant.SeparationChar;
+import org.poseibon.common.enums.DataAccessEnum;
 import org.poseibon.common.utils.Strings2;
 import org.poseibon.common.validator.ParamAssert;
 
@@ -45,7 +44,7 @@ public class UserExtPropertyAccessStrategyHandler
                 && userRdo.getExtData().containsKey(strategyInfo.getPropertyName())) {
             String value = ObjectUtils.toString(userRdo.getExtData()
                     .get(strategyInfo.getPropertyName()), () -> Strings2.EMPTY);
-            if (Strings.isNullOrEmpty(value)) {
+            if (Strings2.isEmpty(value)) {
                 return AuthInfo.of().dataAccess(DataAccessEnum.NONE);
             }
             return AuthInfo.of().dataAccess(DataAccessEnum.DECENTRALIZED)

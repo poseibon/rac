@@ -1,8 +1,8 @@
 package com.zwedu.rac.rowauth.interceptor;
 
-import com.zwedu.rac.domain.common.AuthInfo;
-import com.zwedu.rac.domain.common.AuthInfoThreadLocal;
-import com.zwedu.rac.domain.common.DataAccessEnum;
+import org.poseibon.common.auth.AuthInfo;
+import org.poseibon.common.auth.AuthInfoThreadLocal;
+import org.poseibon.common.enums.DataAccessEnum;
 import com.zwedu.rac.rowauth.enums.StrategyExpressEnum;
 import com.zwedu.rac.rowauth.strategy.DataAccessStrategyHandlerBuilder;
 import com.zwedu.rac.rowauth.strategy.entity.StrategyInfo;

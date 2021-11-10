@@ -1,7 +1,7 @@
 package com.zwedu.rac.rowauth.strategy.impl;
 
-import com.zwedu.rac.domain.common.AuthInfo;
-import com.zwedu.rac.domain.common.DataAccessEnum;
+import org.poseibon.common.auth.AuthInfo;
+import org.poseibon.common.enums.DataAccessEnum;
 import com.zwedu.rac.rowauth.strategy.DataAccessStrategyHandler;
 import com.zwedu.rac.rowauth.strategy.entity.AllStrategyInfo;
 import com.zwedu.rac.sdk.vo.RacContext;

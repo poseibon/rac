@@ -11,9 +11,12 @@ import org.poseibon.common.utils.ResponseUtil;
 import org.poseibon.common.web.AbstractHttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -24,25 +27,22 @@ import java.io.IOException;
  * @author qingchuan
  * @date 2020/12/25
  */
+@Controller
 public class LoginController implements AbstractHttpServletRequest {
 
     private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 
-    /**
-     * 登陆URL
-     */
+
+    @Value("${server.url.login}")
     private String loginUrl;
-    /**
-     * 成功url
-     */
+    @Value("${server.url.success}")
     private String successUrl;
-    /**
-     * 业务线ID
-     */
+    @Value("${rac.bizLineId}")
     private Long bizLineId;
     /**
      * 用户session提供者
      */
+    @Resource
     private UserSessionProvider userSessionProvider;
 
     /**
@@ -87,11 +87,4 @@ public class LoginController implements AbstractHttpServletRequest {
         return ResponseUtil.success();
     }
 
-
-    public LoginController(String loginUrl, String successUrl, Long bizLineId, UserSessionProvider userSessionProvider) {
-        this.loginUrl = loginUrl;
-        this.successUrl = successUrl;
-        this.bizLineId = bizLineId;
-        this.userSessionProvider = userSessionProvider;
-    }
 }

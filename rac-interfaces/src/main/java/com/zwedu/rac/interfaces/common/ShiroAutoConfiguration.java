@@ -2,7 +2,6 @@ package com.zwedu.rac.interfaces.common;
 
 import com.google.common.collect.Maps;
 import com.zwedu.rac.sdk.provider.AuthProvider;
-import com.zwedu.rac.shiro.controller.LoginController;
 import com.zwedu.rac.shiro.service.UserSessionProvider;
 import com.zwedu.rac.shiro.web.FuncAuthFilter;
 import com.zwedu.rac.shiro.web.RedisShiroCacheManager;
@@ -53,19 +52,13 @@ public class ShiroAutoConfiguration {
     private String loginUrl;
     @Value("${server.url.success}")
     private String successUrl;
-    @Value("{rac.biz-line-id}")
+    @Value("${rac.bizLineId}")
     private Long bizLineId;
 
     @Bean
     public UserSessionProvider userSessionProvider() {
         UserSessionProvider userSessionProvider = new UserSessionProvider(authProvider);
         return userSessionProvider;
-    }
-
-    @Bean
-    public LoginController loginController() {
-        LoginController loginController = new LoginController(loginUrl, successUrl, bizLineId, userSessionProvider());
-        return loginController;
     }
 
     @Bean(name = "authorizingRealm")

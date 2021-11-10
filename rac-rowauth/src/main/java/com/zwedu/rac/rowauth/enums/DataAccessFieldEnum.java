@@ -1,7 +1,6 @@
 package com.zwedu.rac.rowauth.enums;
 
-import com.google.common.collect.Maps;
-
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -48,7 +47,7 @@ public enum DataAccessFieldEnum {
     /**
      * 枚举map
      */
-    public static final Map<String, DataAccessFieldEnum> VALUE_TEXT = Maps.newHashMap();
+    public static final Map<String, DataAccessFieldEnum> VALUE_TEXT = new HashMap<>();
 
     /**
      * 静态初始化

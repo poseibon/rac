@@ -2,8 +2,8 @@ package com.zwedu.rac.infrastructure.repository;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.zwedu.rac.domain.common.AuthInfo;
-import com.zwedu.rac.domain.common.AuthInfoThreadLocal;
+import org.poseibon.common.auth.AuthInfo;
+import org.poseibon.common.auth.AuthInfoThreadLocal;
 import com.zwedu.rac.domain.entity.BizLineEntity;
 import com.zwedu.rac.domain.repository.BizLineRepository;
 import com.zwedu.rac.infrastructure.converter.BizLineEntity2PoConverter;

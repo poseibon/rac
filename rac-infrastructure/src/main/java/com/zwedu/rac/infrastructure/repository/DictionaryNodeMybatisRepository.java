@@ -2,8 +2,8 @@ package com.zwedu.rac.infrastructure.repository;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.zwedu.rac.domain.common.AuthInfo;
-import com.zwedu.rac.domain.common.AuthInfoThreadLocal;
+import org.poseibon.common.auth.AuthInfo;
+import org.poseibon.common.auth.AuthInfoThreadLocal;
 import com.zwedu.rac.domain.entity.DictionaryNodeEntity;
 import com.zwedu.rac.domain.repository.DictionaryNodeRepository;
 import com.zwedu.rac.infrastructure.converter.DictionaryNodeEntity2PoConverter;

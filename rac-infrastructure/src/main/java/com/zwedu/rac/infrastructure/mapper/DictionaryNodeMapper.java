@@ -1,6 +1,6 @@
 package com.zwedu.rac.infrastructure.mapper;
 
-import com.zwedu.rac.domain.common.AuthInfo;
+import org.poseibon.common.auth.AuthInfo;
 import com.zwedu.rac.infrastructure.po.DictionaryNodePo;
 import com.zwedu.rac.infrastructure.po.IdNumPo;
 import org.apache.ibatis.annotations.*;

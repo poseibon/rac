@@ -1,7 +1,7 @@
 package com.zwedu.rac.infrastructure.repository;
 
 import com.google.common.collect.Lists;
-import com.zwedu.rac.domain.common.AuthInfoThreadLocal;
+import org.poseibon.common.auth.AuthInfoThreadLocal;
 import com.zwedu.rac.domain.entity.DimensionNodeEntity;
 import com.zwedu.rac.domain.repository.DimensionNodeRepository;
 import com.zwedu.rac.infrastructure.converter.DimensionNodeEntity2PoConverter;
