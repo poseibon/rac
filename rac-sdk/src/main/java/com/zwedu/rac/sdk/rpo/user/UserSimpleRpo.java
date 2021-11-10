@@ -68,12 +68,4 @@ public class UserSimpleRpo extends BaseSimpleRpo {
     public void setStatus(Integer status) {
         this.status = status;
     }
-
-    public Long getDecentralizedControlId() {
-        return decentralizedControlId;
-    }
-
-    public void setDecentralizedControlId(Long decentralizedControlId) {
-        this.decentralizedControlId = decentralizedControlId;
-    }
 }

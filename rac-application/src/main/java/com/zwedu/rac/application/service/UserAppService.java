@@ -121,7 +121,7 @@ public class UserAppService {
      * @param record        用户实体
      */
     @WriteAuth
-    public void create(Long currentLoginId, UserSimpleRdo record) {
+    public void create(Long currentLoginId, UserSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         userDomainService.create(currentLoginId, UserSimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }

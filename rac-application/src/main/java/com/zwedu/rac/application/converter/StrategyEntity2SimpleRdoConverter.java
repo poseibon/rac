@@ -1,5 +1,6 @@
 package com.zwedu.rac.application.converter;
 
+import com.zwedu.rac.sdk.rdo.strategy.StrategySimpleRdo;
 import com.zwedu.rac.sdk.rpo.strategy.StrategySimpleRpo;
 import com.zwedu.rac.domain.entity.StrategyEntity;
 import org.mapstruct.Mapper;
@@ -14,7 +15,7 @@ import org.poseibon.common.converter.Entity2RdoConverter;
  */
 @Mapper
 public interface StrategyEntity2SimpleRdoConverter extends
-        Entity2RdoExtConverter<StrategyEntity, StrategySimpleRpo> {
+        Entity2RdoExtConverter<StrategyEntity, StrategySimpleRdo> {
     /**
      * 实例
      */
