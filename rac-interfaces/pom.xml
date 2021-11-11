@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>rac</artifactId>
-        <groupId>com.zwedu.rac</groupId>
+        <groupId>org.poseibon.rac</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -13,19 +13,19 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.zwedu.rac</groupId>
+            <groupId>org.poseibon.rac</groupId>
             <artifactId>rac-application</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.zwedu.rac</groupId>
+            <groupId>org.poseibon.rac</groupId>
             <artifactId>rac-sdk</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.zwedu.rac</groupId>
+            <groupId>org.poseibon.rac</groupId>
             <artifactId>rac-shiro</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.zwedu.rac</groupId>
+            <groupId>org.poseibon.rac</groupId>
             <artifactId>rac-infrastructure</artifactId>
         </dependency>
         <dependency>

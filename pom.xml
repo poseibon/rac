@@ -8,7 +8,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.4.0</version>
     </parent>
-    <groupId>com.zwedu.rac</groupId>
+    <groupId>org.poseibon.rac</groupId>
     <artifactId>rac</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -64,32 +64,32 @@
                 <version>${boot.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.zwedu.rac</groupId>
+                <groupId>org.poseibon.rac</groupId>
                 <artifactId>rac-application</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.zwedu.rac</groupId>
+                <groupId>org.poseibon.rac</groupId>
                 <artifactId>rac-rowauth</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.zwedu.rac</groupId>
+                <groupId>org.poseibon.rac</groupId>
                 <artifactId>rac-domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.zwedu.rac</groupId>
+                <groupId>org.poseibon.rac</groupId>
                 <artifactId>rac-infrastructure</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.zwedu.rac</groupId>
+                <groupId>org.poseibon.rac</groupId>
                 <artifactId>rac-shiro</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.zwedu.rac</groupId>
+                <groupId>org.poseibon.rac</groupId>
                 <artifactId>rac-sdk</artifactId>
                 <version>${project.version}</version>
             </dependency>
