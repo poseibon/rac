@@ -31,7 +31,7 @@
         <jetbrains.version>19.0.0</jetbrains.version>
         <mapstruct.version>1.4.1.Final</mapstruct.version>
         <spring-retry.version>1.2.4.RELEASE</spring-retry.version>
-        <mysql.version>8.0.22</mysql.version>
+        <mysql.version>8.0.23</mysql.version>
         <pagehelper.version>1.2.7</pagehelper.version>
         <zookeeper.version>3.6.2</zookeeper.version>
         <curator-recipes.version>5.1.0</curator-recipes.version>
@@ -132,7 +132,6 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
-                <scope>runtime</scope>
             </dependency>
             <!-- pagehelper 分页组件 -->
             <dependency>
@@ -152,7 +151,6 @@
                 <version>${boot.version}</version>
                 <scope>test</scope>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/junit/junit -->
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
