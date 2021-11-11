@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author qingchuan
  * @date 2020/12/12
  */
-public class ShiroSessionListener implements SessionListener {
+public class RacSessionListener implements SessionListener {
 
     /**
      * 统计在线人数

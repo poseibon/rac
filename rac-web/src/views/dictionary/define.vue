@@ -271,6 +271,19 @@ export default {
                 })
             }
         },
+        // 删除节点
+        async remove(node, data) {
+          try {
+            let res = await treeDel({id: data.id, bizLineId: data.bizLineId, dictionaryId: data.dictionaryId});
+            this.renderTree();
+          }
+          catch (e) {
+            this.$message({
+              message: e || '查询失败！',
+              type: 'error'
+            })
+          }
+        },
         async treeSave() {
             this.addTreeParam.dictionaryId = this.currRow.id;
             if (this.treeStatus === 'add') {

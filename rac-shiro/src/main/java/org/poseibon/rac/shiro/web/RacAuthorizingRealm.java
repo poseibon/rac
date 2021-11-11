@@ -1,5 +1,6 @@
 package org.poseibon.rac.shiro.web;
 
+import org.apache.shiro.cache.CacheManager;
 import org.poseibon.rac.sdk.provider.AuthProvider;
 import org.poseibon.rac.sdk.rdo.user.UserSimpleRdo;
 import org.apache.shiro.authc.*;
@@ -10,12 +11,17 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-public class UserAuthorizingRealm extends AuthorizingRealm {
+/**
+ * shiro配置
+ *
+ * @author qingchuan
+ * @date 2020/12/12
+ */
+public class RacAuthorizingRealm extends AuthorizingRealm {
     /**
      * 日志
      */
-    private static final Logger log = LoggerFactory.getLogger(UserAuthorizingRealm.class);
+    private static final Logger log = LoggerFactory.getLogger(RacAuthorizingRealm.class);
     /**
      * 业务线ID
      */
@@ -30,9 +36,14 @@ public class UserAuthorizingRealm extends AuthorizingRealm {
      *
      * @param authProvider 授权服务
      */
-    public UserAuthorizingRealm(AuthProvider authProvider, Long bizLineId) {
+    public RacAuthorizingRealm(AuthProvider authProvider, Long bizLineId) {
         this.authProvider = authProvider;
         this.bizLineId = bizLineId;
+        this.setCachingEnabled(true);
+        this.setAuthenticationCachingEnabled(true);
+        this.setAuthenticationCacheName("Shiro-AuthenticationCache-" + bizLineId);
+        this.setAuthorizationCachingEnabled(true);
+        this.setAuthorizationCacheName("Shiro-AuthorizationCache" + bizLineId);
     }
 
     /**
