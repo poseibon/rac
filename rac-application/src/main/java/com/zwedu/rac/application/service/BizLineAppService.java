@@ -9,8 +9,9 @@ import com.zwedu.rac.domain.service.UserDomainService;
 import com.zwedu.rac.rowauth.annotation.ReadAuth;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
 import com.zwedu.rac.sdk.rdo.base.PaginationRpo;
-import com.zwedu.rac.sdk.rpo.base.PaginationRdo;
-import com.zwedu.rac.sdk.rpo.bizline.BizLineComplexDto;
+import com.zwedu.rac.sdk.rdo.base.PaginationRdo;
+import com.zwedu.rac.sdk.rdo.bizline.BizLineSimpleRdo;
+import com.zwedu.rac.sdk.rpo.bizline.BizLineComplexRdo;
 import com.zwedu.rac.sdk.rpo.bizline.BizLineSimpleRpo;
 import org.poseibon.common.page.Pagination;
 import org.poseibon.common.validator.ParamAssert;
@@ -39,7 +40,7 @@ public class BizLineAppService {
      * @return 业务线列表数据
      */
     @ReadAuth
-    public PaginationRdo<BizLineComplexDto> listPage(PaginationRpo record) {
+    public PaginationRdo<BizLineComplexRdo> listPage(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的业务线列表
         Pagination<BizLineEntity> pagination = bizLineService.listPage(record.getPageNo(),
@@ -53,7 +54,7 @@ public class BizLineAppService {
      * @return 业务线列表数据
      */
     @ReadAuth
-    public List<BizLineSimpleRpo> listAuthBizLine() {
+    public List<BizLineSimpleRdo> listAuthBizLine() {
         return BizLineEntity2SimpleRdoConverter.INSTANCE.toRdoList(bizLineService.listAuthBizLine());
     }
 

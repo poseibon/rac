@@ -6,9 +6,10 @@ import com.zwedu.rac.application.converter.BizEntitySimpleRpo2EntityConverter;
 import com.zwedu.rac.domain.entity.BizEntity;
 import com.zwedu.rac.domain.service.BizEntityDomainService;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
-import com.zwedu.rac.sdk.rpo.base.PaginationRdo;
+import com.zwedu.rac.sdk.rdo.base.PaginationRdo;
 import com.zwedu.rac.sdk.rdo.base.PaginationRpo;
-import com.zwedu.rac.sdk.rpo.bizentity.BizEntityComplexRdo;
+import com.zwedu.rac.sdk.rdo.bizentity.BizEntitySimpleRdo;
+import com.zwedu.rac.sdk.rdo.bizentity.BizEntityComplexRdo;
 import com.zwedu.rac.sdk.rpo.bizentity.BizEntitySimpleRpo;
 import org.poseibon.common.page.Pagination;
 import org.poseibon.common.validator.ParamAssert;
@@ -48,7 +49,7 @@ public class BizEntityAppService {
      *
      * @return 业务实体列表数据
      */
-    public List<BizEntitySimpleRpo> listByBizLineId(BizEntitySimpleRpo record) {
+    public List<BizEntitySimpleRdo> listByBizLineId(BizEntitySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         return BizEntity2SimpleRdoConverter.INSTANCE.toRdoList(bizEntityDomainService
                 .listByBizLineId(record.getBizLineId()));

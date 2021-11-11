@@ -5,7 +5,7 @@ import com.zwedu.rac.application.converter.FuncSimpleRpo2EntityConverter;
 import com.zwedu.rac.domain.entity.FuncEntity;
 import com.zwedu.rac.domain.service.FuncDomainService;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
-import com.zwedu.rac.sdk.rpo.func.FuncComplexDto;
+import com.zwedu.rac.sdk.rdo.func.FuncComplexRdo;
 import com.zwedu.rac.sdk.rpo.func.FuncSimpleRpo;
 import org.poseibon.common.tree.TreeBuilder;
 import org.poseibon.common.validator.ParamAssert;
@@ -32,7 +32,7 @@ public class FuncAppService {
      * @param record 查询参数
      * @return 功能列表数据
      */
-    public List<FuncComplexDto> listByParentId(FuncSimpleRpo record) {
+    public List<FuncComplexRdo> listByParentId(FuncSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的功能列表
         List<FuncEntity> funcEntityList = funcDomainService.
@@ -47,12 +47,12 @@ public class FuncAppService {
      * @param record 查询参数
      * @return 功能列表数据
      */
-    public List<FuncComplexDto> listByBizLineId(FuncSimpleRpo record) {
+    public List<FuncComplexRdo> listByBizLineId(FuncSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的功能列表
         List<FuncEntity> funcEntityList = funcDomainService.
                 listByBizLineId(record.getBizLineId(), record.getSearchVal());
-        List<FuncComplexDto> funcComplexDtoList = FuncEntity2ComplexRdoConverter.INSTANCE.toRdoList(funcEntityList);
+        List<FuncComplexRdo> funcComplexDtoList = FuncEntity2ComplexRdoConverter.INSTANCE.toRdoList(funcEntityList);
         return TreeBuilder.buildTree(funcComplexDtoList);
     }
 

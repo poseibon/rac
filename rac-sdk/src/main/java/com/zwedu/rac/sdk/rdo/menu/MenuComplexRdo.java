@@ -1,6 +1,6 @@
-package com.zwedu.rac.sdk.rpo.menu;
+package com.zwedu.rac.sdk.rdo.menu;
 
-import com.zwedu.rac.sdk.rpo.base.BaseComplexRdo;
+import com.zwedu.rac.sdk.rdo.base.BaseComplexRdo;
 
 /**
  * 菜单传输对象
@@ -8,7 +8,7 @@ import com.zwedu.rac.sdk.rpo.base.BaseComplexRdo;
  * @author qingchuan
  * @date 2020/12/9
  */
-public class MenuComplexDto extends BaseComplexRdo<MenuComplexDto> {
+public class MenuComplexRdo extends BaseComplexRdo<MenuComplexRdo> {
     /**
      * 菜单URL
      */

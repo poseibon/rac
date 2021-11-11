@@ -1,6 +1,6 @@
 package com.zwedu.rac.sdk.rpo.func;
 
-import com.zwedu.rac.sdk.rpo.base.BaseSimpleRdo;
+import com.zwedu.rac.sdk.rdo.base.BaseSimpleRdo;
 
 /**
  * 功能传输对象

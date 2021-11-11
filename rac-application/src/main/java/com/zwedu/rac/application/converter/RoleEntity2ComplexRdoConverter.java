@@ -1,13 +1,12 @@
 package com.zwedu.rac.application.converter;
 
-import com.zwedu.rac.sdk.rpo.role.RoleComplexRpo;
 import com.zwedu.rac.domain.entity.RoleEntity;
+import com.zwedu.rac.sdk.rpo.role.RoleComplexRpo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import org.poseibon.common.converter.Entity2RdoConverter;
 
 /**
- * 角色entity-dto转换器
+ * 角色entity-rdo转换器
  *
  * @author qingchuan
  * @date 2020/12/9

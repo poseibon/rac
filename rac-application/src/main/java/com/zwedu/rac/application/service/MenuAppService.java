@@ -5,7 +5,7 @@ import com.zwedu.rac.application.converter.MenuSimpleRpo2EntityConverter;
 import com.zwedu.rac.domain.entity.MenuEntity;
 import com.zwedu.rac.domain.service.MenuDomainService;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
-import com.zwedu.rac.sdk.rpo.menu.MenuComplexDto;
+import com.zwedu.rac.sdk.rdo.menu.MenuComplexRdo;
 import com.zwedu.rac.sdk.rpo.menu.MenuSimpleRpo;
 import org.poseibon.common.tree.TreeBuilder;
 import org.poseibon.common.validator.ParamAssert;
@@ -32,7 +32,7 @@ public class MenuAppService {
      * @param record 查询参数
      * @return 菜单列表数据
      */
-    public List<MenuComplexDto> listByParentId(MenuSimpleRpo record) {
+    public List<MenuComplexRdo> listByParentId(MenuSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的菜单列表
         List<MenuEntity> MenuEntityList = menuDomainService.
@@ -46,12 +46,12 @@ public class MenuAppService {
      * @param record 参数
      * @return 列表数据
      */
-    public List<MenuComplexDto> listByBizLineId(MenuSimpleRpo record) {
+    public List<MenuComplexRdo> listByBizLineId(MenuSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(record);
         // 查询对应的功能列表
         List<MenuEntity> menuEntityList = menuDomainService.listByBizLineId(record.getBizLineId(),
                 record.getSearchVal());
-        List<MenuComplexDto> funcComplexDtoList = MenuEntity2ComplexRdoConverter.INSTANCE.toRdoList(menuEntityList);
+        List<MenuComplexRdo> funcComplexDtoList = MenuEntity2ComplexRdoConverter.INSTANCE.toRdoList(menuEntityList);
         return TreeBuilder.buildTree(funcComplexDtoList);
     }
 

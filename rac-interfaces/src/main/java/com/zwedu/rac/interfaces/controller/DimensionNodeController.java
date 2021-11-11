@@ -1,8 +1,8 @@
 package com.zwedu.rac.interfaces.controller;
 
 import com.zwedu.rac.application.service.DimensionNodeAppService;
-import com.zwedu.rac.sdk.rpo.dimension.DimensionNodeComplexDto;
-import com.zwedu.rac.sdk.rpo.dimension.DimensionNodeSimpleRdo;
+import com.zwedu.rac.sdk.rdo.dimension.DimensionNodeComplexRdo;
+import com.zwedu.rac.sdk.rpo.dimension.DimensionNodeSimpleRpo;
 import com.zwedu.rac.sdk.rpo.ext.ExtDataSimpleRpo;
 import com.zwedu.rac.shiro.utils.SessionHelper;
 import org.poseibon.common.utils.BaseResponse;
@@ -35,7 +35,7 @@ public class DimensionNodeController {
      */
     @RequestMapping("/listByParentId")
     @ResponseBody
-    public BaseResponse listByParentId(@RequestBody DimensionNodeSimpleRdo record) {
+    public BaseResponse listByParentId(@RequestBody DimensionNodeSimpleRpo record) {
         return ResponseUtil.success(dimensionNodeAppService.listByParentId(record));
     }
 
@@ -48,7 +48,7 @@ public class DimensionNodeController {
      */
     @RequestMapping("/listByDimensionId")
     @ResponseBody
-    public BaseResponse listByDimensionId(@RequestBody DimensionNodeSimpleRdo record) {
+    public BaseResponse listByDimensionId(@RequestBody DimensionNodeSimpleRpo record) {
         return ResponseUtil.success(dimensionNodeAppService.listByDimensionId(record));
     }
 
@@ -60,7 +60,7 @@ public class DimensionNodeController {
      */
     @RequestMapping("/listExtProperty")
     @ResponseBody
-    public BaseResponse listExtProperty(@RequestBody DimensionNodeSimpleRdo record) {
+    public BaseResponse listExtProperty(@RequestBody DimensionNodeSimpleRpo record) {
         return ResponseUtil.success(dimensionNodeAppService.listExtProperty(record));
     }
 
@@ -99,7 +99,7 @@ public class DimensionNodeController {
      */
     @RequestMapping("/create")
     @ResponseBody
-    public BaseResponse create(@RequestBody DimensionNodeSimpleRdo record) {
+    public BaseResponse create(@RequestBody DimensionNodeSimpleRpo record) {
         Long currentLoginId = SessionHelper.getLoginUserId();
         dimensionNodeAppService.create(currentLoginId, record);
         return ResponseUtil.success();
@@ -113,7 +113,7 @@ public class DimensionNodeController {
      */
     @RequestMapping("/bindObjectNode")
     @ResponseBody
-    public BaseResponse bindObjectNode(@RequestBody DimensionNodeSimpleRdo record) {
+    public BaseResponse bindObjectNode(@RequestBody DimensionNodeSimpleRpo record) {
         Long currentLoginId = SessionHelper.getLoginUserId();
         dimensionNodeAppService.bindObjectNode(currentLoginId, record);
         return ResponseUtil.success();
@@ -126,7 +126,7 @@ public class DimensionNodeController {
      */
     @RequestMapping("/unbindObjectNode")
     @ResponseBody
-    public BaseResponse unbindObjectNode(@RequestBody DimensionNodeSimpleRdo record) {
+    public BaseResponse unbindObjectNode(@RequestBody DimensionNodeSimpleRpo record) {
         Long currentLoginId = SessionHelper.getLoginUserId();
         dimensionNodeAppService.unbindObjectNode(currentLoginId, record);
         return ResponseUtil.success();
@@ -139,7 +139,7 @@ public class DimensionNodeController {
      */
     @RequestMapping("/queryObjectNode")
     @ResponseBody
-    public ResponseData<DimensionNodeComplexDto> queryObjectNode(@RequestBody DimensionNodeSimpleRdo record) {
+    public ResponseData<DimensionNodeComplexRdo> queryObjectNode(@RequestBody DimensionNodeSimpleRpo record) {
         return ResponseUtil.success(dimensionNodeAppService.queryObjectNode(record));
     }
 
@@ -150,7 +150,7 @@ public class DimensionNodeController {
      */
     @RequestMapping("/edit")
     @ResponseBody
-    public BaseResponse edit(@RequestBody DimensionNodeSimpleRdo record) {
+    public BaseResponse edit(@RequestBody DimensionNodeSimpleRpo record) {
         Long currentLoginId = SessionHelper.getLoginUserId();
         dimensionNodeAppService.edit(currentLoginId, record);
         return ResponseUtil.success();
@@ -164,7 +164,7 @@ public class DimensionNodeController {
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public BaseResponse delete(@RequestBody DimensionNodeSimpleRdo record) {
+    public BaseResponse delete(@RequestBody DimensionNodeSimpleRpo record) {
         Long currentLoginId = SessionHelper.getLoginUserId();
         dimensionNodeAppService.delete(currentLoginId, record);
         return ResponseUtil.success();

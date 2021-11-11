@@ -13,9 +13,9 @@ import com.zwedu.rac.domain.service.DimensionDomainService;
 import com.zwedu.rac.domain.service.DimensionNodeDomainService;
 import com.zwedu.rac.domain.service.ExtPropertyDomainService;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
-import com.zwedu.rac.sdk.rpo.dimension.DimensionNodeComplexDto;
-import com.zwedu.rac.sdk.rpo.dimension.DimensionNodeSimpleRdo;
-import com.zwedu.rac.sdk.rpo.ext.ExtDataComplexRdo;
+import com.zwedu.rac.sdk.rdo.dimension.DimensionNodeComplexRdo;
+import com.zwedu.rac.sdk.rpo.dimension.DimensionNodeSimpleRpo;
+import com.zwedu.rac.sdk.rdo.ext.ExtDataComplexRdo;
 import com.zwedu.rac.sdk.rpo.ext.ExtDataSimpleRpo;
 import org.apache.commons.collections4.CollectionUtils;
 import org.poseibon.common.tree.TreeBuilder;
@@ -52,7 +52,7 @@ public class DimensionNodeAppService {
      *
      * @return 维度节点节点列表数据
      */
-    public List<DimensionNodeComplexDto> listByParentId(DimensionNodeSimpleRdo record) {
+    public List<DimensionNodeComplexRdo> listByParentId(DimensionNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         return DimensionNodeEntity2ComplexRdoConverter.INSTANCE.toRdoList(dimensionNodeDomainService
                 .listByParentId(record.getBizLineId(), record.getDimensionId(), record.getParentId()));
@@ -65,12 +65,12 @@ public class DimensionNodeAppService {
      * @param record 参数
      * @return 列表数据
      */
-    public List<DimensionNodeComplexDto> listByDimensionId(DimensionNodeSimpleRdo record) {
+    public List<DimensionNodeComplexRdo> listByDimensionId(DimensionNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(record);
         // 查询对应的功能列表
         List<DimensionNodeEntity> dimensionNodeEntityList = dimensionNodeDomainService
                 .listByDimensionId(record.getBizLineId(), record.getDimensionId(), record.getSearchVal());
-        List<DimensionNodeComplexDto> funcComplexDtoList = DimensionNodeEntity2ComplexRdoConverter.INSTANCE
+        List<DimensionNodeComplexRdo> funcComplexDtoList = DimensionNodeEntity2ComplexRdoConverter.INSTANCE
                 .toRdoList(dimensionNodeEntityList);
         return TreeBuilder.buildTree(funcComplexDtoList);
     }
@@ -82,7 +82,7 @@ public class DimensionNodeAppService {
      * @param record        维度节点节点实体
      */
     @WriteAuth
-    public void create(Long currentUserId, DimensionNodeSimpleRdo record) {
+    public void create(Long currentUserId, DimensionNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         dimensionNodeDomainService.create(currentUserId, DimensionNodeSimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
@@ -94,7 +94,7 @@ public class DimensionNodeAppService {
      * @param record        维度节点节点实体
      */
     @WriteAuth
-    public void edit(Long currentUserId, DimensionNodeSimpleRdo record) {
+    public void edit(Long currentUserId, DimensionNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         dimensionNodeDomainService.edit(currentUserId, DimensionNodeSimpleRpo2EntityConverter.INSTANCE.toEntity(record));
     }
@@ -107,7 +107,7 @@ public class DimensionNodeAppService {
      * @param record        记录数据
      */
     @WriteAuth
-    public void delete(Long currentUserId, DimensionNodeSimpleRdo record) {
+    public void delete(Long currentUserId, DimensionNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         dimensionNodeDomainService.delete(currentUserId, record.getBizLineId(), record.getDimensionId(), record.getId());
     }
@@ -119,7 +119,7 @@ public class DimensionNodeAppService {
      * @param record        维度节点节点实体
      */
     @WriteAuth
-    public void bindObjectNode(Long currentUserId, DimensionNodeSimpleRdo record) {
+    public void bindObjectNode(Long currentUserId, DimensionNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(currentUserId, record);
         dimensionNodeDomainService.bindObjectNode(currentUserId, record.getBizLineId(), record.getDimensionId(),
                 record.getId(), record.getObjectNodeId());
@@ -132,7 +132,7 @@ public class DimensionNodeAppService {
      * @param record        维度节点节点实体
      */
     @WriteAuth
-    public void unbindObjectNode(Long currentUserId, DimensionNodeSimpleRdo record) {
+    public void unbindObjectNode(Long currentUserId, DimensionNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(currentUserId, record);
         dimensionNodeDomainService.unbindObjectNode(currentUserId, record.getBizLineId(), record.getDimensionId(),
                 record.getId(), record.getObjectNodeId());
@@ -144,7 +144,7 @@ public class DimensionNodeAppService {
      * @param record 记录
      * @return 客体节点
      */
-    public DimensionNodeComplexDto queryObjectNode(DimensionNodeSimpleRdo record) {
+    public DimensionNodeComplexRdo queryObjectNode(DimensionNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         Long objectNodeId = dimensionNodeDomainService.queryObjectNodeId(record.getBizLineId(), record.getDimensionId(),
                 record.getId());
@@ -161,7 +161,7 @@ public class DimensionNodeAppService {
      * @param record 查询维度节点扩展属性
      * @return 维度扩展属性列表
      */
-    public List<ExtDataComplexRdo> listExtProperty(DimensionNodeSimpleRdo record) {
+    public List<ExtDataComplexRdo> listExtProperty(DimensionNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(record);
         DimensionEntity dimensionEntity = dimensionDomainService
                 .queryById(record.getBizLineId(), record.getDimensionId());

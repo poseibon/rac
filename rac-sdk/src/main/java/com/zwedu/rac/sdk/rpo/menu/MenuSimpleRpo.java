@@ -1,6 +1,6 @@
 package com.zwedu.rac.sdk.rpo.menu;
 
-import com.zwedu.rac.sdk.rpo.base.BaseSimpleRdo;
+import com.zwedu.rac.sdk.rdo.base.BaseSimpleRdo;
 
 /**
  * 菜单传输对象

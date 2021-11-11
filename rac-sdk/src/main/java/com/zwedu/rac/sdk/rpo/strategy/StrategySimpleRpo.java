@@ -1,6 +1,6 @@
 package com.zwedu.rac.sdk.rpo.strategy;
 
-import com.zwedu.rac.sdk.rpo.base.BaseSimpleRdo;
+import com.zwedu.rac.sdk.rdo.base.BaseSimpleRdo;
 
 /**
  * 访问策略传输对象

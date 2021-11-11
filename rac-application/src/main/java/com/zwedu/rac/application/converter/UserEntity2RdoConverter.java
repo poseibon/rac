@@ -1,18 +1,17 @@
 package com.zwedu.rac.application.converter;
 
 import com.zwedu.rac.domain.entity.UserEntity;
-import com.zwedu.rac.sdk.rdo.ExtPropertyRdo;
-import com.zwedu.rac.sdk.rdo.UserRdo;
+import com.zwedu.rac.sdk.rdo.ext.ExtPropertyRdo;
+import com.zwedu.rac.sdk.rdo.user.UserRdo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
-import org.poseibon.common.converter.Entity2RdoConverter;
 
 import java.util.List;
 
 /**
- * 用户entity-dto转换器
+ * 用户entity-rdo转换器
  *
  * @author qingchuan
  * @date 2020/12/9

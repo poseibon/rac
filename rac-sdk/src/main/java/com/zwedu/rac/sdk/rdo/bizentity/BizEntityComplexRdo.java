@@ -1,6 +1,6 @@
-package com.zwedu.rac.sdk.rpo.bizentity;
+package com.zwedu.rac.sdk.rdo.bizentity;
 
-import com.zwedu.rac.sdk.rpo.base.BaseComplexRdo;
+import com.zwedu.rac.sdk.rdo.base.BaseComplexRdo;
 
 /**
  * 业务实体传输对象

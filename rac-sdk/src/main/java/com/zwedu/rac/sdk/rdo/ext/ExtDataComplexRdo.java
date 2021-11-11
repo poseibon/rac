@@ -1,4 +1,4 @@
-package com.zwedu.rac.sdk.rpo.ext;
+package com.zwedu.rac.sdk.rdo.ext;
 
 /**
  * 扩展属性数据

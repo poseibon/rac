@@ -3,7 +3,7 @@ package com.zwedu.rac.rowauth.strategy.impl;
 import com.zwedu.rac.rowauth.enums.DataAccessFieldEnum;
 import com.zwedu.rac.rowauth.strategy.DataAccessStrategyHandler;
 import com.zwedu.rac.rowauth.strategy.entity.UserPropertyStrategyInfo;
-import com.zwedu.rac.sdk.rdo.UserRdo;
+import com.zwedu.rac.sdk.rdo.user.UserRdo;
 import com.zwedu.rac.sdk.vo.RacContext;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;

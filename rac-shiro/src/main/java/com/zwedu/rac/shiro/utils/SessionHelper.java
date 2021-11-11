@@ -1,6 +1,6 @@
 package com.zwedu.rac.shiro.utils;
 
-import com.zwedu.rac.sdk.rdo.UserRdo;
+import com.zwedu.rac.sdk.rdo.user.UserRdo;
 import com.zwedu.rac.sdk.vo.UserSession;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;

@@ -5,7 +5,11 @@ import com.zwedu.rac.application.converter.*;
 import com.zwedu.rac.domain.entity.*;
 import com.zwedu.rac.domain.service.*;
 import com.zwedu.rac.rowauth.annotation.NoneAuth;
-import com.zwedu.rac.sdk.rdo.*;
+import com.zwedu.rac.sdk.rdo.dimension.DimensionNodeRdo;
+import com.zwedu.rac.sdk.rdo.ext.ExtPropertyRdo;
+import com.zwedu.rac.sdk.rdo.menu.MenuRdo;
+import com.zwedu.rac.sdk.rdo.role.FuncRdo;
+import com.zwedu.rac.sdk.rdo.user.UserRdo;
 import com.zwedu.rac.sdk.rdo.user.UserSimpleRdo;
 import com.zwedu.rac.sdk.rpo.auth.FuncAuthRpo;
 import com.zwedu.rac.sdk.rpo.dimension.DimensionAuthRpo;
@@ -85,7 +89,7 @@ public class AuthAppService {
      * @param funcList 功能列表
      * @return 功能列表
      */
-    public List<FuncEntity> extendStrategy(List<FuncEntity> funcList, Collection<FuncEntity> childList) {
+    private List<FuncEntity> extendStrategy(List<FuncEntity> funcList, Collection<FuncEntity> childList) {
         if (CollectionUtils.isEmpty(childList)) {
             return Lists.newArrayList();
         }

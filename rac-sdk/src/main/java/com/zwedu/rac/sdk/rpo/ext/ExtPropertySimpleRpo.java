@@ -1,6 +1,6 @@
 package com.zwedu.rac.sdk.rpo.ext;
 
-import com.zwedu.rac.sdk.rpo.base.BaseSimpleRdo;
+import com.zwedu.rac.sdk.rpo.base.BaseSimpleRpo;
 
 /**
  * 扩展属性传输对象
@@ -8,7 +8,7 @@ import com.zwedu.rac.sdk.rpo.base.BaseSimpleRdo;
  * @author qingchuan
  * @date 2020/12/9
  */
-public class ExtPropertySimpleRpo extends BaseSimpleRdo {
+public class ExtPropertySimpleRpo extends BaseSimpleRpo {
     /**
      * 业务实体ID
      */

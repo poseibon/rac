@@ -2,9 +2,9 @@ package com.zwedu.rac.shiro.service;
 
 import com.google.common.collect.Maps;
 import com.zwedu.rac.sdk.provider.AuthProvider;
-import com.zwedu.rac.sdk.rdo.FuncRdo;
-import com.zwedu.rac.sdk.rdo.StrategyRdo;
-import com.zwedu.rac.sdk.rdo.UserRdo;
+import com.zwedu.rac.sdk.rdo.role.FuncRdo;
+import com.zwedu.rac.sdk.rdo.strategy.StrategyRdo;
+import com.zwedu.rac.sdk.rdo.user.UserRdo;
 import com.zwedu.rac.sdk.rpo.auth.FuncAuthRpo;
 import com.zwedu.rac.sdk.vo.UserSession;
 import org.poseibon.common.validator.ParamAssert;

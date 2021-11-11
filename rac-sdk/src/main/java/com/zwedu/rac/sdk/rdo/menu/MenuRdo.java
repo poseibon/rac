@@ -1,4 +1,4 @@
-package com.zwedu.rac.sdk.rdo;
+package com.zwedu.rac.sdk.rdo.menu;
 
 
 import org.poseibon.common.tree.TreeNode;

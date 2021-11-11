@@ -1,10 +1,9 @@
 package com.zwedu.rac.application.converter;
 
 import com.zwedu.rac.domain.entity.MenuEntity;
-import com.zwedu.rac.sdk.rdo.MenuRdo;
+import com.zwedu.rac.sdk.rdo.menu.MenuRdo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import org.poseibon.common.converter.Entity2RdoConverter;
 
 /**
  * 菜单entity-rdo转换器

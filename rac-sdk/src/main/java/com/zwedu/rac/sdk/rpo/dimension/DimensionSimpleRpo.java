@@ -1,6 +1,6 @@
 package com.zwedu.rac.sdk.rpo.dimension;
 
-import com.zwedu.rac.sdk.rpo.base.BaseSimpleRdo;
+import com.zwedu.rac.sdk.rpo.base.BaseSimpleRpo;
 
 /**
  * 维度传输对象
@@ -8,7 +8,7 @@ import com.zwedu.rac.sdk.rpo.base.BaseSimpleRdo;
  * @author qingchuan
  * @date 2020/12/9
  */
-public class DimensionSimpleRpo extends BaseSimpleRdo {
+public class DimensionSimpleRpo extends BaseSimpleRpo {
     /**
      * 维度节点类型ID
      */

@@ -1,20 +1,19 @@
 package com.zwedu.rac.application.converter;
 
-import com.zwedu.rac.sdk.rpo.ext.ExtPropertySimpleRpo;
 import com.zwedu.rac.domain.entity.ExtPropertyEntity;
+import com.zwedu.rac.sdk.rdo.ext.ExtPropertySimpleRdo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import org.poseibon.common.converter.Entity2RdoConverter;
 
 /**
- * 扩展属性entity-dto转换器
+ * 扩展属性entity-rdo转换器
  *
  * @author qingchuan
  * @date 2020/12/9
  */
 @Mapper
 public interface ExtPropertyEntity2SimpleRdoConverter extends
-        Entity2RdoExtConverter<ExtPropertyEntity, ExtPropertySimpleRpo> {
+        Entity2RdoExtConverter<ExtPropertyEntity, ExtPropertySimpleRdo> {
     /**
      * 实例
      */

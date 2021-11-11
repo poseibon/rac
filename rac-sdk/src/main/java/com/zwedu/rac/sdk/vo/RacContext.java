@@ -1,7 +1,7 @@
 package com.zwedu.rac.sdk.vo;
 
-import com.zwedu.rac.sdk.rdo.StrategyRdo;
-import com.zwedu.rac.sdk.rdo.UserRdo;
+import com.zwedu.rac.sdk.rdo.strategy.StrategyRdo;
+import com.zwedu.rac.sdk.rdo.user.UserRdo;
 
 import java.util.Map;
 

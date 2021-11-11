@@ -1,4 +1,4 @@
-package com.zwedu.rac.sdk.rpo.role;
+package com.zwedu.rac.sdk.rdo.role;
 
 /**
  * 功能策略DTO
@@ -6,7 +6,7 @@ package com.zwedu.rac.sdk.rpo.role;
  * @author qingchuan
  * @date 2020/12/16
  */
-public class FuncStrategyComplexRpo {
+public class FuncStrategyComplexRdo {
     /**
      * 功能ID列表
      */

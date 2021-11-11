@@ -1,4 +1,4 @@
-package com.zwedu.rac.sdk.rpo.base;
+package com.zwedu.rac.sdk.rdo.base;
 
 /**
  * 基础对象

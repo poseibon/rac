@@ -1,13 +1,12 @@
 package com.zwedu.rac.application.converter;
 
-import com.zwedu.rac.sdk.rpo.bizentity.BizEntityComplexRdo;
+import com.zwedu.rac.sdk.rdo.bizentity.BizEntityComplexRdo;
 import com.zwedu.rac.domain.entity.BizEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import org.poseibon.common.converter.Entity2RdoConverter;
 
 /**
- * 业务实体entity-dto转换器
+ * 业务实体entity-rdo转换器
  *
  * @author qingchuan
  * @date 2020/12/9

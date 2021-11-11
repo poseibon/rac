@@ -1,6 +1,6 @@
-package com.zwedu.rac.sdk.rpo.dimension;
+package com.zwedu.rac.sdk.rdo.dimension;
 
-import com.zwedu.rac.sdk.rpo.base.BaseComplexRdo;
+import com.zwedu.rac.sdk.rdo.base.BaseSimpleRdo;
 
 /**
  * 维度节点传输对象
@@ -8,7 +8,8 @@ import com.zwedu.rac.sdk.rpo.base.BaseComplexRdo;
  * @author qingchuan
  * @date 2020/12/9
  */
-public class DimensionNodeComplexDto extends BaseComplexRdo<DimensionNodeComplexDto> {
+public class DimensionNodeSimpleRdo extends BaseSimpleRdo {
+
     /**
      * 值
      */
@@ -21,6 +22,10 @@ public class DimensionNodeComplexDto extends BaseComplexRdo<DimensionNodeComplex
      * 生效状态
      */
     private Integer status;
+    /**
+     * 客体节点ID
+     */
+    private Long objectNodeId;
     /**
      * 分级管控ID
      */
@@ -48,6 +53,14 @@ public class DimensionNodeComplexDto extends BaseComplexRdo<DimensionNodeComplex
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Long getObjectNodeId() {
+        return objectNodeId;
+    }
+
+    public void setObjectNodeId(Long objectNodeId) {
+        this.objectNodeId = objectNodeId;
     }
 
     public Long getDecentralizedControlId() {

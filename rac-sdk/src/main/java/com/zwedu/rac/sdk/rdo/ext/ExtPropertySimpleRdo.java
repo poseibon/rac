@@ -1,6 +1,6 @@
-package com.zwedu.rac.sdk.rpo.ext;
+package com.zwedu.rac.sdk.rdo.ext;
 
-import com.zwedu.rac.sdk.rpo.base.BaseComplexRdo;
+import com.zwedu.rac.sdk.rdo.base.BaseSimpleRdo;
 
 /**
  * 扩展属性传输对象
@@ -8,7 +8,7 @@ import com.zwedu.rac.sdk.rpo.base.BaseComplexRdo;
  * @author qingchuan
  * @date 2020/12/9
  */
-public class ExtPropertyComplexDto extends BaseComplexRdo {
+public class ExtPropertySimpleRdo extends BaseSimpleRdo {
     /**
      * 业务实体ID
      */
@@ -25,6 +25,10 @@ public class ExtPropertyComplexDto extends BaseComplexRdo {
      * 业务实体ID
      */
     private Long dictionaryId;
+    /**
+     * 业务实体英文名
+     */
+    private String bizEntityEnName;
 
     public Long getBizEntityId() {
         return bizEntityId;
@@ -56,5 +60,13 @@ public class ExtPropertyComplexDto extends BaseComplexRdo {
 
     public void setDictionaryId(Long dictionaryId) {
         this.dictionaryId = dictionaryId;
+    }
+
+    public String getBizEntityEnName() {
+        return bizEntityEnName;
+    }
+
+    public void setBizEntityEnName(String bizEntityEnName) {
+        this.bizEntityEnName = bizEntityEnName;
     }
 }

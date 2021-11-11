@@ -6,9 +6,10 @@ import com.zwedu.rac.application.converter.DictionarySimpleRpo2EntityConverter;
 import com.zwedu.rac.domain.entity.DictionaryEntity;
 import com.zwedu.rac.domain.service.DictionaryDomainService;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
-import com.zwedu.rac.sdk.rpo.base.PaginationRdo;
+import com.zwedu.rac.sdk.rdo.base.PaginationRdo;
 import com.zwedu.rac.sdk.rdo.base.PaginationRpo;
-import com.zwedu.rac.sdk.rpo.dictionary.DictionaryComplexDto;
+import com.zwedu.rac.sdk.rdo.dictionary.DictionarySimpleRdo;
+import com.zwedu.rac.sdk.rdo.dictionary.DictionaryComplexRdo;
 import com.zwedu.rac.sdk.rpo.dictionary.DictionarySimpleRpo;
 import org.poseibon.common.page.Pagination;
 import org.poseibon.common.validator.ParamAssert;
@@ -34,7 +35,7 @@ public class DictionaryAppService {
      * @param record 分页查询参数
      * @return 字典列表数据
      */
-    public PaginationRdo<DictionaryComplexDto> listPage(PaginationRpo record) {
+    public PaginationRdo<DictionaryComplexRdo> listPage(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的字典列表
         Pagination<DictionaryEntity> pagination = dictionaryDomainService.listPage(record.getPageNo(),
@@ -47,7 +48,7 @@ public class DictionaryAppService {
      *
      * @return 字典列表数据
      */
-    public List<DictionarySimpleRpo> listByBizLineId(DictionarySimpleRpo record) {
+    public List<DictionarySimpleRdo> listByBizLineId(DictionarySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         return DictionaryEntity2SimpleRdoConverter.INSTANCE.toRdoList(dictionaryDomainService
                 .listByBizLineId(record.getBizLineId()));
@@ -97,7 +98,7 @@ public class DictionaryAppService {
      * @param record 记录
      * @return 字典信息
      */
-    public DictionaryComplexDto queryByEnName(DictionarySimpleRpo record) {
+    public DictionaryComplexRdo queryByEnName(DictionarySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         return DictionaryEntity2ComplexRdoConverter.INSTANCE.toRdo(dictionaryDomainService
                 .queryByEnName(record.getBizLineId(), record.getEnName()));

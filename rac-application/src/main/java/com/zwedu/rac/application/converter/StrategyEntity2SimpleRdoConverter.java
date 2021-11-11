@@ -1,14 +1,12 @@
 package com.zwedu.rac.application.converter;
 
-import com.zwedu.rac.sdk.rdo.strategy.StrategySimpleRdo;
-import com.zwedu.rac.sdk.rpo.strategy.StrategySimpleRpo;
 import com.zwedu.rac.domain.entity.StrategyEntity;
+import com.zwedu.rac.sdk.rdo.strategy.StrategySimpleRdo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import org.poseibon.common.converter.Entity2RdoConverter;
 
 /**
- * 访问策略实体entity-dto转换器
+ * 访问策略实体entity-rdo转换器
  *
  * @author qingchuan
  * @date 2020/12/9

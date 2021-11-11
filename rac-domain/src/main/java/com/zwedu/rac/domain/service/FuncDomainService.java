@@ -40,24 +40,24 @@ public class FuncDomainService {
      */
     public List<FuncEntity> listByRoleIds(Long bizLineId, Collection<Long> roleIds) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(bizLineId, roleIds);
-        List<FuncEntity> funcEntityList = funcRepository.listByRoleIds(bizLineId, roleIds);
-        // 获取对应的所有子功能
-        if (CollectionUtils.isNotEmpty(funcEntityList)) {
-            Map<Long, StrategyEntity> funcStrategyMap = Collections2.toMap(funcEntityList, input -> input.getId(),
-                    input -> input.getStrategyEntity());
-            List<FuncEntity> childEntityList = funcRepository.listByParentPaths(bizLineId,
-                    funcEntityList.stream().map(input -> input.getPath()).collect(Collectors.toSet()));
-            if (CollectionUtils.isNotEmpty(childEntityList)) {
-                List<FuncEntity> sortedList = childEntityList.stream()
-                        .sorted(Comparator.comparing(FuncEntity::getLevel)).collect(Collectors.toList());
-                // 循环，设置对应的策略
-                for (FuncEntity funcEntity : sortedList) {
-                    funcEntity.setStrategyEntity(funcStrategyMap.get(funcEntity.getParentId()));
-                    funcStrategyMap.put(funcEntity.getId(), funcStrategyMap.get(funcEntity.getParentId()));
-                }
-            }
-        }
-        return funcEntityList;
+        return funcRepository.listByRoleIds(bizLineId, roleIds);
+//        // 获取对应的所有子功能
+//        if (CollectionUtils.isNotEmpty(funcEntityList)) {
+//            Map<Long, StrategyEntity> funcStrategyMap = Collections2.toMap(funcEntityList, input -> input.getId(),
+//                    input -> input.getStrategyEntity());
+//            List<FuncEntity> childEntityList = funcRepository.listByParentPaths(bizLineId,
+//                    funcEntityList.stream().map(input -> input.getPath()).collect(Collectors.toSet()));
+//            if (CollectionUtils.isNotEmpty(childEntityList)) {
+//                List<FuncEntity> sortedList = childEntityList.stream()
+//                        .sorted(Comparator.comparing(FuncEntity::getLevel)).collect(Collectors.toList());
+//                // 循环，设置对应的策略
+//                for (FuncEntity funcEntity : sortedList) {
+//                    funcEntity.setStrategyEntity(funcStrategyMap.get(funcEntity.getParentId()));
+//                    funcStrategyMap.put(funcEntity.getId(), funcStrategyMap.get(funcEntity.getParentId()));
+//                }
+//            }
+//        }
+//        return funcEntityList;
     }
 
     /**

@@ -1,7 +1,7 @@
 package com.zwedu.rac.application.converter;
 
 import com.google.common.collect.Lists;
-import com.zwedu.rac.sdk.rpo.ext.ExtDataComplexRdo;
+import com.zwedu.rac.sdk.rdo.ext.ExtDataComplexRdo;
 import com.zwedu.rac.domain.common.enums.ExtPropertyTypeEnum;
 import com.zwedu.rac.domain.entity.DictionaryNodeEntity;
 import com.zwedu.rac.domain.entity.ExtDataEntity;
@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * 扩展属性值entity-dto转换器
+ * 扩展属性值entity-rdo转换器
  *
  * @author qingchuan
  * @date 2020/12/9

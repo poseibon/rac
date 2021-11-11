@@ -1,6 +1,10 @@
 package com.zwedu.rac.sdk.provider;
 
-import com.zwedu.rac.sdk.rdo.*;
+import com.zwedu.rac.sdk.rdo.dimension.DimensionNodeRdo;
+import com.zwedu.rac.sdk.rdo.ext.ExtPropertyRdo;
+import com.zwedu.rac.sdk.rdo.menu.MenuRdo;
+import com.zwedu.rac.sdk.rdo.role.FuncRdo;
+import com.zwedu.rac.sdk.rdo.user.UserRdo;
 import com.zwedu.rac.sdk.rdo.user.UserSimpleRdo;
 import com.zwedu.rac.sdk.rpo.auth.FuncAuthRpo;
 import com.zwedu.rac.sdk.rpo.dimension.DimensionAuthRpo;

@@ -7,7 +7,7 @@ import org.mapstruct.factory.Mappers;
 import org.poseibon.common.converter.Rpo2EntityConverter;
 
 /**
- * 业务实体dto-entity转换器
+ * 业务实体rpo-entity转换器
  *
  * @author qingchuan
  * @date 2020/12/9

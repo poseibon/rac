@@ -1,15 +1,13 @@
 package com.zwedu.rac.application.converter;
 
-import com.zwedu.rac.sdk.rpo.base.PaginationRdo;
+import com.zwedu.rac.sdk.rdo.base.PaginationRdo;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.poseibon.common.converter.Entity2RdoConverter;
 import org.poseibon.common.page.Pagination;
 
-import java.util.List;
-
 /**
- * 业务线entity-dto转换器
+ * entity-rdo扩展转换器
  *
  * @author qingchuan
  * @date 2020/12/9

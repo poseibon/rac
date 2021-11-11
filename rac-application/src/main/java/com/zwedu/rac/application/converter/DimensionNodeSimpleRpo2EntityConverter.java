@@ -1,19 +1,19 @@
 package com.zwedu.rac.application.converter;
 
-import com.zwedu.rac.sdk.rpo.dimension.DimensionNodeSimpleRdo;
 import com.zwedu.rac.domain.entity.DimensionNodeEntity;
+import com.zwedu.rac.sdk.rpo.dimension.DimensionNodeSimpleRpo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import org.poseibon.common.converter.Rpo2EntityConverter;
 
 /**
- * 维度dto-entity转换器
+ * 维度rpo-entity转换器
  *
  * @author qingchuan
  * @date 2020/12/9
  */
 @Mapper
-public interface DimensionNodeSimpleRpo2EntityConverter extends Rpo2EntityConverter<DimensionNodeSimpleRdo, DimensionNodeEntity> {
+public interface DimensionNodeSimpleRpo2EntityConverter extends Rpo2EntityConverter<DimensionNodeSimpleRpo, DimensionNodeEntity> {
     /**
      * 实例
      */

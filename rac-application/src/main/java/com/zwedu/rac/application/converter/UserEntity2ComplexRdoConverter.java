@@ -1,12 +1,12 @@
 package com.zwedu.rac.application.converter;
 
 import com.zwedu.rac.domain.entity.UserEntity;
-import com.zwedu.rac.sdk.rpo.user.UserComplexRdo;
+import com.zwedu.rac.sdk.rdo.user.UserComplexRdo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 /**
- * 用户entity-dto转换器
+ * 用户entity-rdo转换器
  *
  * @author qingchuan
  * @date 2020/12/9

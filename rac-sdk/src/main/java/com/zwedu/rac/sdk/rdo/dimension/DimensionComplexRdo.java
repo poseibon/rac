@@ -1,6 +1,6 @@
-package com.zwedu.rac.sdk.rpo.dimension;
+package com.zwedu.rac.sdk.rdo.dimension;
 
-import com.zwedu.rac.sdk.rpo.base.BaseComplexRdo;
+import com.zwedu.rac.sdk.rdo.base.BaseComplexRdo;
 
 /**
  * 维度传输对象
@@ -8,7 +8,7 @@ import com.zwedu.rac.sdk.rpo.base.BaseComplexRdo;
  * @author qingchuan
  * @date 2020/12/9
  */
-public class DimensionComplexDto extends BaseComplexRdo {
+public class DimensionComplexRdo extends BaseComplexRdo {
     /**
      * 维度节点类型ID
      */

@@ -1,6 +1,6 @@
 package com.zwedu.rac.sdk.rpo.role;
 
-import com.zwedu.rac.sdk.rpo.base.BaseComplexRdo;
+import com.zwedu.rac.sdk.rdo.base.BaseComplexRdo;
 
 /**
  * 业务线传输对象

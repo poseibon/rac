@@ -1,4 +1,4 @@
-package com.zwedu.rac.sdk.rdo;
+package com.zwedu.rac.sdk.rdo.ext;
 
 import java.io.Serializable;
 

@@ -16,9 +16,9 @@ import com.zwedu.rac.domain.service.DictionaryNodeDomainService;
 import com.zwedu.rac.domain.service.ExtPropertyDomainService;
 import com.zwedu.rac.rowauth.annotation.ReadAuth;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
-import com.zwedu.rac.sdk.rpo.dictionary.DictionaryNodeComplexDto;
+import com.zwedu.rac.sdk.rdo.dictionary.DictionaryNodeComplexRdo;
 import com.zwedu.rac.sdk.rpo.dictionary.DictionaryNodeSimpleRpo;
-import com.zwedu.rac.sdk.rpo.ext.ExtDataComplexRdo;
+import com.zwedu.rac.sdk.rdo.ext.ExtDataComplexRdo;
 import com.zwedu.rac.sdk.rpo.ext.ExtDataSimpleRpo;
 import org.apache.commons.collections4.CollectionUtils;
 import org.poseibon.common.tree.TreeBuilder;
@@ -55,7 +55,7 @@ public class DictionaryNodeAppService {
      * @return 字典节点列表数据
      */
     @ReadAuth
-    public List<DictionaryNodeComplexDto> listByParentId(DictionaryNodeSimpleRpo record) {
+    public List<DictionaryNodeComplexRdo> listByParentId(DictionaryNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         return DictionaryNodeEntity2ComplexRdoConverter.INSTANCE.toRdoList(dictionaryNodeDomainService
                 .listByParentId(record.getBizLineId(), record.getDictionaryId(), record.getParentId()));
@@ -69,11 +69,11 @@ public class DictionaryNodeAppService {
      * @return 维度节点列表
      */
     @ReadAuth
-    public List<DictionaryNodeComplexDto> listByDictionaryId(DictionaryNodeSimpleRpo record) {
+    public List<DictionaryNodeComplexRdo> listByDictionaryId(DictionaryNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         List<DictionaryNodeEntity> dictionaryEntityList = dictionaryNodeDomainService
                 .listByDictionaryId(record.getBizLineId(), record.getDictionaryId(), record.getSearchVal());
-        List<DictionaryNodeComplexDto> dtoList = DictionaryNodeEntity2ComplexRdoConverter.INSTANCE
+        List<DictionaryNodeComplexRdo> dtoList = DictionaryNodeEntity2ComplexRdoConverter.INSTANCE
                 .toRdoList(dictionaryEntityList);
         return TreeBuilder.buildTree(dtoList);
     }

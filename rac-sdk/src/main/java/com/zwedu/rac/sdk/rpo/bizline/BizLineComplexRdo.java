@@ -1,6 +1,6 @@
 package com.zwedu.rac.sdk.rpo.bizline;
 
-import com.zwedu.rac.sdk.rpo.base.BaseComplexRdo;
+import com.zwedu.rac.sdk.rdo.base.BaseComplexRdo;
 
 /**
  * 业务线传输对象
@@ -8,7 +8,7 @@ import com.zwedu.rac.sdk.rpo.base.BaseComplexRdo;
  * @author qingchuan
  * @date 2020/12/9
  */
-public class BizLineComplexDto extends BaseComplexRdo {
+public class BizLineComplexRdo extends BaseComplexRdo {
     /**
      * 分级控制
      */

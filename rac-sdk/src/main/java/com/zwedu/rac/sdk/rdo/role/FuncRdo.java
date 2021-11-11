@@ -1,4 +1,6 @@
-package com.zwedu.rac.sdk.rdo;
+package com.zwedu.rac.sdk.rdo.role;
+
+import com.zwedu.rac.sdk.rdo.strategy.StrategyRdo;
 
 import java.io.Serializable;
 import java.util.Collection;

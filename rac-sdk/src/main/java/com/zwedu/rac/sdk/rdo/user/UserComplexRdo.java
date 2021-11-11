@@ -1,6 +1,6 @@
-package com.zwedu.rac.sdk.rpo.user;
+package com.zwedu.rac.sdk.rdo.user;
 
-import com.zwedu.rac.sdk.rpo.base.BaseComplexRdo;
+import com.zwedu.rac.sdk.rdo.base.BaseComplexRdo;
 
 /**
  * 用户基本传输对象

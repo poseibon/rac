@@ -1,4 +1,4 @@
-package com.zwedu.rac.sdk.rdo;
+package com.zwedu.rac.sdk.rdo.user;
 
 import java.io.Serializable;
 import java.util.Map;

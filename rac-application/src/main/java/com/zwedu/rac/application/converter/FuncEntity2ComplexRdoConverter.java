@@ -1,9 +1,9 @@
 package com.zwedu.rac.application.converter;
 
 import com.google.common.collect.Lists;
-import com.zwedu.rac.sdk.rpo.func.FuncComplexDto;
-import com.zwedu.rac.sdk.rpo.role.FuncStrategyComplexRpo;
-import org.poseibon.common.converter.Entity2RdoConverter;
+import com.zwedu.rac.sdk.rdo.base.PaginationRdo;
+import com.zwedu.rac.sdk.rdo.role.FuncStrategyComplexRdo;
+import com.zwedu.rac.sdk.rdo.func.FuncComplexRdo;
 import org.poseibon.common.page.Pagination;
 import com.zwedu.rac.domain.entity.FuncEntity;
 import com.zwedu.rac.domain.entity.StrategyEntity;
@@ -19,14 +19,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * 功能entity-dto转换器
+ * 功能entity-rdo转换器
  *
  * @author qingchuan
  * @date 2020/12/9
  */
 @Mapper
 public interface FuncEntity2ComplexRdoConverter extends
-        Entity2RdoExtConverter<FuncEntity, FuncComplexDto> {
+        Entity2RdoExtConverter<FuncEntity, FuncComplexRdo> {
     /**
      * 实例
      */
@@ -42,11 +42,11 @@ public interface FuncEntity2ComplexRdoConverter extends
      */
     @Mappings({
             @Mapping(target = "dataList",
-                    expression = "java(toDtoList(pagination.getDataList(), funcMap, strategyMap))")
+                    expression = "java(toRdoList(pagination.getDataList(), funcMap, strategyMap))")
     })
-    Pagination<FuncStrategyComplexRpo> toPaginationDto(Pagination<Pair<Long, Long>> pagination,
-                                                       Map<Long, FuncEntity> funcMap,
-                                                       Map<Long, StrategyEntity> strategyMap);
+    PaginationRdo<FuncStrategyComplexRdo> toPaginationRdo(Pagination<Pair<Long, Long>> pagination,
+                                                          Map<Long, FuncEntity> funcMap,
+                                                          Map<Long, StrategyEntity> strategyMap);
 
     /**
      * entity 转 dto
@@ -63,7 +63,7 @@ public interface FuncEntity2ComplexRdoConverter extends
                     expression = "java(strategyMap.containsKey(record.getValue())?" +
                             "strategyMap.get(record.getValue()).getCnName():\"\")")
     })
-    FuncStrategyComplexRpo toDto(Pair<Long, Long> record, Map<Long, FuncEntity> funcMap,
+    FuncStrategyComplexRdo toDto(Pair<Long, Long> record, Map<Long, FuncEntity> funcMap,
                                  Map<Long, StrategyEntity> strategyMap);
 
     /**
@@ -72,7 +72,7 @@ public interface FuncEntity2ComplexRdoConverter extends
      * @param recordList 实体列表对象
      * @return dto对象
      */
-    default List<FuncStrategyComplexRpo> toDtoList(List<Pair<Long, Long>> recordList, Map<Long, FuncEntity> funcMap,
+    default List<FuncStrategyComplexRdo> toRdoList(List<Pair<Long, Long>> recordList, Map<Long, FuncEntity> funcMap,
                                                    Map<Long, StrategyEntity> strategyMap) {
         if (CollectionUtils.isEmpty(recordList)) {
             return Lists.newArrayList();

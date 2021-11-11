@@ -28,6 +28,10 @@ public class BaseSimpleRpo {
      */
     private Long parentId;
     /**
+     * 检索字段
+     */
+    private String searchVal;
+    /**
      * 备注
      */
     private String remark;
@@ -70,6 +74,14 @@ public class BaseSimpleRpo {
 
     public void setParentId(Long parentId) {
         this.parentId = parentId;
+    }
+
+    public String getSearchVal() {
+        return searchVal;
+    }
+
+    public void setSearchVal(String searchVal) {
+        this.searchVal = searchVal;
     }
 
     public String getRemark() {

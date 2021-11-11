@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 /**
- * 用户entity-dto转换器
+ * 用户entity-rdo转换器
  *
  * @author qingchuan
  * @date 2020/12/9

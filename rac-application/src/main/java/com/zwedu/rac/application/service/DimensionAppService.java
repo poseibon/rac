@@ -6,9 +6,10 @@ import com.zwedu.rac.application.converter.DimensionSimpleRpo2EntityConverter;
 import com.zwedu.rac.domain.entity.DimensionEntity;
 import com.zwedu.rac.domain.service.DimensionDomainService;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
-import com.zwedu.rac.sdk.rpo.base.PaginationRdo;
+import com.zwedu.rac.sdk.rdo.base.PaginationRdo;
 import com.zwedu.rac.sdk.rdo.base.PaginationRpo;
-import com.zwedu.rac.sdk.rpo.dimension.DimensionComplexDto;
+import com.zwedu.rac.sdk.rdo.dimension.DimensionSimpleRdo;
+import com.zwedu.rac.sdk.rdo.dimension.DimensionComplexRdo;
 import com.zwedu.rac.sdk.rpo.dimension.DimensionSimpleRpo;
 import org.poseibon.common.page.Pagination;
 import org.poseibon.common.validator.ParamAssert;
@@ -34,7 +35,7 @@ public class DimensionAppService {
      * @param record 分页查询参数
      * @return 维度列表数据
      */
-    public PaginationRdo<DimensionComplexDto> listPage(PaginationRpo record) {
+    public PaginationRdo<DimensionComplexRdo> listPage(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的维度列表
         Pagination<DimensionEntity> pagination = dimensionDomainService.listPage(record.getPageNo(),
@@ -47,7 +48,7 @@ public class DimensionAppService {
      *
      * @return 维度列表数据
      */
-    public List<DimensionSimpleRpo> listByBizLineId(DimensionSimpleRpo record) {
+    public List<DimensionSimpleRdo> listByBizLineId(DimensionSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         return DimensionEntity2SimpleRdoConverter.INSTANCE.toRdoList(dimensionDomainService
                 .listByBizLineId(record.getBizLineId()));
@@ -97,7 +98,7 @@ public class DimensionAppService {
      * @param record 记录
      * @return 维度信息
      */
-    public DimensionSimpleRpo queryByEnName(DimensionSimpleRpo record) {
+    public DimensionSimpleRdo queryByEnName(DimensionSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         return DimensionEntity2SimpleRdoConverter.INSTANCE.toRdo(dimensionDomainService
                 .queryByEnName(record.getBizLineId(), record.getEnName()));

@@ -11,9 +11,10 @@ import com.zwedu.rac.domain.service.FuncDomainService;
 import com.zwedu.rac.domain.service.RoleDomainService;
 import com.zwedu.rac.domain.service.StrategyDomainService;
 import com.zwedu.rac.rowauth.annotation.WriteAuth;
-import com.zwedu.rac.sdk.rpo.base.PaginationRdo;
+import com.zwedu.rac.sdk.rdo.base.PaginationRdo;
 import com.zwedu.rac.sdk.rdo.base.PaginationRpo;
-import com.zwedu.rac.sdk.rpo.role.FuncStrategyComplexRpo;
+import com.zwedu.rac.sdk.rdo.role.FuncStrategyComplexRdo;
+import com.zwedu.rac.sdk.rdo.role.RoleSimpleRdo;
 import com.zwedu.rac.sdk.rpo.role.RoleComplexRpo;
 import com.zwedu.rac.sdk.rpo.role.RoleSimpleRpo;
 import org.apache.commons.lang3.tuple.Pair;
@@ -62,7 +63,7 @@ public class RoleAppService {
      *
      * @return 授权角色列表
      */
-    public List<RoleSimpleRpo> listByBizLineId(RoleSimpleRpo record) {
+    public List<RoleSimpleRdo> listByBizLineId(RoleSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         List<RoleEntity> roleEntityList = roleDomainService.listByBizLineId(record.getBizLineId());
         return RoleEntity2SimpleRdoConverter.INSTANCE.toRdoList(roleEntityList);
@@ -73,7 +74,7 @@ public class RoleAppService {
      *
      * @param record 查询角色功能参数
      */
-    public Pagination<FuncStrategyComplexRpo> listAuth(PaginationRpo record) {
+    public PaginationRdo<FuncStrategyComplexRdo> listAuth(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(record);
         Pagination<Pair<Long, Long>> pagination = roleDomainService.listAuth(record.getPageNo(),
                 record.getPageSize(), record.getBizLineId(), record.getId());
@@ -81,7 +82,7 @@ public class RoleAppService {
         Collection<Long> strategyIds = Collections2.toSet(pagination.getDataList(), input -> input.getValue());
         Map<Long, FuncEntity> funcMap = funcDomainService.listByIds(record.getBizLineId(), funcIds);
         Map<Long, StrategyEntity> strategyMap = strategyDomainService.listByIds(record.getBizLineId(), strategyIds);
-        return FuncEntity2ComplexRdoConverter.INSTANCE.toPaginationDto(pagination, funcMap, strategyMap);
+        return FuncEntity2ComplexRdoConverter.INSTANCE.toPaginationRdo(pagination, funcMap, strategyMap);
     }
 
 
