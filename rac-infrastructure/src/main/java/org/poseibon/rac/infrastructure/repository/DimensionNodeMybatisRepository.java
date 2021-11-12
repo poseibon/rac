@@ -1,7 +1,6 @@
 package org.poseibon.rac.infrastructure.repository;
 
 import com.google.common.collect.Lists;
-import org.poseibon.common.auth.AuthInfoThreadLocal;
 import org.poseibon.rac.domain.entity.DimensionNodeEntity;
 import org.poseibon.rac.domain.repository.DimensionNodeRepository;
 import org.poseibon.rac.infrastructure.converter.DimensionNodeEntity2PoConverter;
@@ -38,8 +37,7 @@ public class DimensionNodeMybatisRepository implements DimensionNodeRepository {
 
     @Override
     public List<DimensionNodeEntity> listByParentId(Long bizLineId, Long dimensionId, Long parentId) {
-        List<DimensionNodePo> poList = dimensionNodeMapper.listByParentId(bizLineId, dimensionId, parentId,
-                AuthInfoThreadLocal.AUTH_INFO.get());
+        List<DimensionNodePo> poList = dimensionNodeMapper.listByParentId(bizLineId, dimensionId, parentId);
         if (CollectionUtils.isEmpty(poList)) {
             return Lists.newArrayList();
         }

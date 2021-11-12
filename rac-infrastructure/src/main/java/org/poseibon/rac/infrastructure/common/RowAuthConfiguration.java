@@ -35,14 +35,14 @@ import java.util.List;
 
 @Configuration
 @AutoConfigureAfter(MybatisAutoConfiguration.class)
-public class DataAuthConfiguration {
+public class RowAuthConfiguration {
 
     @Autowired
     private List<SqlSessionFactory> sqlSessionFactoryList;
 
     @PostConstruct
     public void addDataAuthInterceptor() {
-        DataAuthInterceptor interceptor = new DataAuthInterceptor();
+        RowAuthInterceptor interceptor = new RowAuthInterceptor();
         for (SqlSessionFactory sqlSessionFactory : sqlSessionFactoryList) {
             sqlSessionFactory.getConfiguration().addInterceptor(interceptor);
         }

@@ -1,9 +1,9 @@
 package org.poseibon.rac.infrastructure.mapper;
 
-import org.poseibon.common.auth.AuthInfo;
 import org.poseibon.rac.infrastructure.po.UserPo;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+import org.poseibon.rac.rowauth.annotation.ReadAuth;
 
 import java.util.List;
 
@@ -59,9 +59,9 @@ public interface UserMapper extends UserBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @ReadAuth
     List<UserPo> listPage(@Param("bizLineId") Long bizLineId, @Param("currentUserId") Long currentUserId,
-                          @Param("searchVal") String searchVal,
-                          @Param("authInfo") AuthInfo authInfo);
+                          @Param("searchVal") String searchVal);
 
     /**
      * 查询指定英文名的记录

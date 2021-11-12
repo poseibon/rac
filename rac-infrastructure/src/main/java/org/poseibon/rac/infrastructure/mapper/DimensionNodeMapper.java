@@ -1,10 +1,10 @@
 package org.poseibon.rac.infrastructure.mapper;
 
-import org.poseibon.common.auth.AuthInfo;
 import org.poseibon.rac.infrastructure.po.DimensionNodePo;
 import org.poseibon.rac.infrastructure.po.IdNumPo;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+import org.poseibon.rac.rowauth.annotation.ReadAuth;
 
 import java.util.Collection;
 import java.util.List;
@@ -61,10 +61,10 @@ public interface DimensionNodeMapper extends DimensionNodeBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @ReadAuth
     List<DimensionNodePo> listByParentId(@Param("bizLineId") Long bizLineId,
                                          @Param("dimensionId") Long dimensionId,
-                                         @Param("parentId") Long parentId,
-                                         @Param("authInfo") AuthInfo authInfo);
+                                         @Param("parentId") Long parentId);
 
 
     /**

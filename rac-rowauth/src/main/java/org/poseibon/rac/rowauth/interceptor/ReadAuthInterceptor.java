@@ -1,18 +1,17 @@
 package org.poseibon.rac.rowauth.interceptor;
 
-import org.poseibon.common.auth.AuthInfo;
-import org.poseibon.common.auth.AuthInfoThreadLocal;
-import org.poseibon.common.enums.DataAccessEnum;
-import org.poseibon.rac.rowauth.enums.StrategyExpressEnum;
-import org.poseibon.rac.rowauth.strategy.DataAccessStrategyHandlerBuilder;
-import org.poseibon.rac.rowauth.strategy.entity.StrategyInfo;
-import org.poseibon.rac.sdk.threadlocal.RacContextThreadLocal;
-import org.poseibon.rac.sdk.vo.RacContext;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.poseibon.common.utils.Args2;
+import org.poseibon.rac.rowauth.enums.StrategyExpressEnum;
+import org.poseibon.rac.rowauth.strategy.AuthInfoThreadLocal;
+import org.poseibon.rac.rowauth.strategy.DataAccessStrategyHandlerBuilder;
+import org.poseibon.rac.rowauth.strategy.vo.AuthInfo;
+import org.poseibon.rac.rowauth.strategy.vo.StrategyInfo;
+import org.poseibon.rac.sdk.threadlocal.RacContextThreadLocal;
+import org.poseibon.rac.sdk.vo.RacContext;
 import org.springframework.stereotype.Component;
 
 /**
@@ -37,15 +36,11 @@ public class ReadAuthInterceptor {
         AuthInfo authInfo = DataAccessStrategyHandlerBuilder.instance(strategyInfo.getType())
                 .getAuthInfo(strategyInfo, racContext);
         Object result = null;
-        if (DataAccessEnum.ALL.equals(authInfo.getDataAccess())) {
+        AuthInfoThreadLocal.AUTH_INFO.set(authInfo);
+        try {
             result = pjp.proceed();
-        } else if (DataAccessEnum.DECENTRALIZED.equals(authInfo.getDataAccess())) {
-            AuthInfoThreadLocal.AUTH_INFO.set(authInfo);
-            try {
-                result = pjp.proceed();
-            } finally {
-                AuthInfoThreadLocal.AUTH_INFO.remove();
-            }
+        } finally {
+            AuthInfoThreadLocal.AUTH_INFO.remove();
         }
         return result;
     }

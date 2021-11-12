@@ -1,15 +1,14 @@
 package org.poseibon.rac.shiro.web;
 
-import org.poseibon.rac.sdk.threadlocal.RacContextThreadLocal;
-import org.poseibon.rac.sdk.vo.RacContext;
-import org.poseibon.rac.sdk.vo.UserSession;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.poseibon.common.enums.ResponseCodeEnum;
 import org.poseibon.common.utils.Strings2;
 import org.poseibon.common.utils.UrlMatcher;
-import org.poseibon.common.web.AbstractHttpServletRequest;
+import org.poseibon.rac.sdk.threadlocal.RacContextThreadLocal;
+import org.poseibon.rac.sdk.vo.RacContext;
+import org.poseibon.rac.sdk.vo.UserSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,13 +18,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.TreeSet;
 
+import static org.poseibon.rac.shiro.utils.HttpHelper.*;
+
 /**
  * 功能权限过滤器
  *
  * @author qingchuan
  * @date 2021/1/10
  */
-public class FuncAuthFilter implements Filter, AbstractHttpServletRequest {
+public class FuncAuthFilter implements Filter {
 
     public static final Logger log = LoggerFactory.getLogger(FuncAuthFilter.class);
 
@@ -65,7 +66,7 @@ public class FuncAuthFilter implements Filter, AbstractHttpServletRequest {
                         ResponseCodeEnum.NO_AUTH.getValue(), ResponseCodeEnum.NO_AUTH.getText());
             } else {
                 // 跳转到登陆页
-                printMessage((HttpServletResponse) response, TEMPLATE, loginUrl);
+                printMessage((HttpServletResponse) response, loginUrl);
             }
             return;
         }

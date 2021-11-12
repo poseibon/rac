@@ -1,18 +1,19 @@
 package org.poseibon.rac.application.service;
 
+import org.poseibon.common.page.Pagination;
+import org.poseibon.common.validator.ParamAssert;
 import org.poseibon.rac.application.converter.BizEntity2ComplexRdoConverter;
 import org.poseibon.rac.application.converter.BizEntity2SimpleRdoConverter;
 import org.poseibon.rac.application.converter.BizEntitySimpleRpo2EntityConverter;
 import org.poseibon.rac.domain.entity.BizEntity;
 import org.poseibon.rac.domain.service.BizEntityDomainService;
+import org.poseibon.rac.rowauth.annotation.ReadAuth;
 import org.poseibon.rac.rowauth.annotation.WriteAuth;
 import org.poseibon.rac.sdk.rdo.base.PaginationRdo;
 import org.poseibon.rac.sdk.rdo.base.PaginationRpo;
-import org.poseibon.rac.sdk.rdo.bizentity.BizEntitySimpleRdo;
 import org.poseibon.rac.sdk.rdo.bizentity.BizEntityComplexRdo;
+import org.poseibon.rac.sdk.rdo.bizentity.BizEntitySimpleRdo;
 import org.poseibon.rac.sdk.rpo.bizentity.BizEntitySimpleRpo;
-import org.poseibon.common.page.Pagination;
-import org.poseibon.common.validator.ParamAssert;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -35,7 +36,7 @@ public class BizEntityAppService {
      * @param record 分页查询参数
      * @return 业务实体列表数据
      */
-    @WriteAuth
+    @ReadAuth
     public PaginationRdo<BizEntityComplexRdo> listPage(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的业务实体列表

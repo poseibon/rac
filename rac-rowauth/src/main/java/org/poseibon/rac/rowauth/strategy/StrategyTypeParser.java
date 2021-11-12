@@ -1,6 +1,6 @@
 package org.poseibon.rac.rowauth.strategy;
 
-import org.poseibon.rac.rowauth.strategy.entity.StrategyInfo;
+import org.poseibon.rac.rowauth.strategy.vo.StrategyInfo;
 
 /**
  * 策略类型解析器

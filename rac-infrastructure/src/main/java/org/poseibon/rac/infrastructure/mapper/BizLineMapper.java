@@ -1,9 +1,9 @@
 package org.poseibon.rac.infrastructure.mapper;
 
-import org.poseibon.common.auth.AuthInfo;
 import org.poseibon.rac.infrastructure.po.BizLinePo;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+import org.poseibon.rac.rowauth.annotation.ReadAuth;
 
 import java.util.List;
 
@@ -32,12 +32,6 @@ public interface BizLineMapper extends BizLineBaseMapper {
             "and (en_name like concat(#{searchVal, jdbcType=VARCHAR},'%') ",
             "or cn_name like concat(#{searchVal, jdbcType=VARCHAR},'%')) ",
             "</if>",
-            "<if test='authInfo != null'>",
-            "and ${authInfo.dbFieldName} in (",
-            "<foreach item='item' collection='authInfo.authList' separator=','>",
-            " #{item,jdbcType=BIGINT} ",
-            " </foreach>)",
-            "</if>",
             "</script>"
     })
     @Results({
@@ -53,8 +47,8 @@ public interface BizLineMapper extends BizLineBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.TINYINT)
     })
-    List<BizLinePo> listPage(@Param("searchVal") String searchVal,
-                             @Param("authInfo") AuthInfo authInfo);
+    @ReadAuth
+    List<BizLinePo> listPage(@Param("searchVal") String searchVal);
 
     /**
      * 查询授权的业务线列表
@@ -68,12 +62,6 @@ public interface BizLineMapper extends BizLineBaseMapper {
             "deleted",
             "from tb_biz_line",
             "where deleted = 0 ",
-            "<if test='authInfo != null'>",
-            "and ${authInfo.dbFieldName} in (",
-            "<foreach item='item' collection='authInfo.authList' separator=','>",
-            " #{item,jdbcType=BIGINT} ",
-            " </foreach>)",
-            "</if>",
             "</script>"
     })
     @Results({
@@ -89,7 +77,8 @@ public interface BizLineMapper extends BizLineBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.TINYINT)
     })
-    List<BizLinePo> listAuthBizLine(@Param("authInfo") AuthInfo authInfo);
+    @ReadAuth
+    List<BizLinePo> listAuthBizLine();
 
 
     /**

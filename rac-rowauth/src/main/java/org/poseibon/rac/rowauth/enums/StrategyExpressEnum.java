@@ -1,9 +1,9 @@
 package org.poseibon.rac.rowauth.enums;
 
 import org.poseibon.rac.rowauth.strategy.StrategyTypeParser;
-import org.poseibon.rac.rowauth.strategy.entity.FixStrategyInfo;
-import org.poseibon.rac.rowauth.strategy.entity.AllStrategyInfo;
-import org.poseibon.rac.rowauth.strategy.entity.UserPropertyStrategyInfo;
+import org.poseibon.rac.rowauth.strategy.vo.FixStrategyInfo;
+import org.poseibon.rac.rowauth.strategy.vo.AllStrategyInfo;
+import org.poseibon.rac.rowauth.strategy.vo.UserPropertyStrategyInfo;
 import org.poseibon.common.constant.SeparationChar;
 import org.poseibon.common.utils.Strings2;
 

@@ -1,12 +1,12 @@
 package org.poseibon.rac.rowauth.strategy.impl;
 
-import org.poseibon.common.auth.AuthInfo;
-import org.poseibon.common.enums.DataAccessEnum;
-import org.poseibon.rac.rowauth.strategy.DataAccessStrategyHandler;
-import org.poseibon.rac.rowauth.strategy.entity.FixStrategyInfo;
-import org.poseibon.rac.sdk.vo.RacContext;
 import org.apache.commons.collections4.CollectionUtils;
+import org.poseibon.common.enums.DataAccessEnum;
 import org.poseibon.common.validator.ParamAssert;
+import org.poseibon.rac.rowauth.strategy.DataAccessStrategyHandler;
+import org.poseibon.rac.rowauth.strategy.vo.AuthInfo;
+import org.poseibon.rac.rowauth.strategy.vo.FixStrategyInfo;
+import org.poseibon.rac.sdk.vo.RacContext;
 
 /**
  * 访问控制策略<p>固定值</p>表达式处理器

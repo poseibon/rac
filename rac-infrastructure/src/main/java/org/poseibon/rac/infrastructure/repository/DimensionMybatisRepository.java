@@ -2,15 +2,13 @@ package org.poseibon.rac.infrastructure.repository;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import org.poseibon.common.auth.AuthInfo;
-import org.poseibon.common.auth.AuthInfoThreadLocal;
+import org.poseibon.common.page.Pagination;
 import org.poseibon.rac.domain.entity.DimensionEntity;
 import org.poseibon.rac.domain.repository.DimensionRepository;
 import org.poseibon.rac.infrastructure.converter.DimensionEntity2PoConverter;
 import org.poseibon.rac.infrastructure.converter.DimensionPo2EntityConverter;
 import org.poseibon.rac.infrastructure.mapper.DimensionMapper;
 import org.poseibon.rac.infrastructure.po.DimensionPo;
-import org.poseibon.common.page.Pagination;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -31,8 +29,7 @@ public class DimensionMybatisRepository implements DimensionRepository {
     public Pagination<DimensionEntity> listPage(Integer pageNo, Integer pageSize,
                                                 Long bizLineId, String searchVal) {
         try (Page page = PageHelper.startPage(pageNo, pageSize)) {
-            AuthInfo authInfo = AuthInfoThreadLocal.AUTH_INFO.get();
-            List<DimensionPo> poList = dimensionMapper.listPage(bizLineId, searchVal, authInfo);
+            List<DimensionPo> poList = dimensionMapper.listPage(bizLineId, searchVal);
             List<DimensionEntity> entityList = DimensionPo2EntityConverter.INSTANCE.toEntityList(poList);
             Pagination<DimensionEntity> pagination =
                     new Pagination(pageNo, pageSize, page.getTotal());
@@ -43,7 +40,7 @@ public class DimensionMybatisRepository implements DimensionRepository {
 
     @Override
     public List<DimensionEntity> listByBizLineId(Long bizLineId) {
-        List<DimensionPo> poList = dimensionMapper.listByBizLineId(bizLineId, AuthInfoThreadLocal.AUTH_INFO.get());
+        List<DimensionPo> poList = dimensionMapper.listByBizLineId(bizLineId);
         return DimensionPo2EntityConverter.INSTANCE.toEntityList(poList);
     }
 

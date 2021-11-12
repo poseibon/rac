@@ -2,8 +2,6 @@ package org.poseibon.rac.infrastructure.repository;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import org.poseibon.common.auth.AuthInfo;
-import org.poseibon.common.auth.AuthInfoThreadLocal;
 import org.poseibon.rac.domain.entity.BizLineEntity;
 import org.poseibon.rac.domain.repository.BizLineRepository;
 import org.poseibon.rac.infrastructure.converter.BizLineEntity2PoConverter;
@@ -30,9 +28,7 @@ public class BizLineMybatisRepository implements BizLineRepository {
     @Override
     public Pagination<BizLineEntity> listPage(Integer pageNo, Integer pageSize, String searchVal) {
         try (Page page = PageHelper.startPage(pageNo, pageSize)) {
-            AuthInfo authInfo = AuthInfoThreadLocal.AUTH_INFO.get();
-            List<BizLinePo> poList = bizLineMapper.listPage(searchVal,
-                    authInfo);
+            List<BizLinePo> poList = bizLineMapper.listPage(searchVal);
             List<BizLineEntity> entityList = BizLinePo2EntityConverter.INSTANCE.toEntityList(poList);
             Pagination<BizLineEntity> pagination =
                     new Pagination(pageNo, pageSize, page.getTotal());
@@ -43,8 +39,7 @@ public class BizLineMybatisRepository implements BizLineRepository {
 
     @Override
     public List<BizLineEntity> listAuthBizLine() {
-        AuthInfo authInfo = AuthInfoThreadLocal.AUTH_INFO.get();
-        return BizLinePo2EntityConverter.INSTANCE.toEntityList(bizLineMapper.listAuthBizLine(authInfo));
+        return BizLinePo2EntityConverter.INSTANCE.toEntityList(bizLineMapper.listAuthBizLine());
     }
 
     @Override

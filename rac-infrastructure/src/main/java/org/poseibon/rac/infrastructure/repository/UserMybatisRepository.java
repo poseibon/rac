@@ -2,8 +2,7 @@ package org.poseibon.rac.infrastructure.repository;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import org.poseibon.common.auth.AuthInfo;
-import org.poseibon.common.auth.AuthInfoThreadLocal;
+import org.poseibon.common.page.Pagination;
 import org.poseibon.rac.domain.entity.DimensionNodeEntity;
 import org.poseibon.rac.domain.entity.UserEntity;
 import org.poseibon.rac.domain.repository.UserRepository;
@@ -16,7 +15,6 @@ import org.poseibon.rac.infrastructure.mapper.UserRoleMapper;
 import org.poseibon.rac.infrastructure.po.DimensionNodePo;
 import org.poseibon.rac.infrastructure.po.UserPo;
 import org.poseibon.rac.infrastructure.po.UserRolePo;
-import org.poseibon.common.page.Pagination;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -42,9 +40,7 @@ public class UserMybatisRepository implements UserRepository {
     public Pagination<UserEntity> listPage(Long currentUserId, Integer pageNo, Integer pageSize,
                                            Long bizLineId, String searchVal) {
         try (Page page = PageHelper.startPage(pageNo, pageSize)) {
-            AuthInfo authInfo = AuthInfoThreadLocal.AUTH_INFO.get();
-            List<UserPo> poList = userMapper.listPage(bizLineId, currentUserId, searchVal,
-                    authInfo);
+            List<UserPo> poList = userMapper.listPage(bizLineId, currentUserId, searchVal);
             List<UserEntity> entityList = UserPo2EntityConverter.INSTANCE.toEntityList(poList);
             Pagination<UserEntity> pagination =
                     new Pagination(pageNo, pageSize, page.getTotal());

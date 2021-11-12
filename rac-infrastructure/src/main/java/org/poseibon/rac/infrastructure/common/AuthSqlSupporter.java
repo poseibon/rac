@@ -46,16 +46,17 @@ public class AuthSqlSupporter {
     /**
      * 生成带权限的sql
      *
-     * @param sql       origin sql
-     * @param fieldName 权限字段名
-     * @param authList  权限集合
-     * @param <T>       类型
+     * @param originalSql 原始SQL
+     * @param tableName   需要加权限过滤的表
+     * @param fieldName   权限字段名
+     * @param authList    权限集合
+     * @param <T>         类型
      * @return 带权限的sql
      */
-    public <T> String newSqlWithAuth(String sql, String fieldName, Collection<T> authList) {
+    public <T> String newSqlWithAuth(String originalSql, String tableName, String fieldName, Collection<T> authList) {
         Statement statement = null;
         try {
-            statement = CCJSqlParserUtil.parse(sql);
+            statement = CCJSqlParserUtil.parse(originalSql);
         } catch (JSQLParserException e) {
             throw new RuntimeException(e);
         }
@@ -86,7 +87,7 @@ public class AuthSqlSupporter {
     private <T> Expression newExpressionWithAuth(Table table, Expression where,
                                                  String fieldName, Collection<T> authList) {
         Expression inExpression = new InExpression(new Column(table, fieldName),
-                new ExpressionList(getInExpressionList(authList)));
+                new ExpressionList(getExpressionList(authList)));
         if (where == null) {
             return inExpression;
         }
@@ -101,12 +102,10 @@ public class AuthSqlSupporter {
      * @param <T>      类型
      * @return 表达式值
      */
-    private <T> List<Expression> getInExpressionList(Collection<T> authList) {
+    private <T> List<Expression> getExpressionList(Collection<T> authList) {
         List<Expression> expressions = Lists.newArrayList();
         for (T obj : authList) {
-            if (obj instanceof Integer || obj instanceof Long) {
-                expressions.add(new LongValue(Long.valueOf(obj.toString())));
-            }
+            expressions.add(new LongValue(obj.toString()));
         }
         return expressions;
     }

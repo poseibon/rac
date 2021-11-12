@@ -1,7 +1,7 @@
 package org.poseibon.rac.rowauth.strategy;
 
-import org.poseibon.common.auth.AuthInfo;
-import org.poseibon.rac.rowauth.strategy.entity.StrategyInfo;
+import org.poseibon.rac.rowauth.strategy.vo.AuthInfo;
+import org.poseibon.rac.rowauth.strategy.vo.StrategyInfo;
 import org.poseibon.rac.sdk.vo.RacContext;
 
 /**

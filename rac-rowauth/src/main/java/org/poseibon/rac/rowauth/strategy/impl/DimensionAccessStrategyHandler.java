@@ -1,8 +1,8 @@
 package org.poseibon.rac.rowauth.strategy.impl;
 
-import org.poseibon.common.auth.AuthInfo;
 import org.poseibon.rac.rowauth.strategy.DataAccessStrategyHandler;
-import org.poseibon.rac.rowauth.strategy.entity.DimensionStrategyInfo;
+import org.poseibon.rac.rowauth.strategy.vo.AuthInfo;
+import org.poseibon.rac.rowauth.strategy.vo.DimensionStrategyInfo;
 import org.poseibon.rac.sdk.vo.RacContext;
 
 /**

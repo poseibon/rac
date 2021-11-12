@@ -2,7 +2,7 @@ package org.poseibon.rac.rowauth.interceptor;
 
 import org.poseibon.rac.rowauth.enums.StrategyExpressEnum;
 import org.poseibon.rac.rowauth.strategy.DataAccessStrategyHandlerBuilder;
-import org.poseibon.rac.rowauth.strategy.entity.StrategyInfo;
+import org.poseibon.rac.rowauth.strategy.vo.StrategyInfo;
 import org.poseibon.rac.sdk.threadlocal.RacContextThreadLocal;
 import org.poseibon.rac.sdk.vo.RacContext;
 import org.aspectj.lang.ProceedingJoinPoint;

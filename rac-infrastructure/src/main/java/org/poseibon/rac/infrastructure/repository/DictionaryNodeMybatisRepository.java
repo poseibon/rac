@@ -2,18 +2,16 @@ package org.poseibon.rac.infrastructure.repository;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import org.poseibon.common.auth.AuthInfo;
-import org.poseibon.common.auth.AuthInfoThreadLocal;
-import org.poseibon.rac.infrastructure.converter.DictionaryNodeEntity2PoConverter;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.poseibon.common.utils.Collections2;
 import org.poseibon.rac.domain.entity.DictionaryNodeEntity;
 import org.poseibon.rac.domain.repository.DictionaryNodeRepository;
+import org.poseibon.rac.infrastructure.converter.DictionaryNodeEntity2PoConverter;
 import org.poseibon.rac.infrastructure.converter.DictionaryNodePo2EntityConverter;
 import org.poseibon.rac.infrastructure.mapper.DictionaryNodeMapper;
 import org.poseibon.rac.infrastructure.po.DictionaryNodePo;
 import org.poseibon.rac.infrastructure.po.IdNumPo;
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.poseibon.common.utils.Collections2;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -36,9 +34,7 @@ public class DictionaryNodeMybatisRepository implements DictionaryNodeRepository
 
     @Override
     public List<DictionaryNodeEntity> listByParentId(Long bizLineId, Long dictionaryId, Long parentId) {
-        AuthInfo authInfo = AuthInfoThreadLocal.AUTH_INFO.get();
-        List<DictionaryNodePo> poList = dictionaryNodeMapper.listByParentId(bizLineId, dictionaryId, parentId,
-                authInfo);
+        List<DictionaryNodePo> poList = dictionaryNodeMapper.listByParentId(bizLineId, dictionaryId, parentId);
         if (CollectionUtils.isEmpty(poList)) {
             return Lists.newArrayList();
         }
@@ -52,9 +48,7 @@ public class DictionaryNodeMybatisRepository implements DictionaryNodeRepository
 
     @Override
     public List<DictionaryNodeEntity> listByDictionaryId(Long bizLineId, Long dictionaryId, String searchVal) {
-        AuthInfo authInfo = AuthInfoThreadLocal.AUTH_INFO.get();
-        List<DictionaryNodePo> poList = dictionaryNodeMapper.listByDictionaryId(bizLineId, dictionaryId, searchVal,
-                authInfo);
+        List<DictionaryNodePo> poList = dictionaryNodeMapper.listByDictionaryId(bizLineId, dictionaryId, searchVal);
         List<DictionaryNodeEntity> retList = DictionaryNodePo2EntityConverter.INSTANCE.toEntityList(poList);
         if (StringUtils.isNotEmpty(searchVal) && CollectionUtils.isNotEmpty(retList)) {
             // 如果检索值不为空，并且查询出结果，则按照节点path查找子节点

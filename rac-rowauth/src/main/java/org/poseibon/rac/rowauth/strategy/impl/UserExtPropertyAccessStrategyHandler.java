@@ -1,18 +1,18 @@
 package org.poseibon.rac.rowauth.strategy.impl;
 
-import org.poseibon.rac.rowauth.strategy.DataAccessStrategyHandler;
-import org.poseibon.rac.rowauth.enums.DataAccessFieldEnum;
-import org.poseibon.rac.rowauth.strategy.entity.UserPropertyStrategyInfo;
-import org.poseibon.rac.sdk.rdo.user.UserRdo;
-import org.poseibon.rac.sdk.vo.RacContext;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.ObjectUtils;
-import org.poseibon.common.auth.AuthInfo;
 import org.poseibon.common.constant.SeparationChar;
 import org.poseibon.common.enums.DataAccessEnum;
 import org.poseibon.common.utils.Strings2;
 import org.poseibon.common.validator.ParamAssert;
+import org.poseibon.rac.rowauth.enums.DataAccessFieldEnum;
+import org.poseibon.rac.rowauth.strategy.DataAccessStrategyHandler;
+import org.poseibon.rac.rowauth.strategy.vo.AuthInfo;
+import org.poseibon.rac.rowauth.strategy.vo.UserPropertyStrategyInfo;
+import org.poseibon.rac.sdk.rdo.user.UserRdo;
+import org.poseibon.rac.sdk.vo.RacContext;
 
 /**
  * 访问控制策略<p>用户属性</p>表达式处理器

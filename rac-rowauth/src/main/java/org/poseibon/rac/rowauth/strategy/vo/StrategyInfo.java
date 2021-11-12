@@ -1,4 +1,4 @@
-package org.poseibon.rac.rowauth.strategy.entity;
+package org.poseibon.rac.rowauth.strategy.vo;
 
 /**
  * 策略实体

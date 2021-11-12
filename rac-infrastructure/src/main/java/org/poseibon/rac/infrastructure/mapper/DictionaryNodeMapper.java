@@ -1,10 +1,10 @@
 package org.poseibon.rac.infrastructure.mapper;
 
-import org.poseibon.common.auth.AuthInfo;
 import org.poseibon.rac.infrastructure.po.DictionaryNodePo;
 import org.poseibon.rac.infrastructure.po.IdNumPo;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+import org.poseibon.rac.rowauth.annotation.ReadAuth;
 
 import java.util.Collection;
 import java.util.List;
@@ -59,10 +59,10 @@ public interface DictionaryNodeMapper extends DictionaryNodeBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @ReadAuth
     List<DictionaryNodePo> listByParentId(@Param("bizLineId") Long bizLineId,
                                           @Param("dictionaryId") Long dictionaryId,
-                                          @Param("parentId") Long parentId,
-                                          @Param("authInfo") AuthInfo authInfo);
+                                          @Param("parentId") Long parentId);
 
     /**
      * 查询子功能
@@ -300,10 +300,10 @@ public interface DictionaryNodeMapper extends DictionaryNodeBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @ReadAuth
     List<DictionaryNodePo> listByDictionaryId(@Param("bizLineId") Long bizLineId,
                                               @Param("dictionaryId") Long dictionaryId,
-                                              @Param("searchVal") String searchVal,
-                                              @Param("authInfo") AuthInfo authInfo);
+                                              @Param("searchVal") String searchVal);
 
     @Select({
             "select",

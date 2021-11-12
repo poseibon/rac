@@ -21,5 +21,5 @@ public @interface ReadAuth {
     /**
      * sql中需要过滤权限的表的别名
      */
-    String alias() default "";
+    String tableName() default "";
 }
