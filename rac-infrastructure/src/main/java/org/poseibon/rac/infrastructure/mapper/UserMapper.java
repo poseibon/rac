@@ -1,9 +1,9 @@
 package org.poseibon.rac.infrastructure.mapper;
 
-import org.poseibon.rac.infrastructure.po.UserPo;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.poseibon.rac.rowauth.annotation.ReadAuth;
+import org.poseibon.rac.infrastructure.po.UserPo;
+import org.poseibon.rac.rowauth.annotation.AuthFilter;
 
 import java.util.List;
 
@@ -32,12 +32,6 @@ public interface UserMapper extends UserBaseMapper {
             "and (en_name like concat(#{searchVal, jdbcType=VARCHAR},'%') ",
             "or cn_name like concat(#{searchVal, jdbcType=VARCHAR},'%')) ",
             "</if>",
-            "<if test='authInfo != null'>",
-            "and ${authInfo.dbFieldName} in (",
-            "<foreach item='item' collection='authInfo.authList' separator=','>",
-            " #{item,jdbcType=BIGINT} ",
-            " </foreach>)",
-            "</if>",
             "</script>"
     })
     @Results({
@@ -59,7 +53,7 @@ public interface UserMapper extends UserBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
-    @ReadAuth
+    @AuthFilter
     List<UserPo> listPage(@Param("bizLineId") Long bizLineId, @Param("currentUserId") Long currentUserId,
                           @Param("searchVal") String searchVal);
 

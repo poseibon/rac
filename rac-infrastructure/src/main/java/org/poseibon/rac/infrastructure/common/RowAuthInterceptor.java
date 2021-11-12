@@ -11,7 +11,7 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
 import org.poseibon.common.enums.DataAccessEnum;
 import org.poseibon.common.validator.ParamAssert;
-import org.poseibon.rac.rowauth.annotation.ReadAuth;
+import org.poseibon.rac.rowauth.annotation.AuthFilter;
 import org.poseibon.rac.rowauth.strategy.AuthInfoThreadLocal;
 import org.poseibon.rac.rowauth.strategy.vo.AuthInfo;
 import org.slf4j.Logger;
@@ -51,8 +51,8 @@ public class RowAuthInterceptor implements Interceptor {
                         new DefaultReflectorFactory());
         MappedStatement mappedStatement = (MappedStatement) metaObject.getValue("delegate.mappedStatement");
         // 获取方法上的数据权限注解，如果没有注解，则直接通过
-        ReadAuth readAuth = getPermissionByDelegate(mappedStatement);
-        if (readAuth != null) {
+        AuthFilter authFilter = getPermissionByDelegate(mappedStatement);
+        if (authFilter != null) {
             AuthInfo authInfo = AuthInfoThreadLocal.AUTH_INFO.get();
             // 如果是添加了读权限的接口，dataAccess必须有值，无值直接抛出异常
             if (authInfo != null && DataAccessEnum.ALL.equals(authInfo.getDataAccess())) {
@@ -62,7 +62,7 @@ public class RowAuthInterceptor implements Interceptor {
                 ParamAssert.PARAM_EMPTY_ERROR.allNotNull(authInfo.getDbFieldName(), authInfo.getAuthList());
                 BoundSql boundSql = statementHandler.getBoundSql();
                 String originalSql = boundSql.getSql().trim();
-                String authSql = AuthSqlSupporter.getInstance().newSqlWithAuth(originalSql, readAuth.tableName(),
+                String authSql = AuthSqlSupporter.getInstance().newSqlWithAuth(originalSql, authFilter.tblName(),
                         authInfo.getDbFieldName(), authInfo.getAuthList());
                 log.info("new sql with auth: " + authSql);
                 metaObject.setValue("delegate.boundSql.sql", authSql);
@@ -80,16 +80,16 @@ public class RowAuthInterceptor implements Interceptor {
      * @param statement 清单信息
      * @return 读权限注解
      */
-    private ReadAuth getPermissionByDelegate(MappedStatement statement) throws ClassNotFoundException {
-        ReadAuth readAuth = null;
+    private AuthFilter getPermissionByDelegate(MappedStatement statement) throws ClassNotFoundException {
+        AuthFilter readAuth = null;
         String id = statement.getId();
         String className = id.substring(0, id.lastIndexOf("."));
         String methodName = id.substring(id.lastIndexOf(".") + 1, id.length());
         final Class<?> cls = Class.forName(className);
         final Method[] method = cls.getMethods();
         for (Method me : method) {
-            if (me.getName().equals(methodName) && me.isAnnotationPresent(ReadAuth.class)) {
-                readAuth = me.getAnnotation(ReadAuth.class);
+            if (me.getName().equals(methodName) && me.isAnnotationPresent(AuthFilter.class)) {
+                readAuth = me.getAnnotation(AuthFilter.class);
             }
         }
         return readAuth;

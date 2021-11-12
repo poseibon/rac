@@ -3,7 +3,7 @@
     <!-- 控制台输出日志 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>[%thread] %d{yyyy-MM-dd HH:mm:ss.SSS} [%level] [%X{TRACE_ID}] [%c] %L - %msg%n</pattern>
+            <pattern>[%thread] %d{yyyy-MM-dd HH:mm:ss.SSS} [%level] [%c] %L - %msg%n</pattern>
         </encoder>
     </appender>
     <!--每天生成一个日志文件，保存30天的日志文件。-->
@@ -14,7 +14,7 @@
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>[%thread] %d{yyyy-MM-dd HH:mm:ss.SSS} [%level] [%X{TRACE_ID}] [%c] %L - %msg%n</pattern>
+            <pattern>[%thread] %d{yyyy-MM-dd HH:mm:ss.SSS} [%level] [%c] %L - %msg%n</pattern>
         </encoder>
     </appender>
     <!--指定logger name为包名或类全名 指定级别 additivity设置是否传递到root logger -->

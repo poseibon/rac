@@ -1,10 +1,10 @@
 package org.poseibon.rac.infrastructure.mapper;
 
-import org.poseibon.rac.infrastructure.po.DictionaryNodePo;
-import org.poseibon.rac.infrastructure.po.IdNumPo;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.poseibon.rac.rowauth.annotation.ReadAuth;
+import org.poseibon.rac.infrastructure.po.DictionaryNodePo;
+import org.poseibon.rac.infrastructure.po.IdNumPo;
+import org.poseibon.rac.rowauth.annotation.AuthFilter;
 
 import java.util.Collection;
 import java.util.List;
@@ -59,7 +59,7 @@ public interface DictionaryNodeMapper extends DictionaryNodeBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
-    @ReadAuth
+    @AuthFilter
     List<DictionaryNodePo> listByParentId(@Param("bizLineId") Long bizLineId,
                                           @Param("dictionaryId") Long dictionaryId,
                                           @Param("parentId") Long parentId);
@@ -276,12 +276,6 @@ public interface DictionaryNodeMapper extends DictionaryNodeBaseMapper {
             "and (en_name like concat(#{searchVal, jdbcType=VARCHAR},'%') ",
             "or cn_name like concat(#{searchVal, jdbcType=VARCHAR},'%')) ",
             "</if>",
-            "<if test='authInfo != null'>",
-            "and ${authInfo.dbFieldName} in (",
-            "<foreach item='item' collection='authInfo.authList' separator=','>",
-            " #{item,jdbcType=BIGINT} ",
-            " </foreach>)",
-            "</if>",
             "</script>"
     })
     @Results({
@@ -300,7 +294,7 @@ public interface DictionaryNodeMapper extends DictionaryNodeBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
-    @ReadAuth
+    @AuthFilter
     List<DictionaryNodePo> listByDictionaryId(@Param("bizLineId") Long bizLineId,
                                               @Param("dictionaryId") Long dictionaryId,
                                               @Param("searchVal") String searchVal);

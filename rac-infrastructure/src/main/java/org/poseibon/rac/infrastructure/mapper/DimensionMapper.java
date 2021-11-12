@@ -1,9 +1,9 @@
 package org.poseibon.rac.infrastructure.mapper;
 
-import org.poseibon.rac.infrastructure.po.DimensionPo;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.poseibon.rac.rowauth.annotation.ReadAuth;
+import org.poseibon.rac.infrastructure.po.DimensionPo;
+import org.poseibon.rac.rowauth.annotation.AuthFilter;
 
 import java.util.List;
 
@@ -31,12 +31,6 @@ public interface DimensionMapper extends DimensionBaseMapper {
             "and (en_name like concat(#{searchVal, jdbcType=VARCHAR},'%') ",
             "or cn_name like concat(#{searchVal, jdbcType=VARCHAR},'%')) ",
             "</if>",
-            "<if test='authInfo != null'>",
-            "and ${authInfo.dbFieldName} in (",
-            "<foreach item='item' collection='authInfo.authList' separator=','>",
-            " #{item,jdbcType=BIGINT} ",
-            " </foreach>)",
-            "</if>",
             "</script>"
     })
     @Results({
@@ -53,7 +47,7 @@ public interface DimensionMapper extends DimensionBaseMapper {
             @Result(column="update_user_id", property="updateUserId", jdbcType=JdbcType.BIGINT),
             @Result(column="deleted", property="deleted", jdbcType=JdbcType.INTEGER)
     })
-    @ReadAuth
+    @AuthFilter
     List<DimensionPo> listPage(@Param("bizLineId") Long bizLineId,
                                @Param("searchVal") String searchVal);
 
@@ -71,12 +65,6 @@ public interface DimensionMapper extends DimensionBaseMapper {
             "update_time, update_user_id, deleted",
             "from tb_dimension",
             "where deleted = 0 and biz_line_id = #{bizLineId,jdbcType=BIGINT}",
-            "<if test='authInfo != null'>",
-            "and ${authInfo.dbFieldName} in (",
-            "<foreach item='item' collection='authInfo.authList' separator=','>",
-            " #{item,jdbcType=BIGINT} ",
-            " </foreach>)",
-            "</if>",
             "</script>"
     })
     @Results({
@@ -93,7 +81,7 @@ public interface DimensionMapper extends DimensionBaseMapper {
             @Result(column="update_user_id", property="updateUserId", jdbcType=JdbcType.BIGINT),
             @Result(column="deleted", property="deleted", jdbcType=JdbcType.INTEGER)
     })
-    @ReadAuth
+    @AuthFilter
     List<DimensionPo> listByBizLineId(@Param("bizLineId") Long bizLineId);
 
     /**

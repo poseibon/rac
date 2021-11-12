@@ -1,10 +1,10 @@
 package org.poseibon.rac.infrastructure.mapper;
 
-import org.poseibon.rac.infrastructure.po.DimensionNodePo;
-import org.poseibon.rac.infrastructure.po.IdNumPo;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.poseibon.rac.rowauth.annotation.ReadAuth;
+import org.poseibon.rac.infrastructure.po.DimensionNodePo;
+import org.poseibon.rac.infrastructure.po.IdNumPo;
+import org.poseibon.rac.rowauth.annotation.AuthFilter;
 
 import java.util.Collection;
 import java.util.List;
@@ -35,12 +35,6 @@ public interface DimensionNodeMapper extends DimensionNodeBaseMapper {
             "from tb_dimension_node",
             "where biz_line_id = #{bizLineId,jdbcType=BIGINT} and dimension_id = #{dimensionId,jdbcType=BIGINT} ",
             " and parent_id = #{parentId,jdbcType=BIGINT}  and deleted=0",
-            "<if test='authInfo != null'>",
-            "and ${authInfo.dbFieldName} in (",
-            "<foreach item='item' collection='authInfo.authList' separator=','>",
-            " #{item,jdbcType=BIGINT} ",
-            " </foreach>)",
-            "</if>",
             "</script>"
     })
     @Results({
@@ -61,7 +55,7 @@ public interface DimensionNodeMapper extends DimensionNodeBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
-    @ReadAuth
+    @AuthFilter
     List<DimensionNodePo> listByParentId(@Param("bizLineId") Long bizLineId,
                                          @Param("dimensionId") Long dimensionId,
                                          @Param("parentId") Long parentId);
