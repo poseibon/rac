@@ -25,7 +25,7 @@
         </div>
         <el-row class="content-wrap">
             <el-col :span="14" class="content-border">
-                <auth-table :bizLineId="bizLineId" ref="authFilter" @getTableRow="getTableRow" @showDialog="showDialog"></auth-table>
+                <auth-table :bizLineId="bizLineId" ref="authTable" @getTableRow="getTableRow" @showDialog="showDialog"></auth-table>
             </el-col>
             <el-col :span="9"  :offset="1"  class="content-border">
                 <bind-auth-tab :bizLineId="bizLineId" :currRow="currRow"></bind-auth-tab>
@@ -75,7 +75,7 @@
 <script>
 import {searchAuthList,edit,del,add,saveBind,roleToFunc} from '@/api/auth/index';
 import {searchBizLine} from '@/api/bizline/index';
-import authFilter from './authFilter.vue';
+import authTable from './authTable.vue';
 import bindAuthTab from './bindAuthTab.vue';
 
 export default {
@@ -93,18 +93,18 @@ export default {
             currRow: {},
         };
     },
-    components: {authFilter, bindAuthTab},
+    components: {authTable, bindAuthTab},
     mounted() {
         this.searchbizLineList();
     },
     methods: {
         search() {
-            this.$refs.authFilter.searchName(this.searchVal);
+            this.$refs.authTable.searchName(this.searchVal);
         },
         reset() {
             this.searchVal = '';
             this.bizLineId = this.bizLineList[0].id;
-            this.$refs.authFilter.reset();
+            this.$refs.authTable.reset();
         },
         // 得到表格当前行数据
         getTableRow(row) {

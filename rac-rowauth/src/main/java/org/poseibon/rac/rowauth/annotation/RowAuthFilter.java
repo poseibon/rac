@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-public @interface AuthFilter {
+public @interface RowFilter {
     /**
      * sql中需要过滤行权限的表
      */
