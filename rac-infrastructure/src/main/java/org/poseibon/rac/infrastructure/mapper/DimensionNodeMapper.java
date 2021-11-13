@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import org.poseibon.rac.infrastructure.po.DimensionNodePo;
 import org.poseibon.rac.infrastructure.po.IdNumPo;
-import org.poseibon.rac.rowauth.annotation.AuthFilter;
+import org.poseibon.rac.rowauth.annotation.RowAuthFilter;
 
 import java.util.Collection;
 import java.util.List;
@@ -55,7 +55,7 @@ public interface DimensionNodeMapper extends DimensionNodeBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
-    @AuthFilter
+    @RowAuthFilter
     List<DimensionNodePo> listByParentId(@Param("bizLineId") Long bizLineId,
                                          @Param("dimensionId") Long dimensionId,
                                          @Param("parentId") Long parentId);

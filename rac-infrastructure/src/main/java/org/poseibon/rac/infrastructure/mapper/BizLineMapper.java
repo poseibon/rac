@@ -3,7 +3,7 @@ package org.poseibon.rac.infrastructure.mapper;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import org.poseibon.rac.infrastructure.po.BizLinePo;
-import org.poseibon.rac.rowauth.annotation.AuthFilter;
+import org.poseibon.rac.rowauth.annotation.RowAuthFilter;
 
 import java.util.List;
 
@@ -47,7 +47,7 @@ public interface BizLineMapper extends BizLineBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.TINYINT)
     })
-    @AuthFilter
+    @RowAuthFilter
     List<BizLinePo> listPage(@Param("searchVal") String searchVal);
 
     /**
@@ -77,7 +77,7 @@ public interface BizLineMapper extends BizLineBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.TINYINT)
     })
-    @AuthFilter
+    @RowAuthFilter
     List<BizLinePo> listAuthBizLine();
 
 

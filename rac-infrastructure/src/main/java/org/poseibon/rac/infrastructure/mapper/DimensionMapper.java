@@ -3,7 +3,7 @@ package org.poseibon.rac.infrastructure.mapper;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import org.poseibon.rac.infrastructure.po.DimensionPo;
-import org.poseibon.rac.rowauth.annotation.AuthFilter;
+import org.poseibon.rac.rowauth.annotation.RowAuthFilter;
 
 import java.util.List;
 
@@ -47,7 +47,7 @@ public interface DimensionMapper extends DimensionBaseMapper {
             @Result(column="update_user_id", property="updateUserId", jdbcType=JdbcType.BIGINT),
             @Result(column="deleted", property="deleted", jdbcType=JdbcType.INTEGER)
     })
-    @AuthFilter
+    @RowAuthFilter
     List<DimensionPo> listPage(@Param("bizLineId") Long bizLineId,
                                @Param("searchVal") String searchVal);
 
@@ -81,7 +81,7 @@ public interface DimensionMapper extends DimensionBaseMapper {
             @Result(column="update_user_id", property="updateUserId", jdbcType=JdbcType.BIGINT),
             @Result(column="deleted", property="deleted", jdbcType=JdbcType.INTEGER)
     })
-    @AuthFilter
+    @RowAuthFilter
     List<DimensionPo> listByBizLineId(@Param("bizLineId") Long bizLineId);
 
     /**

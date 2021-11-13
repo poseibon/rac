@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static org.poseibon.rac.shiro.utils.HttpHelper.printMessage;
+import static org.poseibon.rac.shiro.utils.HttpHelper.redirect;
 
 /**
  * 登录
@@ -66,11 +66,11 @@ public class LoginController {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             // 跳转到登陆页
-            printMessage(response, loginUrl);
+            redirect(response, loginUrl);
             return;
         }
         // 跳转到登陆页
-        printMessage(response, successUrl);
+        redirect(response, successUrl);
     }
 
 

@@ -3,7 +3,7 @@ package org.poseibon.rac.infrastructure.mapper;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import org.poseibon.rac.infrastructure.po.UserPo;
-import org.poseibon.rac.rowauth.annotation.AuthFilter;
+import org.poseibon.rac.rowauth.annotation.RowAuthFilter;
 
 import java.util.List;
 
@@ -53,7 +53,7 @@ public interface UserMapper extends UserBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
-    @AuthFilter
+    @RowAuthFilter
     List<UserPo> listPage(@Param("bizLineId") Long bizLineId, @Param("currentUserId") Long currentUserId,
                           @Param("searchVal") String searchVal);
 

@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import org.poseibon.rac.infrastructure.po.DictionaryNodePo;
 import org.poseibon.rac.infrastructure.po.IdNumPo;
-import org.poseibon.rac.rowauth.annotation.AuthFilter;
+import org.poseibon.rac.rowauth.annotation.RowAuthFilter;
 
 import java.util.Collection;
 import java.util.List;
@@ -35,12 +35,6 @@ public interface DictionaryNodeMapper extends DictionaryNodeBaseMapper {
             "from tb_dictionary_node",
             "where biz_line_id = #{bizLineId,jdbcType=BIGINT} and dictionary_id = #{dictionaryId,jdbcType=BIGINT} ",
             " and parent_id = #{parentId,jdbcType=BIGINT}  and deleted=0 ",
-            "<if test='authInfo != null'>",
-            "and ${authInfo.dbFieldName} in (",
-            "<foreach item='item' collection='authInfo.authList' separator=','>",
-            " #{item,jdbcType=BIGINT} ",
-            " </foreach>)",
-            "</if>",
             "</script>"
     })
     @Results({
@@ -59,7 +53,7 @@ public interface DictionaryNodeMapper extends DictionaryNodeBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
-    @AuthFilter
+    @RowAuthFilter
     List<DictionaryNodePo> listByParentId(@Param("bizLineId") Long bizLineId,
                                           @Param("dictionaryId") Long dictionaryId,
                                           @Param("parentId") Long parentId);
@@ -294,7 +288,7 @@ public interface DictionaryNodeMapper extends DictionaryNodeBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
-    @AuthFilter
+    @RowAuthFilter
     List<DictionaryNodePo> listByDictionaryId(@Param("bizLineId") Long bizLineId,
                                               @Param("dictionaryId") Long dictionaryId,
                                               @Param("searchVal") String searchVal);
