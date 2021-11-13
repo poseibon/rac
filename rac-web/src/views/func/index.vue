@@ -201,6 +201,10 @@ export default {
                 param.bizLineId = this.bizLineId;
                 let res = await add(param);
                 this.dialogVisible = false;
+                this.$message({
+                    message: '新增成功！',
+                    type: 'success'
+                })
                 this.search();
             }
             catch (e) {
@@ -215,6 +219,10 @@ export default {
                 param.bizLineId = this.bizLineId;
                 let res = await edit(param);
                 this.dialogVisible = false;
+                this.$message({
+                    message: '修改成功！',
+                    type: 'success'
+                })
                 this.search();
             }
             catch (e) {

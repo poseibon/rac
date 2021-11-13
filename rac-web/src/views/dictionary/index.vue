@@ -30,6 +30,7 @@
                 </div>
                 <el-table
                     :data="tableData"
+                    highlight-current-row
                     @row-click="rowClick"
                     style="width: 100%">
                     <el-table-column
@@ -265,6 +266,10 @@ export default {
             try {
                 let res = await add(this.addParam);
                 this.dialogVisible = false;
+                this.$message({
+                    message: '新增成功！',
+                    type: 'success'
+                })
                 this.search();
             }
             catch (e) {
@@ -278,6 +283,11 @@ export default {
             try {
                 let res = await edit(this.addParam);
                 this.dialogVisible = false;
+                this.$message({
+                    message: '修改成功！',
+                    type: 'success'
+                })
+                this.search();
             }
             catch (e) {
                 this.$message({

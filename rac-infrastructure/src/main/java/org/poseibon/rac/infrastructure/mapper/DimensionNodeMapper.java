@@ -129,6 +129,7 @@ public interface DimensionNodeMapper extends DimensionNodeBaseMapper {
             @Result(column = "parent_id", property = "id", jdbcType = JdbcType.BIGINT),
             @Result(column = "childCount", property = "childCount", jdbcType = JdbcType.BIGINT),
     })
+    @RowAuthFilter
     List<IdNumPo> countChildByIds(@Param("bizLineId") Long bizLineId, @Param("dimensionId") Long dimensionId,
                                   @Param("idList") Set<Long> idList);
 

@@ -91,7 +91,7 @@ public class UserAppService {
     public List<ExtDataComplexRdo> listUserExtProperty(UserPermitRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(record);
         List<ExtDataEntity> extDataEntityList = extPropertyDomainService
-                .listExtProperty(record.getBizLineId(), SystemConstant.ENTITY_USER, record.getUserId());
+                .listExtData(record.getBizLineId(), SystemConstant.ENTITY_USER, record.getUserId());
         if (CollectionUtils.isEmpty(extDataEntityList)) {
             return Lists.newArrayList();
         }

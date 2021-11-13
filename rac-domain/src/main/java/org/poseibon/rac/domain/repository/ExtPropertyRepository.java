@@ -136,11 +136,11 @@ public interface ExtPropertyRepository {
     void dropExtProperty(ExtDataEntity record);
 
     /**
-     * 查询用户扩展属性数据
+     * 查询扩展属性数据
      *
      * @param bizLineId 业务线ID
-     * @param userId    用户ID
+     * @param bizDataId 业务数据ID
      * @return 扩展属性
      */
-    List<ExtDataEntity> listExtProperty(Long bizLineId, Long userId);
+    List<ExtDataEntity> listExtData(Long bizLineId, Long bizDataId);
 }

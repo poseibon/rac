@@ -161,6 +161,7 @@ export default {
         async findPropertyList() {
             let param = {
                 bizLineId: this.bizLineId,
+                dimensionId: this.currRow.id,
                 id: this.dimNode.id
             }
             try {

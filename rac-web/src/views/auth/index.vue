@@ -152,6 +152,10 @@ export default {
             try {
                 let res = await add(this.addParam);
                 this.dialogVisible = false;
+                this.$message({
+                  message: '新增成功！',
+                  type: 'success'
+                })
                 this.search();
             }
             catch (e) {
@@ -165,6 +169,11 @@ export default {
             try {
                 let res = await edit(this.addParam);
                 this.dialogVisible = false;
+                this.$message({
+                    message: '修改成功！',
+                    type: 'success'
+                })
+                this.search();
             }
             catch (e) {
                 this.$message({

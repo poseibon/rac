@@ -5,6 +5,7 @@ import org.poseibon.rac.application.converter.DimensionEntity2SimpleRdoConverter
 import org.poseibon.rac.application.converter.DimensionSimpleRpo2EntityConverter;
 import org.poseibon.rac.domain.entity.DimensionEntity;
 import org.poseibon.rac.domain.service.DimensionDomainService;
+import org.poseibon.rac.rowauth.annotation.ReadAuth;
 import org.poseibon.rac.rowauth.annotation.WriteAuth;
 import org.poseibon.rac.sdk.rdo.base.PaginationRdo;
 import org.poseibon.rac.sdk.rdo.base.PaginationRpo;
@@ -35,6 +36,7 @@ public class DimensionAppService {
      * @param record 分页查询参数
      * @return 维度列表数据
      */
+    @ReadAuth
     public PaginationRdo<DimensionComplexRdo> listPage(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的维度列表
@@ -48,6 +50,7 @@ public class DimensionAppService {
      *
      * @return 维度列表数据
      */
+    @ReadAuth
     public List<DimensionSimpleRdo> listByBizLineId(DimensionSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         return DimensionEntity2SimpleRdoConverter.INSTANCE.toRdoList(dimensionDomainService

@@ -135,8 +135,8 @@ public class ExtPropertyMybatisRepository implements ExtPropertyRepository {
     }
 
     @Override
-    public List<ExtDataEntity> listExtProperty(Long bizLineId, Long userId) {
+    public List<ExtDataEntity> listExtData(Long bizLineId, Long bizDataId) {
         return ExtDataPo2EntityConverter.INSTANCE.toEntityList(extDataMapper
-                .listExtProperty(bizLineId, userId));
+                .listExtData(bizLineId, bizDataId));
     }
 }

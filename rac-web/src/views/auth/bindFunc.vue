@@ -9,11 +9,6 @@
             highlight-current-row
             style="width: 100%">
             <el-table-column
-                prop="id"
-                label="ID"
-                width="60">
-            </el-table-column>
-            <el-table-column
                 prop="funcName"
                 label="功能名称"
                 >

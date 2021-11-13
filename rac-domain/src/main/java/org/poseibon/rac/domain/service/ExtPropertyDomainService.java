@@ -92,13 +92,13 @@ public class ExtPropertyDomainService {
      * @param bizDataId 业务数据ID
      * @return 扩展属性列表
      */
-    public List<ExtDataEntity> listExtProperty(Long bizLineId, String bizEntityEnName, Long bizDataId) {
+    public List<ExtDataEntity> listExtData(Long bizLineId, String bizEntityEnName, Long bizDataId) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(bizLineId, bizEntityEnName, bizDataId);
         BizEntity bizEntity = bizEntityRepository.queryByEnName(bizLineId, bizEntityEnName);
         if (bizEntity == null) {
             return Lists.newArrayList();
         }
-        return extPropertyRepository.listExtProperty(bizEntity.getId(), bizDataId);
+        return extPropertyRepository.listDataByBizId(bizEntity.getId(), bizDataId);
     }
 
     /**

@@ -90,7 +90,7 @@ public interface ExtDataMapper extends ExtDataBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
-    List<ExtDataPo> listExtProperty(@Param("bizLineId") Long bizLineId, @Param("bizDataId") Long bizDataId);
+    List<ExtDataPo> listExtData(@Param("bizLineId") Long bizLineId, @Param("bizDataId") Long bizDataId);
 
     /**
      * 扩展属性数据

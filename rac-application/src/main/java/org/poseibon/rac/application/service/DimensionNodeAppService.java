@@ -12,6 +12,7 @@ import org.poseibon.rac.domain.service.DictionaryNodeDomainService;
 import org.poseibon.rac.domain.service.DimensionDomainService;
 import org.poseibon.rac.domain.service.DimensionNodeDomainService;
 import org.poseibon.rac.domain.service.ExtPropertyDomainService;
+import org.poseibon.rac.rowauth.annotation.ReadAuth;
 import org.poseibon.rac.rowauth.annotation.WriteAuth;
 import org.poseibon.rac.sdk.rdo.dimension.DimensionNodeComplexRdo;
 import org.poseibon.rac.sdk.rpo.dimension.DimensionNodeSimpleRpo;
@@ -52,6 +53,7 @@ public class DimensionNodeAppService {
      *
      * @return 维度节点节点列表数据
      */
+    @ReadAuth
     public List<DimensionNodeComplexRdo> listByParentId(DimensionNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         return DimensionNodeEntity2ComplexRdoConverter.INSTANCE.toRdoList(dimensionNodeDomainService
@@ -169,7 +171,7 @@ public class DimensionNodeAppService {
             return Lists.newArrayList();
         }
         List<ExtDataEntity> extDataEntityList = extPropertyDomainService
-                .listExtProperty(record.getBizLineId(), EntityPrefixEnum.DIMENSION.join(dimensionEntity.getEnName()),
+                .listExtData(record.getBizLineId(), EntityPrefixEnum.DIMENSION.join(dimensionEntity.getEnName()),
                         record.getId());
         if (CollectionUtils.isEmpty(extDataEntityList)) {
             return Lists.newArrayList();

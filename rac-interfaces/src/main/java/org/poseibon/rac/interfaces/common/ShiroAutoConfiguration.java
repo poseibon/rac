@@ -2,16 +2,12 @@ package org.poseibon.rac.interfaces.common;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
+import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.filter.authc.AnonymousFilter;
 import org.poseibon.rac.sdk.provider.AuthProvider;
 import org.poseibon.rac.shiro.service.UserSessionProvider;
 import org.poseibon.rac.shiro.web.*;
-import org.apache.shiro.cache.CacheManager;
-import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.session.SessionListener;
-import org.apache.shiro.session.mgt.SessionManager;
-import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.web.filter.authc.AnonymousFilter;
-import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,8 +17,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 
 import javax.annotation.Resource;
 import javax.servlet.Filter;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -56,6 +50,11 @@ public class ShiroAutoConfiguration {
     @Bean("userSessionProvider")
     public UserSessionProvider userSessionProvider() {
         return new UserSessionProvider(authProvider);
+    }
+
+    @Bean("httpResponseInterceptor")
+    public HttpResponseInterceptor httpResponseInterceptor() {
+        return new HttpResponseInterceptor();
     }
 
     @Bean(name = "securityManager")

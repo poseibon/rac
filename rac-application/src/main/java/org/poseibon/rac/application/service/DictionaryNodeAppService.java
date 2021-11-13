@@ -131,7 +131,7 @@ public class DictionaryNodeAppService {
             return Lists.newArrayList();
         }
         List<ExtDataEntity> extDataEntityList = extPropertyDomainService
-                .listExtProperty(record.getBizLineId(), EntityPrefixEnum.DICTIONARY.join(dictionaryEntity.getEnName()),
+                .listExtData(record.getBizLineId(), EntityPrefixEnum.DICTIONARY.join(dictionaryEntity.getEnName()),
                         record.getId());
         if (CollectionUtils.isEmpty(extDataEntityList)) {
             return Lists.newArrayList();

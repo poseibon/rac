@@ -271,7 +271,8 @@ export default {
     },
     watch: {
         currRow(val) {
-            if(val) {
+            if (val) {
+
             }
         },
         parentIdList(val) {

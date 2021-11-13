@@ -240,6 +240,7 @@ export default {
             }
         },
         changeLine(val) {
+            this.currRow = {}
             for(let i = 0; i < this.bizLineList.length; i++) {
                 if (this.bizLineList[i].id ===  val) {
                     let decentralizedControl = this.bizLineList[i].decentralizedControl;
@@ -314,6 +315,10 @@ export default {
             try {
                 let res = await add(this.addParam);
                 this.dialogVisible = false;
+                this.$message({
+                    message: '新增成功！',
+                    type: 'success'
+                })
                 this.search();
             }
             catch (e) {
@@ -328,9 +333,10 @@ export default {
                 let res = await edit(this.addParam);
                 this.dialogVisible = false;
                 this.$message({
-                    message: '保存成功！',
+                    message: '修改成功！',
                     type: 'success'
                 })
+                this.search();
             }
             catch (e) {
                 this.$message({
