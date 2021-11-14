@@ -6,3 +6,7 @@ npm config set registry https://registry.npm.taobao.org
 npm install
 #### 3、运行
 npm run serve
+
+#### 业务线管理 管理相关业务线，业务线可以按照字典去
+#### 字典管理可以嵌套管理字典
+#### 实体管理包含字典实体，维度实体，用户实体等，其中字典实体约定以"Dictionary-"开头，维度以"Dimension-"开头
