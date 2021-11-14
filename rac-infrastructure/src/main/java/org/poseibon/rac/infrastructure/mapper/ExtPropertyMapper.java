@@ -3,6 +3,7 @@ package org.poseibon.rac.infrastructure.mapper;
 import org.poseibon.rac.infrastructure.po.ExtPropertyPo;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+import org.poseibon.rac.rowauth.annotation.RowAuthFilter;
 
 import java.util.List;
 
@@ -48,6 +49,7 @@ public interface ExtPropertyMapper extends ExtPropertyBaseMapper {
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER),
             @Result(column = "dictionary_id", property = "dictionaryId", jdbcType = JdbcType.BIGINT)
     })
+    @RowAuthFilter
     List<ExtPropertyPo> listPage(@Param("bizLineId") Long bizLineId, @Param("searchVal") String searchVal);
 
     /**
@@ -163,6 +165,7 @@ public interface ExtPropertyMapper extends ExtPropertyBaseMapper {
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER),
             @Result(column = "dictionary_id", property = "dictionaryId", jdbcType = JdbcType.BIGINT)
     })
+    @RowAuthFilter
     List<ExtPropertyPo> listByBizLineId(@Param("bizLineId") Long bizLineId);
 
 
@@ -197,6 +200,7 @@ public interface ExtPropertyMapper extends ExtPropertyBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     List<ExtPropertyPo> listByBizEntityId(@Param("bizLineId") Long bizLineId,
                                           @Param("bizEntityId") Long bizEntityId);
 
@@ -234,6 +238,7 @@ public interface ExtPropertyMapper extends ExtPropertyBaseMapper {
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER),
             @Result(column = "dictionary_id", property = "dictionaryId", jdbcType = JdbcType.BIGINT)
     })
+    @RowAuthFilter
     List<ExtPropertyPo> listByIds(@Param("ids") List<Long> ids);
 
     @Select({

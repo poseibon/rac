@@ -5,6 +5,7 @@ import org.poseibon.rac.infrastructure.po.FuncPo;
 import org.poseibon.rac.infrastructure.po.IdNumPo;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+import org.poseibon.rac.rowauth.annotation.RowAuthFilter;
 
 import java.util.Collection;
 import java.util.List;
@@ -88,6 +89,7 @@ public interface FuncMapper extends FuncBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     List<FuncPo> listByParentId(@Param("bizLineId") Long bizLineId,
                                 @Param("parentId") Long parentId);
 
@@ -127,6 +129,7 @@ public interface FuncMapper extends FuncBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     List<FuncPo> listByParentPaths(@Param("bizLineId") Long bizLineId,
                                    @Param("parentPathList") Collection<String> parentPathList);
 
@@ -153,6 +156,7 @@ public interface FuncMapper extends FuncBaseMapper {
             @Result(column = "parent_id", property = "id", jdbcType = JdbcType.BIGINT),
             @Result(column = "childCount", property = "childCount", jdbcType = JdbcType.BIGINT),
     })
+    @RowAuthFilter
     List<IdNumPo> countChildByIds(@Param("bizLineId") Long bizLineId, @Param("idList") Set<Long> idList);
 
     /**
@@ -268,6 +272,7 @@ public interface FuncMapper extends FuncBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     List<FuncPo> listByIds(@Param("bizLineId") Long bizLineId, @Param("idList") Collection<Long> idList);
 
     /**
@@ -306,6 +311,7 @@ public interface FuncMapper extends FuncBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     List<FuncPo> listByBizLineId(@Param("bizLineId") Long bizLineId, @Param("searchVal") String searchVal);
 
     @Select({

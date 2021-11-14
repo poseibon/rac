@@ -120,6 +120,7 @@ public interface DimensionMapper extends DimensionBaseMapper {
             @Result(column="update_user_id", property="updateUserId", jdbcType=JdbcType.BIGINT),
             @Result(column="deleted", property="deleted", jdbcType=JdbcType.INTEGER)
     })
+    @RowAuthFilter
     DimensionPo queryByEnName(@Param("bizLineId") Long bizLineId,
                               @Param("enName") String enName, @Param("id") Long id);
 
@@ -193,5 +194,6 @@ public interface DimensionMapper extends DimensionBaseMapper {
             @Result(column="update_user_id", property="updateUserId", jdbcType=JdbcType.BIGINT),
             @Result(column="deleted", property="deleted", jdbcType=JdbcType.INTEGER)
     })
+    @RowAuthFilter
     DimensionPo queryById(@Param("bizLineId") Long bizLineId, @Param("id") Long id);
 }

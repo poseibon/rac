@@ -123,6 +123,7 @@ public class DictionaryNodeAppService {
      * @param record 查询用户授权维度节点参数
      * @return
      */
+    @ReadAuth
     public List<ExtDataComplexRdo> listExtProperty(DictionaryNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(record);
         DictionaryEntity dictionaryEntity = dictionaryDomainService.queryById(record.getBizLineId(),

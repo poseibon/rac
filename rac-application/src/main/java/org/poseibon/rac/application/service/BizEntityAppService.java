@@ -50,6 +50,7 @@ public class BizEntityAppService {
      *
      * @return 业务实体列表数据
      */
+    @ReadAuth
     public List<BizEntitySimpleRdo> listByBizLineId(BizEntitySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         return BizEntity2SimpleRdoConverter.INSTANCE.toRdoList(bizEntityDomainService

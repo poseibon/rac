@@ -4,6 +4,7 @@ import org.poseibon.rac.application.converter.FuncEntity2ComplexRdoConverter;
 import org.poseibon.rac.application.converter.FuncSimpleRpo2EntityConverter;
 import org.poseibon.rac.domain.entity.FuncEntity;
 import org.poseibon.rac.domain.service.FuncDomainService;
+import org.poseibon.rac.rowauth.annotation.ReadAuth;
 import org.poseibon.rac.rowauth.annotation.WriteAuth;
 import org.poseibon.rac.sdk.rdo.func.FuncComplexRdo;
 import org.poseibon.rac.sdk.rpo.func.FuncSimpleRpo;
@@ -32,6 +33,7 @@ public class FuncAppService {
      * @param record 查询参数
      * @return 功能列表数据
      */
+    @ReadAuth
     public List<FuncComplexRdo> listByParentId(FuncSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的功能列表
@@ -47,6 +49,7 @@ public class FuncAppService {
      * @param record 查询参数
      * @return 功能列表数据
      */
+    @ReadAuth
     public List<FuncComplexRdo> listByBizLineId(FuncSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的功能列表

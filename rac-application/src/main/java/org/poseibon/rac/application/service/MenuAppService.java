@@ -4,6 +4,7 @@ import org.poseibon.rac.application.converter.MenuEntity2ComplexRdoConverter;
 import org.poseibon.rac.application.converter.MenuSimpleRpo2EntityConverter;
 import org.poseibon.rac.domain.entity.MenuEntity;
 import org.poseibon.rac.domain.service.MenuDomainService;
+import org.poseibon.rac.rowauth.annotation.ReadAuth;
 import org.poseibon.rac.rowauth.annotation.WriteAuth;
 import org.poseibon.rac.sdk.rdo.menu.MenuComplexRdo;
 import org.poseibon.rac.sdk.rpo.menu.MenuSimpleRpo;
@@ -32,6 +33,7 @@ public class MenuAppService {
      * @param record 查询参数
      * @return 菜单列表数据
      */
+    @ReadAuth
     public List<MenuComplexRdo> listByParentId(MenuSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的菜单列表
@@ -46,6 +48,7 @@ public class MenuAppService {
      * @param record 参数
      * @return 列表数据
      */
+    @ReadAuth
     public List<MenuComplexRdo> listByBizLineId(MenuSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(record);
         // 查询对应的功能列表

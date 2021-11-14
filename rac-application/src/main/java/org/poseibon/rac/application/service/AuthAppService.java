@@ -1,6 +1,10 @@
 package org.poseibon.rac.application.service;
 
 import com.google.common.collect.Lists;
+import org.apache.commons.collections4.CollectionUtils;
+import org.poseibon.common.tree.TreeBuilder;
+import org.poseibon.common.utils.Collections2;
+import org.poseibon.common.validator.ParamAssert;
 import org.poseibon.rac.application.converter.*;
 import org.poseibon.rac.domain.entity.*;
 import org.poseibon.rac.domain.service.*;
@@ -15,18 +19,11 @@ import org.poseibon.rac.sdk.rpo.auth.FuncAuthRpo;
 import org.poseibon.rac.sdk.rpo.dimension.DimensionAuthRpo;
 import org.poseibon.rac.sdk.rpo.ext.UserExtPropertyRpo;
 import org.poseibon.rac.sdk.rpo.menu.MenuRpo;
-import org.apache.commons.collections4.CollectionUtils;
-import org.poseibon.common.tree.TreeBuilder;
-import org.poseibon.common.utils.Collections2;
-import org.poseibon.common.validator.ParamAssert;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.poseibon.rac.domain.common.constant.SystemConstant.ENTITY_USER;
@@ -67,6 +64,7 @@ public class AuthAppService {
      * @param rpo 请求参数
      * @return 功能URL
      */
+    @NoneAuth
     public List<FuncRdo> listFuncAuth(FuncAuthRpo rpo) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(rpo);
         // 获取角色列表
@@ -78,7 +76,12 @@ public class AuthAppService {
             // 获取功能对应的所有子节点
             List<FuncEntity> childFuncList = funcDomainService.listByParentPaths(rpo.getBizLineId(),
                     funcList.stream().map(input -> input.getPath()).collect(Collectors.toSet()));
-            funcList.addAll(extendStrategy(funcList, Collections2.trimNull(childFuncList)));
+            if (CollectionUtils.isNotEmpty(childFuncList)) {
+                Set<Long> bindFuncIds = Collections2.toSet(funcList, input -> input.getId());
+                List<FuncEntity> filterFuncList = childFuncList.stream()
+                        .filter(input -> !bindFuncIds.contains(input.getId())).collect(Collectors.toList());
+                funcList.addAll(extendStrategy(funcList, Collections2.trimNull(filterFuncList)));
+            }
         }
         return FuncEntity2RdoConverter.INSTANCE.toRdoList(funcList);
     }
@@ -89,6 +92,7 @@ public class AuthAppService {
      * @param funcList 功能列表
      * @return 功能列表
      */
+    @NoneAuth
     private List<FuncEntity> extendStrategy(List<FuncEntity> funcList, Collection<FuncEntity> childList) {
         if (CollectionUtils.isEmpty(childList)) {
             return Lists.newArrayList();
@@ -111,6 +115,7 @@ public class AuthAppService {
      * @param rpo 查询参数
      * @return 菜单
      */
+    @NoneAuth
     public List<MenuRdo> listMenu(MenuRpo rpo) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(rpo);
         // 获取角色列表
@@ -142,6 +147,7 @@ public class AuthAppService {
      * @param dimensionNodeId 维度节点ID
      * @return 维度节点列表
      */
+    @NoneAuth
     public DimensionNodeRdo queryDimensionNodeById(Long dimensionNodeId) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(dimensionNodeId);
         return DimensionNodeEntity2RdoConverter.INSTANCE.toRdo(dimensionNodeDomainService
@@ -153,6 +159,7 @@ public class AuthAppService {
      *
      * @return 维度节点列表
      */
+    @NoneAuth
     public List<DimensionNodeRdo> listDimensionNodeByIds(List<Long> dimensionNodeIds) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(dimensionNodeIds);
         return DimensionNodeEntity2RdoConverter.INSTANCE.toRdoList(dimensionNodeDomainService
@@ -165,6 +172,7 @@ public class AuthAppService {
      * @param rpo 请求查询参数
      * @return 维度节点列表
      */
+    @NoneAuth
     public List<DimensionNodeRdo> listDimensionNodeByUser(DimensionAuthRpo rpo) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(rpo);
         DimensionEntity dimensionEntity = dimensionDomainService
@@ -183,6 +191,7 @@ public class AuthAppService {
      * @param rpo 请求查询参数
      * @return 维度节点列表
      */
+    @NoneAuth
     public List<DimensionNodeRdo> listDimensionNodeWithChildByUser(DimensionAuthRpo rpo) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(rpo);
         DimensionEntity dimensionEntity = dimensionDomainService
@@ -208,6 +217,7 @@ public class AuthAppService {
      * @param rpo 扩展属性
      * @return 扩展属性
      */
+    @NoneAuth
     public List<ExtPropertyRdo> listExtPropertyByUser(UserExtPropertyRpo rpo) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(rpo);
         BizEntity bizEntity = bizEntityDomainService.queryByEnName(rpo.getBizLineId(), ENTITY_USER);
@@ -227,6 +237,7 @@ public class AuthAppService {
      * @return 用户信息
      */
     @Cacheable
+    @NoneAuth
     public UserRdo queryUser(Long bizLineId, Long userId) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(bizLineId, userId);
         UserEntity userEntity = userDomainService.queryById(userId);
@@ -243,6 +254,7 @@ public class AuthAppService {
      * @return 用户信息
      */
     @Cacheable
+    @NoneAuth
     public UserRdo queryUser(Long bizLineId, String userName) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(bizLineId, userName);
         UserEntity userEntity = userDomainService.queryByEnName(userName);
@@ -256,6 +268,7 @@ public class AuthAppService {
     }
 
     @Cacheable
+    @NoneAuth
     public UserSimpleRdo querySimpleUser(String userName) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(userName);
         UserEntity userEntity = userDomainService.queryByEnName(userName);

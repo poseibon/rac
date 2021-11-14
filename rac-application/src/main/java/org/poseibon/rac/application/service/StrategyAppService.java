@@ -5,6 +5,7 @@ import org.poseibon.rac.application.converter.StrategyEntity2SimpleRdoConverter;
 import org.poseibon.rac.application.converter.StrategySimpleRpo2EntityConverter;
 import org.poseibon.rac.domain.entity.StrategyEntity;
 import org.poseibon.rac.domain.service.StrategyDomainService;
+import org.poseibon.rac.rowauth.annotation.ReadAuth;
 import org.poseibon.rac.rowauth.annotation.WriteAuth;
 import org.poseibon.rac.sdk.rdo.strategy.StrategySimpleRdo;
 import org.poseibon.rac.sdk.rdo.base.PaginationRdo;
@@ -35,6 +36,7 @@ public class StrategyAppService {
      * @param record 分页查询参数
      * @return 访问策略列表数据
      */
+    @ReadAuth
     public PaginationRdo<StrategyComplexRdo> listPage(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的访问策略列表
@@ -48,6 +50,7 @@ public class StrategyAppService {
      *
      * @return 访问策略列表数据
      */
+    @ReadAuth
     public List<StrategySimpleRdo> listByBizLineId(StrategySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         return StrategyEntity2SimpleRdoConverter.INSTANCE.toRdoList(strategyDomainService

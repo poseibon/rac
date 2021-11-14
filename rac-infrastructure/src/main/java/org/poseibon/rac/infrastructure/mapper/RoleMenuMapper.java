@@ -3,6 +3,7 @@ package org.poseibon.rac.infrastructure.mapper;
 import org.poseibon.rac.infrastructure.po.RoleMenuPo;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+import org.poseibon.rac.rowauth.annotation.RowAuthFilter;
 
 import java.util.Collection;
 import java.util.List;
@@ -42,6 +43,7 @@ public interface RoleMenuMapper extends RoleMenuBaseMapper {
     @Results({
             @Result(column = "menu_id", property = "menuId", jdbcType = JdbcType.BIGINT)
     })
+    @RowAuthFilter(tblName = "tb_role")
     List<RoleMenuPo> listBindMenuId(@Param("bizLineId") Long bizLineId, @Param("roleId") Long roleId);
 
     /**

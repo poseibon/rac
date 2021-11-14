@@ -3,6 +3,7 @@ package org.poseibon.rac.infrastructure.mapper;
 import org.poseibon.rac.infrastructure.po.RoleFuncPo;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+import org.poseibon.rac.rowauth.annotation.RowAuthFilter;
 
 import java.util.Collection;
 import java.util.List;
@@ -39,6 +40,7 @@ public interface RoleFuncMapper extends RoleFuncBaseMapper {
             @Result(column = "func_id", property = "funcId", jdbcType = JdbcType.BIGINT),
             @Result(column = "strategy_id", property = "strategyId", jdbcType = JdbcType.BIGINT)
     })
+    @RowAuthFilter(tblName = "tb_role")
     List<RoleFuncPo> listAuth(@Param("bizLineId") Long bizLineId, @Param("roleId") Long roleId);
 
     /**

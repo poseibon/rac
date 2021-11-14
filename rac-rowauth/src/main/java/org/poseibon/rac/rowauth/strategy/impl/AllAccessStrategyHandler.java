@@ -15,7 +15,12 @@ import org.poseibon.rac.sdk.vo.RacContext;
 public class AllAccessStrategyHandler implements DataAccessStrategyHandler<AllStrategyInfo> {
 
     @Override
-    public boolean hasAuth(AllStrategyInfo strategyRdo, RacContext racContext) {
+    public boolean hasAuth(AllStrategyInfo strategyInfo, RacContext racContext) {
+        return true;
+    }
+
+    @Override
+    public boolean hasAuth(AuthInfo authInfo, AllStrategyInfo strategyInfo, RacContext racContext) {
         return true;
     }
 

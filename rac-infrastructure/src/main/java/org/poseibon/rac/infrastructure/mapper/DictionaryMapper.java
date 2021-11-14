@@ -3,6 +3,7 @@ package org.poseibon.rac.infrastructure.mapper;
 import org.poseibon.rac.infrastructure.po.DictionaryPo;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+import org.poseibon.rac.rowauth.annotation.RowAuthFilter;
 
 import java.util.List;
 
@@ -45,6 +46,7 @@ public interface DictionaryMapper extends DictionaryBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     List<DictionaryPo> listPage(@Param("bizLineId") Long bizLineId, @Param("searchVal") String searchVal);
 
     /**
@@ -73,6 +75,7 @@ public interface DictionaryMapper extends DictionaryBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     List<DictionaryPo> listByBizLineId(@Param("bizLineId") Long bizLineId);
 
 
@@ -111,6 +114,7 @@ public interface DictionaryMapper extends DictionaryBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     DictionaryPo queryByEnName(@Param("bizLineId") Long bizLineId, @Param("enName") String enName, @Param("id") Long id);
 
 
@@ -181,5 +185,6 @@ public interface DictionaryMapper extends DictionaryBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     DictionaryPo queryById(@Param("bizLineId") Long bizLineId, @Param("id") Long id);
 }

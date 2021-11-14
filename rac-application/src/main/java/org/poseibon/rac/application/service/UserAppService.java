@@ -1,9 +1,10 @@
 package org.poseibon.rac.application.service;
 
 import com.google.common.collect.Lists;
+import org.apache.commons.collections4.CollectionUtils;
+import org.poseibon.common.utils.Collections2;
+import org.poseibon.common.validator.ParamAssert;
 import org.poseibon.rac.application.converter.*;
-import org.poseibon.rac.rowauth.annotation.ReadAuth;
-import org.poseibon.rac.rowauth.annotation.WriteAuth;
 import org.poseibon.rac.domain.common.constant.SystemConstant;
 import org.poseibon.rac.domain.common.enums.ExtPropertyTypeEnum;
 import org.poseibon.rac.domain.entity.DictionaryNodeEntity;
@@ -12,18 +13,16 @@ import org.poseibon.rac.domain.entity.ExtPropertyEntity;
 import org.poseibon.rac.domain.service.DictionaryNodeDomainService;
 import org.poseibon.rac.domain.service.ExtPropertyDomainService;
 import org.poseibon.rac.domain.service.UserDomainService;
-import org.poseibon.rac.sdk.rdo.user.UserSimpleRdo;
-import org.poseibon.rac.sdk.rdo.base.PaginationRpo;
+import org.poseibon.rac.rowauth.annotation.ReadAuth;
+import org.poseibon.rac.rowauth.annotation.WriteAuth;
 import org.poseibon.rac.sdk.rdo.base.PaginationRdo;
+import org.poseibon.rac.sdk.rdo.base.PaginationRpo;
 import org.poseibon.rac.sdk.rdo.dimension.DimensionNodeSimpleRdo;
 import org.poseibon.rac.sdk.rdo.ext.ExtDataComplexRdo;
-import org.poseibon.rac.sdk.rpo.ext.ExtDataSimpleRpo;
 import org.poseibon.rac.sdk.rdo.user.UserComplexRdo;
+import org.poseibon.rac.sdk.rpo.ext.ExtDataSimpleRpo;
 import org.poseibon.rac.sdk.rpo.user.UserPermitRpo;
 import org.poseibon.rac.sdk.rpo.user.UserSimpleRpo;
-import org.apache.commons.collections4.CollectionUtils;
-import org.poseibon.common.utils.Collections2;
-import org.poseibon.common.validator.ParamAssert;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -65,6 +64,7 @@ public class UserAppService {
      *
      * @param record        查询用户角色参数
      */
+    @ReadAuth
     public List<Long> listUserRoleId(UserPermitRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(record);
         return userDomainService.listUserRoleId(record.getUserId());
@@ -75,6 +75,7 @@ public class UserAppService {
      *
      * @param record        查询用户授权维度节点参数
      */
+    @ReadAuth
     public List<DimensionNodeSimpleRdo> listUserDimensionNodes(UserPermitRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(record);
         return DimensionNodeEntity2SimpleRdoConverter.INSTANCE.toRdoList(userDomainService
@@ -88,6 +89,7 @@ public class UserAppService {
      * @param record        查询用户授权维度节点参数
      * @return
      */
+    @ReadAuth
     public List<ExtDataComplexRdo> listUserExtProperty(UserPermitRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(record);
         List<ExtDataEntity> extDataEntityList = extPropertyDomainService
@@ -197,16 +199,5 @@ public class UserAppService {
     public void delete(Long currentLoginId, UserSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         userDomainService.delete(currentLoginId, record.getId());
-    }
-
-    /**
-     * 查询用户信息
-     *
-     * @param enName 用户名
-     * @return 用户信息
-     */
-    public UserSimpleRdo queryByEnName(String enName) {
-        ParamAssert.PARAM_EMPTY_ERROR.notNull(enName);
-        return UserEntity2SimpleRdoConverter.INSTANCE.toRdo(userDomainService.queryByEnName(enName));
     }
 }

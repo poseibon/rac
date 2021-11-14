@@ -38,7 +38,6 @@ public interface DictionaryNodeRepository {
     /**
      * 查询字典节点
      *
-     * @param bizLineId     业务线ID
      * @param dictionaryIds 字典IDs
      * @return 字典节点列表
      */

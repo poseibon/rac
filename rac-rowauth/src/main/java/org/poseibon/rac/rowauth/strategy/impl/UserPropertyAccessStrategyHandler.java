@@ -23,6 +23,12 @@ public class UserPropertyAccessStrategyHandler implements DataAccessStrategyHand
     }
 
     @Override
+    public boolean hasAuth(AuthInfo authInfo, UserPropertyStrategyInfo strategyInfo, RacContext racContext) {
+        return DataAccessStrategyHandlerBuilder.instance(StrategyTypeEnum.USER_PROPERTY.getText(),
+                strategyInfo.getPropertyType()).hasAuth(authInfo, strategyInfo, racContext);
+    }
+
+    @Override
     public AuthInfo getAuthInfo(UserPropertyStrategyInfo strategyInfo, RacContext racContext) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(strategyInfo, racContext.getUserRdo());
         return DataAccessStrategyHandlerBuilder.instance(StrategyTypeEnum.USER_PROPERTY.getText(),

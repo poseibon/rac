@@ -36,6 +36,18 @@ public class UserExtPropertyAccessStrategyHandler
     }
 
     @Override
+    public boolean hasAuth(AuthInfo authInfo, UserPropertyStrategyInfo strategyInfo, RacContext racContext) {
+        if (CollectionUtils.isNotEmpty(authInfo.getAuthList())
+                && MapUtils.isNotEmpty(racContext.getParamMap())
+                && racContext.getParamMap().containsKey(strategyInfo.getEntityPropertyName())
+                && authInfo.getAuthList().contains(ObjectUtils.toString(racContext.getParamMap()
+                .get(strategyInfo.getEntityPropertyName()), () -> Strings2.EMPTY))) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public AuthInfo getAuthInfo(UserPropertyStrategyInfo strategyInfo, RacContext racContext) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(strategyInfo, racContext.getUserRdo());
         UserRdo userRdo = racContext.getUserRdo();

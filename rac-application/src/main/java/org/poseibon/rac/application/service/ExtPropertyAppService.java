@@ -3,6 +3,7 @@ package org.poseibon.rac.application.service;
 import org.poseibon.rac.application.converter.ExtPropertyEntity2ComplexRdoConverter;
 import org.poseibon.rac.application.converter.ExtPropertyEntity2SimpleRdoConverter;
 import org.poseibon.rac.application.converter.ExtPropertySimpleRpo2EntityConverter;
+import org.poseibon.rac.rowauth.annotation.ReadAuth;
 import org.poseibon.rac.sdk.rdo.base.PaginationRdo;
 import org.poseibon.rac.sdk.rdo.base.PaginationRpo;
 import org.poseibon.rac.sdk.rdo.ext.ExtPropertyComplexRdo;
@@ -35,6 +36,7 @@ public class ExtPropertyAppService {
      * @param record 分页查询参数
      * @return 扩展属性列表数据
      */
+    @ReadAuth
     public PaginationRdo<ExtPropertyComplexRdo> listPage(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的扩展属性列表
@@ -48,6 +50,7 @@ public class ExtPropertyAppService {
      *
      * @return 扩展属性列表数据
      */
+    @ReadAuth
     public List<ExtPropertySimpleRdo> listByBizLineId(ExtPropertySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         return ExtPropertyEntity2SimpleRdoConverter.INSTANCE.toRdoList(extPropertyDomainService
@@ -60,6 +63,7 @@ public class ExtPropertyAppService {
      *
      * @return 扩展属性列表数据
      */
+    @ReadAuth
     public List<ExtPropertySimpleRdo> listByBizEntityEnName(ExtPropertySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         return ExtPropertyEntity2SimpleRdoConverter.INSTANCE.toRdoList(extPropertyDomainService

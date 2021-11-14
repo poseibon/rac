@@ -100,6 +100,7 @@ public interface DimensionNodeMapper extends DimensionNodeBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     List<DimensionNodePo> listByParentPaths(@Param("bizLineId") Long bizLineId,
                                             @Param("dimensionId") Long dimensionId,
                                             @Param("parentPathList") Collection<String> parentPathList);
@@ -261,6 +262,7 @@ public interface DimensionNodeMapper extends DimensionNodeBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     List<DimensionNodePo> listByDimensionId(@Param("bizLineId") Long bizLineId, @Param("dimensionId") Long dimensionId,
                                             @Param("searchVal") String searchVal);
 
@@ -290,6 +292,7 @@ public interface DimensionNodeMapper extends DimensionNodeBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     DimensionNodePo queryById(@Param("bizLineId") Long bizLineId, @Param("dimensionId") Long dimensionId,
                               @Param("id") Long id);
 

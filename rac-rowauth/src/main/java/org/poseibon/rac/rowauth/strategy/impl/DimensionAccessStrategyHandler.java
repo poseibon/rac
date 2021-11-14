@@ -14,7 +14,12 @@ import org.poseibon.rac.sdk.vo.RacContext;
 public class DimensionAccessStrategyHandler implements DataAccessStrategyHandler<DimensionStrategyInfo> {
 
     @Override
-    public boolean hasAuth(DimensionStrategyInfo strategyRdo, RacContext racContext) {
+    public boolean hasAuth(DimensionStrategyInfo strategyInfo, RacContext racContext) {
+        return false;
+    }
+
+    @Override
+    public boolean hasAuth(AuthInfo authInfo, DimensionStrategyInfo strategyInfo, RacContext racContext) {
         return false;
     }
 

@@ -1,17 +1,13 @@
 package org.poseibon.rac.rowauth.interceptor;
 
-import org.poseibon.rac.rowauth.enums.StrategyExpressEnum;
-import org.poseibon.rac.rowauth.strategy.DataAccessStrategyHandlerBuilder;
-import org.poseibon.rac.rowauth.strategy.vo.StrategyInfo;
-import org.poseibon.rac.sdk.threadlocal.RacContextThreadLocal;
-import org.poseibon.rac.sdk.vo.RacContext;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.reflect.MethodSignature;
 import org.poseibon.common.enums.ResponseCodeEnum;
 import org.poseibon.common.exception.BaseException;
-import org.poseibon.common.utils.Args2;
+import org.poseibon.rac.rowauth.strategy.AuthInfoThreadLocal;
+import org.poseibon.rac.rowauth.strategy.DataAccessStrategyHandlerBuilder;
+import org.poseibon.rac.rowauth.strategy.vo.AuthInfo;
 import org.springframework.stereotype.Component;
 
 /**
@@ -22,23 +18,27 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Aspect
-public class WriteAuthInterceptor {
+public class WriteAuthInterceptor implements AbstractAuthInterceptor {
 
     @Around("@annotation(org.poseibon.rac.rowauth.annotation.WriteAuth)")
     public Object handle(ProceedingJoinPoint pjp) throws Throwable {
-        MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
-        Object[] argValues = pjp.getArgs();
-        String[] argNames = methodSignature.getParameterNames();
-        RacContext racContext = RacContextThreadLocal.CURRENT_RAC_CONTEXT.get()
-                .paramMap(Args2.parseArgs(argNames, argValues));
-        StrategyInfo strategyInfo = StrategyExpressEnum.of(racContext.getStrategyRdo().getType()).getParser()
-                .parse(racContext.getStrategyRdo().getExpression());
-        boolean hasAuth = DataAccessStrategyHandlerBuilder.instance(strategyInfo.getType())
-                .hasAuth(strategyInfo, racContext);
+        AuthContext authContext = getAuthContext(pjp);
+        AuthInfo authInfo = DataAccessStrategyHandlerBuilder.instance(authContext.getStrategyInfo().getType())
+                .getAuthInfo(authContext.getStrategyInfo(), authContext.getRacContext());
+        boolean hasAuth = DataAccessStrategyHandlerBuilder.instance(authContext.getStrategyInfo().getType())
+                .hasAuth(authInfo, authContext.getStrategyInfo(), authContext.getRacContext());
         if (!hasAuth) {
             throw new BaseException(ResponseCodeEnum.NO_AUTH.getValue(), ResponseCodeEnum.NO_AUTH.getText());
         }
-        Object result = pjp.proceed();
+        Object result = null;
+        AuthInfoThreadLocal.AUTH_INFO.set(authInfo);
+        try {
+            result = pjp.proceed();
+        } finally {
+            AuthInfoThreadLocal.AUTH_INFO.remove();
+        }
         return result;
     }
+
+
 }

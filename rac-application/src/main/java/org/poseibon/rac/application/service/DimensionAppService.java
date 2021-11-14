@@ -101,6 +101,7 @@ public class DimensionAppService {
      * @param record 记录
      * @return 维度信息
      */
+    @ReadAuth
     public DimensionSimpleRdo queryByEnName(DimensionSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         return DimensionEntity2SimpleRdoConverter.INSTANCE.toRdo(dimensionDomainService

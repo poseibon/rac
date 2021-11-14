@@ -1,20 +1,19 @@
 package org.poseibon.rac.application.service;
 
+import org.poseibon.common.page.Pagination;
+import org.poseibon.common.validator.ParamAssert;
 import org.poseibon.rac.application.converter.BizLineEntity2ComplexRdoConverter;
 import org.poseibon.rac.application.converter.BizLineEntity2SimpleRdoConverter;
 import org.poseibon.rac.application.converter.BizLineSimpleRpo2EntityConverter;
 import org.poseibon.rac.domain.entity.BizLineEntity;
 import org.poseibon.rac.domain.service.BizLineDomainService;
-import org.poseibon.rac.domain.service.UserDomainService;
 import org.poseibon.rac.rowauth.annotation.ReadAuth;
 import org.poseibon.rac.rowauth.annotation.WriteAuth;
-import org.poseibon.rac.sdk.rdo.base.PaginationRpo;
 import org.poseibon.rac.sdk.rdo.base.PaginationRdo;
+import org.poseibon.rac.sdk.rdo.base.PaginationRpo;
 import org.poseibon.rac.sdk.rdo.bizline.BizLineSimpleRdo;
 import org.poseibon.rac.sdk.rpo.bizline.BizLineComplexRdo;
 import org.poseibon.rac.sdk.rpo.bizline.BizLineSimpleRpo;
-import org.poseibon.common.page.Pagination;
-import org.poseibon.common.validator.ParamAssert;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -30,8 +29,6 @@ import java.util.List;
 public class BizLineAppService {
     @Resource
     private BizLineDomainService bizLineService;
-    @Resource
-    private UserDomainService userService;
 
     /**
      * 查询业务线列表数据

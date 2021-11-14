@@ -39,7 +39,6 @@ public class DimensionNodeController {
         return ResponseUtil.success(dimensionNodeAppService.listByParentId(record));
     }
 
-
     /**
      * 查询维度节点列表
      *
@@ -63,7 +62,6 @@ public class DimensionNodeController {
     public BaseResponse listExtProperty(@RequestBody DimensionNodeSimpleRpo record) {
         return ResponseUtil.success(dimensionNodeAppService.listExtProperty(record));
     }
-
 
 
     /**

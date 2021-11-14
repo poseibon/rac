@@ -12,10 +12,9 @@ import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.Statement;
-import net.sf.jsqlparser.statement.select.FromItem;
-import net.sf.jsqlparser.statement.select.PlainSelect;
-import net.sf.jsqlparser.statement.select.Select;
-import net.sf.jsqlparser.statement.select.SelectBody;
+import net.sf.jsqlparser.statement.select.*;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.poseibon.common.utils.Collections2;
 
 import java.util.Collection;
@@ -47,13 +46,13 @@ public class AuthSqlSupporter {
      * 生成带权限的sql
      *
      * @param originalSql 原始SQL
-     * @param tableName   需要加权限过滤的表
+     * @param tblName     需要加权限过滤的表
      * @param fieldName   权限字段名
      * @param authList    权限集合
      * @param <T>         类型
      * @return 带权限的sql
      */
-    public <T> String newSqlWithAuth(String originalSql, String tableName, String fieldName, Collection<T> authList) {
+    public <T> String newSqlWithAuth(String originalSql, String tblName, String fieldName, Collection<T> authList) {
         Statement statement = null;
         try {
             statement = CCJSqlParserUtil.parse(originalSql);
@@ -68,10 +67,39 @@ public class AuthSqlSupporter {
         // 分几种情况
         // 1、单表
         FromItem fromItem = plainSelect.getFromItem();
+        // @TODO 此处只能处理单表，和多个简单表的join语句，尚不支持复杂子查询sql解析
         if (fromItem instanceof Table && Collections2.isEmpty(plainSelect.getJoins())) {
             plainSelect.setWhere(newExpressionWithAuth((Table) fromItem, plainSelect.getWhere(), fieldName, authList));
+        } else if (fromItem instanceof Table && CollectionUtils.isNotEmpty(plainSelect.getJoins())) {
+            Table table = getTable((Table) fromItem, plainSelect.getJoins(), tblName, originalSql);
+            plainSelect.setWhere(newExpressionWithAuth(table, plainSelect.getWhere(), fieldName, authList));
         }
         return plainSelect.toString();
+    }
+
+    /**
+     * 获取Join时的表名
+     *
+     * @param firstTbl   sql中第一个表
+     * @param joinTables join的表
+     * @return 匹配相关名称表
+     * @TODO 此方法对于Join中是子查询等多种情况没有处理，只支持Join单表
+     */
+    private Table getTable(Table firstTbl, List<Join> joinTables, String tblName, String originSql) {
+        if ((firstTbl != null && firstTbl.getName().equals(tblName)) || StringUtils.isEmpty(tblName)) {
+            return firstTbl;
+        }
+        for (Join join : joinTables) {
+            FromItem item = join.getRightItem();
+            if (!(item instanceof Table)) {
+                continue;
+            }
+            Table table = (Table) item;
+            if (table.getName().equals(tblName)) {
+                return table;
+            }
+        }
+        throw new RuntimeException(String.format("can't match table \"%s\" from sql : %s", tblName, originSql));
     }
 
     /**

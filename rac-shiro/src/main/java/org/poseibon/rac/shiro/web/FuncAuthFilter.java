@@ -8,6 +8,7 @@ import org.poseibon.common.utils.UrlMatcher;
 import org.poseibon.rac.sdk.threadlocal.RacContextThreadLocal;
 import org.poseibon.rac.sdk.vo.RacContext;
 import org.poseibon.rac.sdk.vo.UserSession;
+import org.poseibon.rac.shiro.utils.Jackson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,6 +63,8 @@ public class FuncAuthFilter implements Filter {
             RacContextThreadLocal.CURRENT_RAC_CONTEXT.set(RacContext.of()
                     .strategyRdo(userSession.getFuncStrategyMap().get(url))
                     .userRdo(userSession.getUserRdo()));
+            log.info("current request url : {} , match url: {}, access strategy : {}", path, url,
+                    Jackson.toJson(userSession.getFuncStrategyMap().get(url)));
             chain.doFilter(request, response);
         } finally {
             RacContextThreadLocal.CURRENT_RAC_CONTEXT.remove();

@@ -3,6 +3,7 @@ package org.poseibon.rac.infrastructure.mapper;
 import org.poseibon.rac.infrastructure.po.RolePo;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+import org.poseibon.rac.rowauth.annotation.RowAuthFilter;
 
 import java.util.List;
 
@@ -72,6 +73,7 @@ public interface RoleMapper extends RoleBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     List<RolePo> listPage(@Param("bizLineId") Long bizLineId, @Param("searchVal") String searchVal);
 
 
@@ -99,6 +101,7 @@ public interface RoleMapper extends RoleBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     List<RolePo> listByBizLineId(@Param("bizLineId") Long bizLineId);
 
     /**
@@ -134,6 +137,7 @@ public interface RoleMapper extends RoleBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     RolePo queryByEnName(@Param("bizLineId") Long bizLineId,
                          @Param("enName") String enName, @Param("id") Long id);
 

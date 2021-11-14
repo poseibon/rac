@@ -10,6 +10,7 @@ import org.poseibon.rac.domain.entity.StrategyEntity;
 import org.poseibon.rac.domain.service.FuncDomainService;
 import org.poseibon.rac.domain.service.RoleDomainService;
 import org.poseibon.rac.domain.service.StrategyDomainService;
+import org.poseibon.rac.rowauth.annotation.ReadAuth;
 import org.poseibon.rac.rowauth.annotation.WriteAuth;
 import org.poseibon.rac.sdk.rdo.base.PaginationRdo;
 import org.poseibon.rac.sdk.rdo.base.PaginationRpo;
@@ -49,6 +50,7 @@ public class RoleAppService {
      * @param record 分页查询参数
      * @return 角色列表数据
      */
+    @ReadAuth
     public PaginationRdo<RoleComplexRpo> listPage(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的角色列表
@@ -63,6 +65,7 @@ public class RoleAppService {
      *
      * @return 授权角色列表
      */
+    @ReadAuth
     public List<RoleSimpleRdo> listByBizLineId(RoleSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         List<RoleEntity> roleEntityList = roleDomainService.listByBizLineId(record.getBizLineId());
@@ -74,6 +77,7 @@ public class RoleAppService {
      *
      * @param record 查询角色功能参数
      */
+    @ReadAuth
     public PaginationRdo<FuncStrategyComplexRdo> listAuth(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(record);
         Pagination<Pair<Long, Long>> pagination = roleDomainService.listAuth(record.getPageNo(),
@@ -92,6 +96,7 @@ public class RoleAppService {
      * @param record 记录
      * @return 列表
      */
+    @ReadAuth
     public List<Long> listBindMenuId(RoleSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         return roleDomainService.listBindMenuId(record.getBizLineId(), record.getRoleId());

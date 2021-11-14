@@ -95,6 +95,7 @@ public interface DictionaryNodeMapper extends DictionaryNodeBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     List<DictionaryNodePo> listByParentPaths(@Param("bizLineId") Long bizLineId,
                                              @Param("dictionaryId") Long dictionaryId,
                                              @Param("parentPaths") Collection<String> parentPaths);
@@ -123,6 +124,7 @@ public interface DictionaryNodeMapper extends DictionaryNodeBaseMapper {
             @Result(column = "parent_id", property = "id", jdbcType = JdbcType.BIGINT),
             @Result(column = "childCount", property = "childCount", jdbcType = JdbcType.BIGINT),
     })
+    @RowAuthFilter
     List<IdNumPo> countChildByIds(@Param("bizLineId") Long bizLineId, @Param("dictionaryId") Long dictionaryId,
                                   @Param("idList") Set<Long> idList);
 
@@ -247,6 +249,7 @@ public interface DictionaryNodeMapper extends DictionaryNodeBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     List<DictionaryNodePo> listByDictionaryIds(@Param("dictionaryIds") List<Long> dictionaryIds);
 
 

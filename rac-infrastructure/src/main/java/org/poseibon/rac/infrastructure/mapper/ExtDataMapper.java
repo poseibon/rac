@@ -4,6 +4,7 @@ import org.poseibon.rac.infrastructure.po.ExtData;
 import org.poseibon.rac.infrastructure.po.ExtDataPo;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+import org.poseibon.rac.rowauth.annotation.RowAuthFilter;
 
 import java.util.List;
 
@@ -121,5 +122,6 @@ public interface ExtDataMapper extends ExtDataBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter(tblName = "tb_ext_property")
     List<ExtData> listDataByBizId(@Param("bizEntityId") Long bizEntityId, @Param("bizDataId") Long bizDataId);
 }

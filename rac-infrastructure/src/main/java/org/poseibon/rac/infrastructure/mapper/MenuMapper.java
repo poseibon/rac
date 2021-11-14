@@ -4,6 +4,7 @@ import org.poseibon.rac.infrastructure.po.IdNumPo;
 import org.poseibon.rac.infrastructure.po.MenuPo;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+import org.poseibon.rac.rowauth.annotation.RowAuthFilter;
 
 import java.util.Collection;
 import java.util.List;
@@ -87,6 +88,7 @@ public interface MenuMapper extends MenuBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     List<MenuPo> listByParentId(@Param("bizLineId") Long bizLineId,
                                 @Param("parentId") Long parentId);
 
@@ -127,6 +129,7 @@ public interface MenuMapper extends MenuBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     List<MenuPo> listByParentPaths(@Param("bizLineId") Long bizLineId,
                                   @Param("parentPaths") Collection<String> parentPaths);
 
@@ -154,6 +157,7 @@ public interface MenuMapper extends MenuBaseMapper {
             @Result(column = "parent_id", property = "id", jdbcType = JdbcType.BIGINT),
             @Result(column = "childCount", property = "childCount", jdbcType = JdbcType.BIGINT),
     })
+    @RowAuthFilter
     List<IdNumPo> countChildByIds(@Param("bizLineId") Long bizLineId, @Param("ids") Set<Long> ids);
 
     /**
@@ -274,6 +278,7 @@ public interface MenuMapper extends MenuBaseMapper {
             @Result(column = "update_user_id", property = "updateUserId", jdbcType = JdbcType.BIGINT),
             @Result(column = "deleted", property = "deleted", jdbcType = JdbcType.INTEGER)
     })
+    @RowAuthFilter
     List<MenuPo> listByBizLineId(@Param("bizLineId") Long bizLineId, @Param("searchVal") String searchVal);
 
     /**

@@ -37,7 +37,6 @@ public class DictionaryNodeController {
         return ResponseUtil.success(dictionaryNodeAppService.listByParentId(record));
     }
 
-
     /**
      * 查询字典节点列表
      *
@@ -52,7 +51,7 @@ public class DictionaryNodeController {
     }
 
 
-    /**
+     /**
      * 查询维度的扩展属性
      *
      * @param record 用户扩展属性数据
@@ -62,8 +61,6 @@ public class DictionaryNodeController {
     public BaseResponse listExtProperty(@RequestBody DictionaryNodeSimpleRpo record) {
         return ResponseUtil.success(dictionaryNodeAppService.listExtProperty(record));
     }
-
-
 
     /**
      * 添加用户扩展属性

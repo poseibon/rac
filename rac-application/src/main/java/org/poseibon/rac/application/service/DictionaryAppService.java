@@ -5,6 +5,7 @@ import org.poseibon.rac.application.converter.DictionaryEntity2SimpleRdoConverte
 import org.poseibon.rac.application.converter.DictionarySimpleRpo2EntityConverter;
 import org.poseibon.rac.domain.entity.DictionaryEntity;
 import org.poseibon.rac.domain.service.DictionaryDomainService;
+import org.poseibon.rac.rowauth.annotation.ReadAuth;
 import org.poseibon.rac.rowauth.annotation.WriteAuth;
 import org.poseibon.rac.sdk.rdo.base.PaginationRdo;
 import org.poseibon.rac.sdk.rdo.base.PaginationRpo;
@@ -35,6 +36,7 @@ public class DictionaryAppService {
      * @param record 分页查询参数
      * @return 字典列表数据
      */
+    @ReadAuth
     public PaginationRdo<DictionaryComplexRdo> listPage(PaginationRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         // 查询对应的字典列表
@@ -48,6 +50,7 @@ public class DictionaryAppService {
      *
      * @return 字典列表数据
      */
+    @ReadAuth
     public List<DictionarySimpleRdo> listByBizLineId(DictionarySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         return DictionaryEntity2SimpleRdoConverter.INSTANCE.toRdoList(dictionaryDomainService
@@ -98,6 +101,7 @@ public class DictionaryAppService {
      * @param record 记录
      * @return 字典信息
      */
+    @ReadAuth
     public DictionaryComplexRdo queryByEnName(DictionarySimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         return DictionaryEntity2ComplexRdoConverter.INSTANCE.toRdo(dictionaryDomainService

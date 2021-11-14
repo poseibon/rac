@@ -14,11 +14,21 @@ public interface DataAccessStrategyHandler<T extends StrategyInfo> {
     /**
      * 是否有权限操作
      *
-     * @param strategyRdo 策略对象
-     * @param racContext  上下文
+     * @param strategyInfo 策略对象
+     * @param racContext   上下文
      * @return true or false
      */
-    boolean hasAuth(T strategyRdo, RacContext racContext);
+    boolean hasAuth(T strategyInfo, RacContext racContext);
+
+
+    /**
+     * 是否有权限操作
+     *
+     * @param strategyInfo 策略对象
+     * @param racContext   上下文
+     * @return true or false
+     */
+    boolean hasAuth(AuthInfo authInfo, T strategyInfo, RacContext racContext);
 
     /**
      * 策略表达式处理方法

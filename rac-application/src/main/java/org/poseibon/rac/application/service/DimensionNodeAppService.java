@@ -67,6 +67,7 @@ public class DimensionNodeAppService {
      * @param record 参数
      * @return 列表数据
      */
+    @ReadAuth
     public List<DimensionNodeComplexRdo> listByDimensionId(DimensionNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(record);
         // 查询对应的功能列表
@@ -146,6 +147,7 @@ public class DimensionNodeAppService {
      * @param record 记录
      * @return 客体节点
      */
+    @ReadAuth
     public DimensionNodeComplexRdo queryObjectNode(DimensionNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.notNull(record);
         Long objectNodeId = dimensionNodeDomainService.queryObjectNodeId(record.getBizLineId(), record.getDimensionId(),
@@ -163,6 +165,7 @@ public class DimensionNodeAppService {
      * @param record 查询维度节点扩展属性
      * @return 维度扩展属性列表
      */
+    @ReadAuth
     public List<ExtDataComplexRdo> listExtProperty(DimensionNodeSimpleRpo record) {
         ParamAssert.PARAM_EMPTY_ERROR.allNotNull(record);
         DimensionEntity dimensionEntity = dimensionDomainService

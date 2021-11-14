@@ -18,7 +18,12 @@ public class FixAccessStrategyHandler implements DataAccessStrategyHandler<FixSt
 
 
     @Override
-    public boolean hasAuth(FixStrategyInfo strategyRdo, RacContext racContext) {
+    public boolean hasAuth(FixStrategyInfo strategyInfo, RacContext racContext) {
+        return false;
+    }
+
+    @Override
+    public boolean hasAuth(AuthInfo authInfo, FixStrategyInfo strategyInfo, RacContext racContext) {
         return false;
     }
 

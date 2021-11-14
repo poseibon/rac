@@ -155,6 +155,7 @@ export default {
                 })
                 return;
             }
+            this.parentIdList = [];
             this.dialogVisible = true;
             this.addParam = {};
         },
